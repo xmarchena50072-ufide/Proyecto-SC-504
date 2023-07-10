@@ -16,8 +16,8 @@ public class Proyecto_bd {
             
             Class.forName("oracle.jdbc.OracleDriver");
             String url="jdbc:oracle:thin:@localhost:1521:orcl";
-            String uname="inventario";
-            String upass="DBFide1";
+            String uname="HR";
+            String upass="123456";
             Connection conn= DriverManager.getConnection(url,uname,upass);
             String sql="SELECT * FROM CATEGORIAS";
             PreparedStatement pst= conn.prepareStatement(sql);
@@ -31,4 +31,6 @@ public class Proyecto_bd {
         } finally {
         }
     }
+    
+    
 }
