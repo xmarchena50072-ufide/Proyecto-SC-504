@@ -1,5 +1,4 @@
---Ejecutar dentro de sqlplus / as sysdba
-ALTER session set "_ORACLE_SCRIPT"=true;
++ALTER session set "_ORACLE_SCRIPT"=true;
 CREATE USER inventario IDENTIFIED BY DBFide1;
 
 GRANT create session TO inventario;
@@ -15,7 +14,7 @@ ALTER USER inventario quota unlimited on USERS;
 
 ------------------------------------------------------------
 -- Ejecutar en SQLDEVELOPER
--- Tabla "CATEGORÍAS"
+-- Tabla "CATEGOR?AS"
 CREATE TABLE CATEGORIAS (
 ID_CATEGORIA INT PRIMARY KEY,
 NOMBRE_CATEGORIA VARCHAR(100)
@@ -137,9 +136,74 @@ PRECIO_UNITARIO DECIMAL(10,2)
 --SECCION DE INSERTS
 --CATEGORIAS
 INSERT INTO CATEGORIAS (ID_CATEGORIA, NOMBRE_CATEGORIA)
-VALUES (1, 'Categoría 1');
+VALUES (1, 'Categor?a 1');
 
 INSERT INTO CATEGORIAS (ID_CATEGORIA, NOMBRE_CATEGORIA)
-VALUES (2, 'Categoría 2');
+VALUES (2, 'Categor?a 2');
 
+<<<<<<< Updated upstream
 COMMIT;
+=======
+COMMIT;
++COMMIT;
+
+
+--SECCION DE TRIGGER
+-- TABLA EQUIPOS
+CREATE OR REPLACE TRIGGER equipos_trigger
+BEFORE INSERT ON equipos
+FOR EACH ROW
+BEGIN
+
+-- Valor de CANTIDAD_DISPONIBLE a 0 si es negativo
+IF :NEW.CANTIDAD_DISPONIBLE < 0 THEN
+:NEW.CANTIDAD_DISPONIBLE := 0;
+END IF;
+END;
+
+-- TABLA ALMACENES
+CREATE OR REPLACE TRIGGER almacenes_trigger
+BEFORE INSERT ON almacenes
+FOR EACH ROW
+BEGIN
+
+-- Valor de NOMBRE_ALMACEN a 'Almac?n sin nombre' si es NULL
+IF :NEW.NOMBRE_ALMACEN IS NULL THEN
+:NEW.NOMBRE_ALMACEN := 'Almac?n sin nombre';
+END IF;
+END;
+
+-- Tabla RECEPCIONES 
+CREATE OR REPLACE TRIGGER recepciones_trigger
+BEFORE INSERT ON recepciones
+FOR EACH ROW
+BEGIN
+
+-- HORA a CURRENT_TIMESTAMP timestamp si es NULL
+IF :NEW.HORA IS NULL THEN
+:NEW.HORA := CURRENT_TIMESTAMP;
+END IF;
+END;
+
+--TABLA PERSONAL
+CREATE OR REPLACE TRIGGER personal_trigger
+BEFORE INSERT ON personal
+FOR EACH ROW
+BEGIN
+    IF :NEW.TELEFONO IS NULL THEN
+        :NEW.TELEFONO := 'Sin tel?fono';
+    END IF;
+END;
+
+--TABLA PROVEEDORES
+CREATE OR REPLACE TRIGGER proveedores_trigger
+BEFORE INSERT ON proveedores
+FOR EACH ROW
+BEGIN
+    -- Cambiar CORREO a 'N/A' si es NULL
+    IF :NEW.CORREO IS NULL THEN
+        :NEW.CORREO := 'N/A';
+    END IF;
+END;
+
+>>>>>>> Stashed changes
