@@ -167,8 +167,8 @@ CREATE OR REPLACE PROCEDURE procedure_create_personal(
 )
 AS
 BEGIN
-    INSERT INTO PERSONAL (ID_PERSONAL, NOMBRE, TELEFONO, CORREO, ID_DEPARTAMENTO)
-    VALUES (3, p_nombre, '123456789', 'example@example.com', 2);
+    INSERT INTO PERSONAL (NOMBRE, TELEFONO, CORREO, ID_DEPARTAMENTO)
+    VALUES (p_nombre, '123456789', 'example@example.com', 2);
 
     OPEN o_c_dbuser FOR
     SELECT *
@@ -176,8 +176,54 @@ BEGIN
     WHERE NOMBRE = p_nombre;
 END;
 
+CREATE OR REPLACE PROCEDURE procedure_read_personal(
+    o_c_dbuser OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM PERSONAL;
+END;
 
 
+CREATE OR REPLACE PROCEDURE procedure_update_personal(
+    p_id_personal IN PERSONAL.ID_PERSONAL%TYPE,
+    p_nombre IN PERSONAL.NOMBRE%TYPE,
+    p_telefono IN PERSONAL.TELEFONO%TYPE,
+    p_correo IN PERSONAL.CORREO%TYPE,
+    p_id_departamento IN PERSONAL.ID_DEPARTAMENTO%TYPE,
+    o_c_dbuser OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    UPDATE PERSONAL
+    SET NOMBRE = p_nombre,
+        TELEFONO = p_telefono,
+        CORREO = p_correo,
+        ID_DEPARTAMENTO = p_id_departamento
+    WHERE ID_PERSONAL = p_id_personal;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM PERSONAL
+    WHERE ID_PERSONAL = p_id_personal;
+END;
+
+CREATE OR REPLACE PROCEDURE procedure_delete_personal(
+    p_id_personal IN PERSONAL.ID_PERSONAL%TYPE,
+    o_c_dbuser OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    DELETE FROM PERSONAL
+    WHERE ID_PERSONAL = p_id_personal;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM PERSONAL
+    WHERE ID_PERSONAL = p_id_personal;
+END;
 
 
 ROLLBACK;
@@ -223,14 +269,21 @@ END IF;
 END;
 
 --TABLA PERSONAL
+--https://chartio.com/resources/tutorials/how-to-define-an-auto-increment-primary-key-in-oracle/
 CREATE OR REPLACE TRIGGER personal_trigger
 BEFORE INSERT ON personal
 FOR EACH ROW
 BEGIN
-    IF :NEW.TELEFONO IS NULL THEN
-        :NEW.TELEFONO := 'Sin teléfono';
-    END IF;
+  SELECT personal_seq.nextval
+  INTO :new.ID_PERSONAL
+  FROM dual;
 END;
+--FOR EACH ROW
+--BEGIN
+--    IF :NEW.TELEFONO IS NULL THEN
+--        :NEW.TELEFONO := 'Sin teléfono';
+--    END IF;
+--END; 
 
 --TABLA PROVEEDORES
 CREATE OR REPLACE TRIGGER proveedores_trigger

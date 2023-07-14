@@ -46,22 +46,22 @@ public class InterfazGrafica {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
-        JTextField sqlTextField = new JTextField();
-        JButton executeButton = new JButton("Create");
+        JTextField personalNombreTextField = new JTextField();
+        JButton createPersonalButton = new JButton("Crear PERSONAL");
         JTextArea resultTextArea = new JTextArea();
         resultTextArea.setEditable(false);
 
-        executeButton.addActionListener(new ActionListener() {
+        createPersonalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String sql = "{CALL procedure_create_personal('" + sqlTextField.getText() + "',?)}";
+                String sql = "{CALL procedure_create_personal('" + personalNombreTextField.getText() + "',?)}";
                 fetchData(sql, panel);
             }
         });
 
         JPanel inputPanel = new JPanel(new BorderLayout());
-        inputPanel.add(sqlTextField, BorderLayout.CENTER);
-        inputPanel.add(executeButton, BorderLayout.EAST);
+        inputPanel.add(personalNombreTextField, BorderLayout.CENTER);
+        inputPanel.add(createPersonalButton, BorderLayout.EAST);
 
         panel.add(inputPanel, BorderLayout.NORTH);
         panel.add(new JScrollPane(resultTextArea), BorderLayout.CENTER);
@@ -101,7 +101,7 @@ private JPanel readPanel() {
     view2Button.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String sql = "get_detalle_compra";
+            String sql = "{CALL procedure_read_personal(?)}";
             fetchData(sql, panel);
         }
     });
@@ -114,79 +114,75 @@ private JPanel updatePanel() {
     JPanel panel = new JPanel();
     panel.setLayout(new BorderLayout());
 
-    JButton procedure1Button = new JButton("Procedure 1");
-    JButton procedure2Button = new JButton("Procedure 2");
+    JTextField personalIDPersonalTextField = new JTextField();
+    JTextField personalNombreTextField = new JTextField();
+    JTextField personalTelefonoTextField = new JTextField();
+    JTextField personalCorreoTextField = new JTextField();
+    JTextField personalIdDepartamentoTextField = new JTextField();
+
+    JButton updatePersonalButton = new JButton("Actualizar personal");
 
     JTextArea resultTextArea = new JTextArea();
     resultTextArea.setEditable(false);
 
-    JPanel buttonPanel = new JPanel();
-    buttonPanel.add(procedure1Button);
-    buttonPanel.add(procedure2Button);
+    JPanel inputPanel = new JPanel(new GridLayout(5, 2));
+    inputPanel.add(new JLabel("ID:"));
+    inputPanel.add(personalIDPersonalTextField);
+    inputPanel.add(new JLabel("Nombre:"));
+    inputPanel.add(personalNombreTextField);
+    inputPanel.add(new JLabel("Teléfono:"));
+    inputPanel.add(personalTelefonoTextField);
+    inputPanel.add(new JLabel("Correo:"));
+    inputPanel.add(personalCorreoTextField);
+    inputPanel.add(new JLabel("Departamento:"));
+    inputPanel.add(personalIdDepartamentoTextField);
 
+    JPanel buttonPanel = new JPanel();
+    buttonPanel.add(updatePersonalButton);
 
     JPanel resultPanel = new JPanel(new BorderLayout());
     resultPanel.add(new JScrollPane(resultTextArea), BorderLayout.CENTER);
 
-    panel.add(buttonPanel, BorderLayout.NORTH);
-    panel.add(resultPanel, BorderLayout.CENTER);
+    panel.add(inputPanel, BorderLayout.NORTH);
+    panel.add(buttonPanel, BorderLayout.CENTER);
+    panel.add(resultPanel, BorderLayout.SOUTH);
 
-    procedure1Button.addActionListener(new ActionListener() {
+    updatePersonalButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            String sql = "{CALL procedure_update_personal(" + personalIDPersonalTextField.getText() + ", '" + personalNombreTextField.getText() + "', '" + personalTelefonoTextField.getText() + "', '" + personalCorreoTextField.getText() + "', " + personalIdDepartamentoTextField.getText() + ", ?)}";
+            fetchData(sql, panel);
         }
     });
-
-    procedure2Button.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-        }
-    });
-
-
 
     return panel;
 }
+
 
 private JPanel deletePanel() {
     JPanel panel = new JPanel();
     panel.setLayout(new BorderLayout());
 
-
-    JButton function1Button = new JButton("Function 1");
-    JButton function2Button = new JButton("Function 2");
-    
+    JTextField personalIdTextField = new JTextField();
+    JButton deletePersonalButton = new JButton("Eliminar Personal");
     JTextArea resultTextArea = new JTextArea();
     resultTextArea.setEditable(false);
 
-    JPanel buttonPanel = new JPanel();
-    buttonPanel.add(function1Button);
-    buttonPanel.add(function2Button);
-
-
-    JPanel resultPanel = new JPanel(new BorderLayout());
-    resultPanel.add(new JScrollPane(resultTextArea), BorderLayout.CENTER);
-
-    panel.add(buttonPanel, BorderLayout.NORTH);
-    panel.add(resultPanel, BorderLayout.CENTER);
-
-
-    function1Button.addActionListener(new ActionListener() {
+    deletePersonalButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            String sql = "{CALL procedure_delete_personal(" + personalIdTextField.getText() + ", ?)}";
+            fetchData(sql, panel);
         }
     });
 
-    function2Button.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+    JPanel inputPanel = new JPanel(new BorderLayout());
+    inputPanel.add(new JLabel("ID Personal:"), BorderLayout.WEST);
+    inputPanel.add(personalIdTextField, BorderLayout.CENTER);
+    inputPanel.add(deletePersonalButton, BorderLayout.EAST);
 
-        }
-    });
-
+    panel.add(inputPanel, BorderLayout.NORTH);
+    panel.add(new JScrollPane(resultTextArea), BorderLayout.CENTER);
 
     return panel;
 }
@@ -194,7 +190,7 @@ private JPanel deletePanel() {
 
 private void fetchData(String sql, JPanel resultPanel) {
     try {
-        ResultSet resultSet = dataAccessLayer.executeReadQuery(sql);
+        ResultSet resultSet = dataAccessLayer.executeQuery(sql);
 
         int columnCount = resultSet.getMetaData().getColumnCount();
         String[] columnNames = new String[columnCount];

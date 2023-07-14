@@ -26,17 +26,17 @@ public class AccesoDatos {
         }
     }
 
-//    public ResultSet executeReadQuery(String sql) throws SQLException {
+//    public ResultSet executeQuery(String sql) throws SQLException {
 //        PreparedStatement statement = connection.prepareCall(sql);
-//        ResultSet rs=statement.executeReadQuery();
+//        ResultSet rs=statement.executeQuery();
 //            while (rs.next()) {
 //                System.out.println(rs.getString(2));
 //                
 //            }
-//        return statement.executeReadQuery();
+//        return statement.executeQuery();
 //    }
     
-    public ResultSet executeReadQuery(String sql) throws SQLException {
+    public ResultSet executeQuery(String sql) throws SQLException {
         CallableStatement statement = connection.prepareCall(sql);
 
         // Parametro input
@@ -53,22 +53,6 @@ public class AccesoDatos {
         return resultSet;
 }
     
-    public ResultSet executeCreateQuery(String sql) throws SQLException {
-        CallableStatement statement = connection.prepareCall(sql);
-
-        // Parametro input
-        //statement.setInt(1,1);
-
-        // Parametro output
-        statement.registerOutParameter(1, OracleTypes.CURSOR);
-
-        statement.execute();
-
-        // Resultados de output parameter
-        ResultSet resultSet = ((OracleCallableStatement) statement).getCursor(1);
-        
-        return resultSet;
-}
  
     
         public void closeConnection() {

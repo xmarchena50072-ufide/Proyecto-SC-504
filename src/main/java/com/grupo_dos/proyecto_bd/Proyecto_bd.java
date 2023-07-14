@@ -21,7 +21,7 @@ public class Proyecto_bd {
 //            Connection conn= DriverManager.getConnection(url,uname,upass);
 //            String sql="SELECT * FROM CATEGORIAS";
 //            PreparedStatement pst= conn.prepareStatement(sql);
-//            ResultSet rs=pst.executeReadQuery();
+//            ResultSet rs=pst.executeQuery();
 //            while (rs.next()) {
 //                System.out.println(rs.getString(2));
 //                
