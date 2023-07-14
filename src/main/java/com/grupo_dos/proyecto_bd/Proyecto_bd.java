@@ -12,25 +12,29 @@ import javax.swing.JOptionPane;
 public class Proyecto_bd {
 
     public static void main(String[] args) {
-        try {
-            
-            Class.forName("oracle.jdbc.OracleDriver");
-            String url="jdbc:oracle:thin:@localhost:1521:orcl";
-            String uname="HR";
-            String upass="123456";
-            Connection conn= DriverManager.getConnection(url,uname,upass);
-            String sql="SELECT * FROM CATEGORIAS";
-            PreparedStatement pst= conn.prepareStatement(sql);
-            ResultSet rs=pst.executeQuery();
-            while (rs.next()) {
-                System.out.println(rs.getString(2));
-                
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        } finally {
-        }
+//        try {
+//            
+//            Class.forName("oracle.jdbc.OracleDriver");
+//            String url="jdbc:oracle:thin:@localhost:1521:orcl";
+//            String uname="inventario";
+//            String upass="DBFide1";
+//            Connection conn= DriverManager.getConnection(url,uname,upass);
+//            String sql="SELECT * FROM CATEGORIAS";
+//            PreparedStatement pst= conn.prepareStatement(sql);
+//            ResultSet rs=pst.executeQuery();
+//            while (rs.next()) {
+//                System.out.println(rs.getString(2));
+//                
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        } finally {
+//        }
+
+        AccesoDatos dataAccessLayer = new AccesoDatos();
+
+        InterfazGrafica userInterface = new InterfazGrafica(dataAccessLayer);
+
+        userInterface.launch();
     }
-    
-    
 }
