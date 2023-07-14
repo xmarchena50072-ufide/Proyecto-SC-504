@@ -1,6 +1,7 @@
 --Procedimientos PROCEDURE
 
---PROCEDIMIENTO OBTIENE TODOS LOS EQUIPOS DISPONIBLES
+--PROCEDIMIENTO CRUD PARA TODOS LOS EQUIPOS DISPONIBLES
+
 CREATE OR REPLACE PROCEDURE obtener_equipos_disponibles(
     equipos_cursor OUT SYS_REFCURSOR
 )
@@ -11,6 +12,54 @@ BEGIN
     FROM equipos
     WHERE cantidad_disponible > 0;
 END;
+
+CREATE OR REPLACE PROCEDURE crear_equipo(
+    id_equipo IN INT,
+    nombre_equipo IN VARCHAR2,
+    descripcion IN VARCHAR2,
+    num_serie IN VARCHAR2,
+    cantidad_disponible IN INT,
+    categoria IN INT
+)
+AS
+BEGIN
+    INSERT INTO equipos (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible,
+    categoria)
+    VALUES (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible,
+    categoria)
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE actualizar_equipo(
+    id_equipo IN INT,
+    nombre_equipo IN VARCHAR2,
+    descripcion IN VARCHAR2,
+    num_serie IN VARCHAR2,
+    cantidad_disponible IN INT,
+    categoria IN INT
+)
+AS
+BEGIN
+    UPDATE equipos
+    SET nombre_equipo = nombre_equipo,
+        descripcion = descripcion,
+        num_serie = num_serie,
+        cantidad_disponible = cantidad_disponible,
+        categoria = categoria
+    WHERE id_equipo = id_equipo
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE eliminar_equipo(
+    id_equipo IN INT
+)
+AS
+BEGIN
+    DELETE FROM equipos
+    WHERE id_equipo = id_equipo;
+    COMMIT;
+END;
+    
 
 --Procedimiento para obtener la lista de departamentos 
 CREATE OR REPLACE PROCEDURE obtener_departamentos(
