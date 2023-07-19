@@ -25,7 +25,6 @@ CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_ELIMINAR_PKG AS
   PROCEDURE eliminar_categoria(id_categoria IN INT);
   /* Procedimientos para el detalle de compras */
   PROCEDURE eliminar_detalle_compra(id_detalle_compra IN INT);
-  /* Procedimientos adicionales */
   --PROCEDURE eliminar_proveedor_y_compras(id_proveedor IN INT);
 END INVENTARIO_MGMT_ELIMINAR_PKG;
 
@@ -67,7 +66,6 @@ CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_ACTUALIZAR_PKG AS
   PROCEDURE actualizar_categoria(id_categoria IN INT, nombre_categoria IN VARCHAR2);
   /* Procedimientos para el detalle de compras */
   PROCEDURE actualizar_detalle_compra(id_detalle_compra IN INT, material IN VARCHAR2, cantidad IN INT, precio_unitario IN DECIMAL);
-  /* Procedimientos adicionales */
   --PROCEDURE actualizar_cantidad_disponibles(equipo_id IN INT, nueva_cantidad IN INT);
 END INVENTARIO_MGMT_ACTUALIZAR_PKG;
 
@@ -78,7 +76,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_OBTENER_PKG AS
   BEGIN
     OPEN equipos_cursor FOR
     SELECT *
-    FROM equipos
+    FROM vista_equipo
     WHERE cantidad_disponible > 0;
   END;
 
@@ -99,15 +97,6 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_OBTENER_PKG AS
     SELECT *
     FROM recepciones
     WHERE fecha = fecha_recepcion;
-    
-  EXCEPTION
-    WHEN OTHERS THEN
-        -- Registrar error en log
-        INSERT INTO error_log (error_message, error_timestamp)
-        VALUES (SQLERRM, SYSTIMESTAMP);
-
-        RAISE_APPLICATION_ERROR(-20001, 'Error en procedimiento obtener_recepciones_por_fecha');
-    END;
   END;
 
   /* Procedimientos para usuarios */
@@ -119,15 +108,6 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_OBTENER_PKG AS
     FROM usuarios u
     INNER JOIN personal p ON u.id_personal = p.id_personal
     WHERE p.id_departamento = departamento_id;
-    
-  EXCEPTION
-    WHEN OTHERS THEN
-        -- Registrar error en log
-        INSERT INTO error_log (error_message, error_timestamp)
-        VALUES (SQLERRM, SYSTIMESTAMP);
-
-        RAISE_APPLICATION_ERROR(-20001, 'Error en procedimiento obtener_usuarios_por_departamento');
-    END;
   END;
 
   /* Procedimientos para el detalle de compras */
@@ -400,4 +380,28 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ACTUALIZAR_PKG AS
     COMMIT;
   END;
 END INVENTARIO_MGMT_ACTUALIZAR_PKG;
+
+
+--PRUEBAS
+SET SERVEROUTPUT ON;
+DECLARE
+  equipos_cursor SYS_REFCURSOR;
+  id_equipo equipos.id_equipo%TYPE;
+  nombre_equipo equipos.nombre_equipo%TYPE;
+  cantidad_disponible equipos.cantidad_disponible%TYPE; 
+BEGIN
+  
+  INVENTARIO_MGMT_OBTENER_PKG.obtener_equipos_disponibles(equipos_cursor);
+  
+  LOOP
+
+    FETCH equipos_cursor INTO id_equipo, nombre_equipo, cantidad_disponible; 
+    
+    EXIT WHEN equipos_cursor%NOTFOUND;    
+
+    DBMS_OUTPUT.PUT_LINE('Equipo ID: ' || id_equipo || ', Nombre: ' || nombre_equipo || ', Cantidad Disponible: ' || cantidad_disponible);
+  END LOOP;
+  
+  CLOSE equipos_cursor;
+END;
 
