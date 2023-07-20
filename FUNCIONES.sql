@@ -68,11 +68,6 @@ BEGIN
   WHERE fecha = fecha_recepcion;
   RETURN v_cantidad_recepciones;
 END;
-/
-
---obtener la cantidad de usuarios en un departamento especifico
-
---obtener la cantidad de categorias de productos
 
 -- obtener la cantidad total de equipos por categoria
 CREATE OR REPLACE FUNCTION obtener_cantidad_equipos_por_categoria(
