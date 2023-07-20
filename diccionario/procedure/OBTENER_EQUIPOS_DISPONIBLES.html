@@ -1,0 +1,773 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=Cp1252" />
+<script src="OBTENER_EQUIPOS_DISPONIBLES/report.js" type="text/javascript"></script>
+<link href="OBTENER_EQUIPOS_DISPONIBLES/report.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="banner">
+<table width="98%"><tr>
+<td><h2 class="banner">OBTENER_EQUIPOS_DISPONIBLES</h2></td>
+</tr></table></div>
+<div id="maintabs">
+<div class="currentmaintab" onclick="onSelectMainTab(this, 0)">
+<div>
+<p>Doc</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 1)">
+<div>
+<p>Details</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 2)">
+<div>
+<p>Grants</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 3)">
+<div>
+<p>References</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 4)">
+<div>
+<p>Dependencies</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 5)">
+<div>
+<p>Code</p>
+</div>
+</div>
+</div>
+<br/>
+<div id="masterreports">
+<div id="Master.0">
+<div class="currentmasterreport">
+<TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P></P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_cantidad_disponibles">actualizar_cantidad_disponibles</A></B>( equipo_id IN INT , nueva_cantidad IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ya se incluyo en los procedimientos del CRUD de equipos anteriormente</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_categoria">actualizar_categoria</A></B>( id_categoria IN INT , nombre_categoria IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_departamento">actualizar_departamento</A></B>( id_departamento IN INT , nombre_departamento IN VARCHHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_detalle_compra">actualizar_detalle_compra</A></B>( id_detalle_compra IN INT , material IN VARCHAR2 , cantidad IN INT , precio_unitario IN DECIMAL ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_equipo">actualizar_equipo</A></B>( id_equipo IN INT , nombre_equipo IN VARCHAR2 , descripcion IN VARCHAR2 , num_serie IN VARCHAR2 , cantidad_disponible IN INT , categoria IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_proveedor">actualizar_proveedor</A></B>( id_proveedor IN INT , nombre IN VARCHAR2 , telefono IN VARCHAR2 , correo IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_recepcion">actualizar_recepcion</A></B>( id_recepcion IN INT , id_equipo IN INT , id_almacen IN INT , fecha IN DATE , hora IN TIMESTAMP ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_rol">actualizar_rol</A></B>( id_rol IN INT , nombre IN VARCHAR2 , descripcion IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_usuario">actualizar_usuario</A></B>( id_usuario IN INT , id_personal IN INT , username IN VARCHAR2 , password IN VARCHAR2 , id_rol IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_categoria">crear_categoria</A></B>( id_categoria IN INT , nombre_categoria IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_departamento">crear_departamento</A></B>( id_departamento IN INT , nombre_departamento IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_detalle_compra">crear_detalle_compra</A></B>( id_detalle_compra IN INT , materia IN VARCHAR2 , cantidad IN INT , precio_unitario IN DECIMAL ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_equipo">crear_equipo</A></B>( id_equipo IN INT , nombre_equipo IN VARCHAR2 , descripcion IN VARCHAR2 , num_serie IN VARCHAR2 , cantidad_disponible IN INT , categoria IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_proveedor">crear_proveedor</A></B>( id_proveedor IN INT , nombre IN VARCHAR2 , telefono IN VARCHAR2 , correo IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_recepcion">crear_recepcion</A></B>( id_recepcion IN INT , id_equipo IN INT , id_almacen IN INT , fecha IN DATE , hora IN TIMESTAMP ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_rol">crear_rol</A></B>( id_rol IN INT , nombre IN VARCHAR2 , descripcion IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_usuario">crear_usuario</A></B>( id_usuario IN INT , id_personal IN INT , username IN VARCHAR2 , password IN VARCHAR2 , id_rol IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_categoria">eliminar_categoria</A></B>( id_categoria IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_departamento">eliminar_departamento</A></B>( id_departamento IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_detalle_compra">eliminar_detalle_compra</A></B>( id_detalle_compra IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_equipo">eliminar_equipo</A></B>( id_equipo IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_proveedor">eliminar_proveedor</A></B>( id_proveedor IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_proveedor">eliminar_proveedor</A></B>( id_proveedor IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ya se incluyo en los procedimientos del CRUD de proveedores.</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_recepcion">eliminar_recepcion</A></B>( id_recepcion IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_rol">eliminar_rol</A></B>( id_rol IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_usuario">eliminar_usuario</A></B>( id_usuario IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_cantidad_equipos_por_categoria">obtener_cantidad_equipos_por_categoria</A></B>( categoria_id IN INT , cantidad_equipos OUT INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER LA CANTIDAD TOTAL DE EQUIPOS POR CATEGORIA</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_departamentos">obtener_departamentos</A></B>( departamentos_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER LAS LISTA DE DEPARTAMENTOS </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_detalle_compra">obtener_detalle_compra</A></B>( compra_id IN INT , detalle_compra_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTTO PARA OBTENER EL DETALLE DE UNA COMPRA</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_equipos_disponibles">obtener_equipos_disponibles</A></B>( equipos_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_equipos_recibidos">obtener_equipos_recibidos</A></B>( fecha_recepcion IN DATE , departamento_id IN INT , equipos_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ya se incluyo en los procedimientos del CRUD de recepciones y equipos</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_proveedores_por_nombre">obtener_proveedores_por_nombre</A></B>( nombre_proveedor IN VARCHAR2 , proveedores_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER LOS PROVEEDORES POR NOMBRE </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_recepciones_por_fecha">obtener_recepciones_por_fecha</A></B>( fecha_recepcion IN DATE , recepciones_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER LAS RECEPCIONES POR FECHA</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_roles">obtener_roles</A></B>( roles_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER ROLES DE USUARIO</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_total_inventario">obtener_total_inventario</A></B>( total OUT INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO ALMACENADO PARA OBTENER EL TOTAL DE INVENTARIO</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_usuarios_por_departamento">obtener_usuarios_por_departamento</A></B>( departamento_id IN INT , usuarios_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER LOS USUARIOS POR DEPARTAMENTO</TD></TR>
+</TABLE>
+<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="actualizar_cantidad_disponibles"></A>
+<H3>actualizar_cantidad_disponibles</H3><PRE>          <B>actualizar_cantidad_disponibles</B>( equipo_id IN INT , nueva_cantidad IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ya se incluyo en los procedimientos del CRUD de equipos anteriormente<DD><DL></DL></DD></DL><HR><A NAME="actualizar_categoria"></A>
+<H3>actualizar_categoria</H3><PRE>          <B>actualizar_categoria</B>( id_categoria IN INT , nombre_categoria IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_departamento"></A>
+<H3>actualizar_departamento</H3><PRE>          <B>actualizar_departamento</B>( id_departamento IN INT , nombre_departamento IN VARCHHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_detalle_compra"></A>
+<H3>actualizar_detalle_compra</H3><PRE>          <B>actualizar_detalle_compra</B>( id_detalle_compra IN INT , material IN VARCHAR2 , cantidad IN INT , precio_unitario IN DECIMAL ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_equipo"></A>
+<H3>actualizar_equipo</H3><PRE>          <B>actualizar_equipo</B>( id_equipo IN INT , nombre_equipo IN VARCHAR2 , descripcion IN VARCHAR2 , num_serie IN VARCHAR2 , cantidad_disponible IN INT , categoria IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_proveedor"></A>
+<H3>actualizar_proveedor</H3><PRE>          <B>actualizar_proveedor</B>( id_proveedor IN INT , nombre IN VARCHAR2 , telefono IN VARCHAR2 , correo IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_recepcion"></A>
+<H3>actualizar_recepcion</H3><PRE>          <B>actualizar_recepcion</B>( id_recepcion IN INT , id_equipo IN INT , id_almacen IN INT , fecha IN DATE , hora IN TIMESTAMP ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_rol"></A>
+<H3>actualizar_rol</H3><PRE>          <B>actualizar_rol</B>( id_rol IN INT , nombre IN VARCHAR2 , descripcion IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_usuario"></A>
+<H3>actualizar_usuario</H3><PRE>          <B>actualizar_usuario</B>( id_usuario IN INT , id_personal IN INT , username IN VARCHAR2 , password IN VARCHAR2 , id_rol IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="crear_categoria"></A>
+<H3>crear_categoria</H3><PRE>          <B>crear_categoria</B>( id_categoria IN INT , nombre_categoria IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="crear_departamento"></A>
+<H3>crear_departamento</H3><PRE>          <B>crear_departamento</B>( id_departamento IN INT , nombre_departamento IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="crear_detalle_compra"></A>
+<H3>crear_detalle_compra</H3><PRE>          <B>crear_detalle_compra</B>( id_detalle_compra IN INT , materia IN VARCHAR2 , cantidad IN INT , precio_unitario IN DECIMAL ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="crear_equipo"></A>
+<H3>crear_equipo</H3><PRE>          <B>crear_equipo</B>( id_equipo IN INT , nombre_equipo IN VARCHAR2 , descripcion IN VARCHAR2 , num_serie IN VARCHAR2 , cantidad_disponible IN INT , categoria IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="crear_proveedor"></A>
+<H3>crear_proveedor</H3><PRE>          <B>crear_proveedor</B>( id_proveedor IN INT , nombre IN VARCHAR2 , telefono IN VARCHAR2 , correo IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="crear_recepcion"></A>
+<H3>crear_recepcion</H3><PRE>          <B>crear_recepcion</B>( id_recepcion IN INT , id_equipo IN INT , id_almacen IN INT , fecha IN DATE , hora IN TIMESTAMP ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="crear_rol"></A>
+<H3>crear_rol</H3><PRE>          <B>crear_rol</B>( id_rol IN INT , nombre IN VARCHAR2 , descripcion IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="crear_usuario"></A>
+<H3>crear_usuario</H3><PRE>          <B>crear_usuario</B>( id_usuario IN INT , id_personal IN INT , username IN VARCHAR2 , password IN VARCHAR2 , id_rol IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="eliminar_categoria"></A>
+<H3>eliminar_categoria</H3><PRE>          <B>eliminar_categoria</B>( id_categoria IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="eliminar_departamento"></A>
+<H3>eliminar_departamento</H3><PRE>          <B>eliminar_departamento</B>( id_departamento IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="eliminar_detalle_compra"></A>
+<H3>eliminar_detalle_compra</H3><PRE>          <B>eliminar_detalle_compra</B>( id_detalle_compra IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="eliminar_equipo"></A>
+<H3>eliminar_equipo</H3><PRE>          <B>eliminar_equipo</B>( id_equipo IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="eliminar_proveedor"></A>
+<H3>eliminar_proveedor</H3><PRE>          <B>eliminar_proveedor</B>( id_proveedor IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="eliminar_proveedor"></A>
+<H3>eliminar_proveedor</H3><PRE>          <B>eliminar_proveedor</B>( id_proveedor IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ya se incluyo en los procedimientos del CRUD de proveedores.<DD><DL></DL></DD></DL><HR><A NAME="eliminar_recepcion"></A>
+<H3>eliminar_recepcion</H3><PRE>          <B>eliminar_recepcion</B>( id_recepcion IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="eliminar_rol"></A>
+<H3>eliminar_rol</H3><PRE>          <B>eliminar_rol</B>( id_rol IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="eliminar_usuario"></A>
+<H3>eliminar_usuario</H3><PRE>          <B>eliminar_usuario</B>( id_usuario IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_cantidad_equipos_por_categoria"></A>
+<H3>obtener_cantidad_equipos_por_categoria</H3><PRE>          <B>obtener_cantidad_equipos_por_categoria</B>( categoria_id IN INT , cantidad_equipos OUT INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER LA CANTIDAD TOTAL DE EQUIPOS POR CATEGORIA<DD><DL></DL></DD></DL><HR><A NAME="obtener_departamentos"></A>
+<H3>obtener_departamentos</H3><PRE>          <B>obtener_departamentos</B>( departamentos_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER LAS LISTA DE DEPARTAMENTOS <DD><DL></DL></DD></DL><HR><A NAME="obtener_detalle_compra"></A>
+<H3>obtener_detalle_compra</H3><PRE>          <B>obtener_detalle_compra</B>( compra_id IN INT , detalle_compra_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTTO PARA OBTENER EL DETALLE DE UNA COMPRA<DD><DL></DL></DD></DL><HR><A NAME="obtener_equipos_disponibles"></A>
+<H3>obtener_equipos_disponibles</H3><PRE>          <B>obtener_equipos_disponibles</B>( equipos_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_equipos_recibidos"></A>
+<H3>obtener_equipos_recibidos</H3><PRE>          <B>obtener_equipos_recibidos</B>( fecha_recepcion IN DATE , departamento_id IN INT , equipos_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ya se incluyo en los procedimientos del CRUD de recepciones y equipos<DD><DL></DL></DD></DL><HR><A NAME="obtener_proveedores_por_nombre"></A>
+<H3>obtener_proveedores_por_nombre</H3><PRE>          <B>obtener_proveedores_por_nombre</B>( nombre_proveedor IN VARCHAR2 , proveedores_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER LOS PROVEEDORES POR NOMBRE <DD><DL></DL></DD></DL><HR><A NAME="obtener_recepciones_por_fecha"></A>
+<H3>obtener_recepciones_por_fecha</H3><PRE>          <B>obtener_recepciones_por_fecha</B>( fecha_recepcion IN DATE , recepciones_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER LAS RECEPCIONES POR FECHA<DD><DL></DL></DD></DL><HR><A NAME="obtener_roles"></A>
+<H3>obtener_roles</H3><PRE>          <B>obtener_roles</B>( roles_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER ROLES DE USUARIO<DD><DL></DL></DD></DL><HR><A NAME="obtener_total_inventario"></A>
+<H3>obtener_total_inventario</H3><PRE>          <B>obtener_total_inventario</B>( total OUT INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO ALMACENADO PARA OBTENER EL TOTAL DE INVENTARIO<DD><DL></DL></DD></DL><HR><A NAME="obtener_usuarios_por_departamento"></A>
+<H3>obtener_usuarios_por_departamento</H3><PRE>          <B>obtener_usuarios_por_departamento</B>( departamento_id IN INT , usuarios_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDIMIENTO PARA OBTENER LOS USUARIOS POR DEPARTAMENTO<DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE></div>
+</div>
+<div id="Master.1">
+<div class="masterreport">
+<table id="Table.0" cellpadding="0" cellspacing="0" summary="">
+<th>NAME</th>
+<th>VALUE</th>
+</tr>
+<tr>
+<td>OWNER</td>
+<td>INVENTARIO</td>
+</tr>
+<tr>
+<td>OBJECT_NAME</td>
+<td>OBTENER_EQUIPOS_DISPONIBLES</td>
+</tr>
+<tr>
+<td>SUBOBJECT_NAME</td>
+<td>null</td>
+</tr>
+<tr>
+<td>OBJECT_ID</td>
+<td>74479</td>
+</tr>
+<tr>
+<td>DATA_OBJECT_ID</td>
+<td>null</td>
+</tr>
+<tr>
+<td>OBJECT_TYPE</td>
+<td>PROCEDURE</td>
+</tr>
+<tr>
+<td>CREATED</td>
+<td>15-JUL-23</td>
+</tr>
+<tr>
+<td>LAST_DDL_TIME</td>
+<td>15-JUL-23</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>2023-07-15:14:11:49</td>
+</tr>
+<tr>
+<td>STATUS</td>
+<td>INVALID</td>
+</tr>
+<tr>
+<td>TEMPORARY</td>
+<td>N</td>
+</tr>
+<tr>
+<td>GENERATED</td>
+<td>N</td>
+</tr>
+<tr>
+<td>SECONDARY</td>
+<td>N</td>
+</tr>
+<tr>
+<td>NAMESPACE</td>
+<td>1</td>
+</tr>
+<tr>
+<td>EDITION_NAME</td>
+<td>null</td>
+</tr>
+<tr>
+<td>SHARING</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td>EDITIONABLE</td>
+<td>N</td>
+</tr>
+<tr>
+<td>ORACLE_MAINTAINED</td>
+<td>N</td>
+</tr>
+<tr>
+<td>APPLICATION</td>
+<td>N</td>
+</tr>
+<tr>
+<td>DEFAULT_COLLATION</td>
+<td>USING_NLS_COMP</td>
+</tr>
+<tr>
+<td>DUPLICATED</td>
+<td>N</td>
+</tr>
+<tr>
+<td>SHARDED</td>
+<td>N</td>
+</tr>
+<tr>
+<td>CREATED_APPID</td>
+<td>null</td>
+</tr>
+<tr>
+<td>CREATED_VSNID</td>
+<td>null</td>
+</tr>
+<tr>
+<td>MODIFIED_APPID</td>
+<td>null</td>
+</tr>
+<tr>
+<td>MODIFIED_VSNID</td>
+<td>null</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.2">
+<div class="masterreport">
+<table id="Table.1" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>PRIVILEGE</th>
+<th>GRANTEE</th>
+<th>GRANTABLE</th>
+<th>GRANTOR</th>
+<th>OBJECT_NAME</th>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.3">
+<div class="masterreport">
+<table id="Table.2" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>NAME</th>
+<th>OWNER</th>
+<th>TYPE</th>
+<th>OBJECT_ID</th>
+<th>STATUS</th>
+<th>TYPE_LINK</th>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.4">
+<div class="masterreport">
+<table id="Table.3" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>NAME</th>
+<th>OWNER</th>
+<th>TYPE</th>
+<th>OBJECT_ID</th>
+<th>STATUS</th>
+<th>TYPE_LINK</th>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.5">
+<div class="masterreport">
+<pre>
+PROCEDURE obtener_equipos_disponibles(
+    equipos_cursor OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN equipos_cursos FOR
+    SELECT *
+    FROM equipos
+    WHERE cantidad_disponible > 0;
+END;
+
+CREATE OR REPLACE PROCEDURE crear_equipo(
+    id_equipo IN INT,
+    nombre_equipo IN VARCHAR2,
+    descripcion IN VARCHAR2,
+    num_serie IN VARCHAR2,
+    cantidad_disponible IN INT,
+    categoria IN INT
+)
+AS
+BEGIN
+    INSERT INTO equipos (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible,
+    categoria)
+    VALUES (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible,
+    categoria)
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE actualizar_equipo(
+    id_equipo IN INT,
+    nombre_equipo IN VARCHAR2,
+    descripcion IN VARCHAR2,
+    num_serie IN VARCHAR2,
+    cantidad_disponible IN INT,
+    categoria IN INT
+)
+AS
+BEGIN
+    UPDATE equipos
+    SET nombre_equipo = nombre_equipo,
+        descripcion = descripcion,
+        num_serie = num_serie,
+        cantidad_disponible = cantidad_disponible,
+        categoria = categoria
+    WHERE id_equipo = id_equipo
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE eliminar_equipo(
+    id_equipo IN INT
+)
+AS
+BEGIN
+    DELETE FROM equipos
+    WHERE id_equipo = id_equipo;
+    COMMIT;
+END;
+
+
+--PROCEDIMIENTO PARA OBTENER LAS LISTA DE DEPARTAMENTOS 
+
+CREATE OR REPLACE PROCEDURE obtener_departamentos(
+    departamentos_cursor OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN departamentos_cursor FOR
+    SELECT *
+    FROM departamentos;
+END;
+
+CREATE OR REPLACE PROCEDURE crear_departamento(
+    id_departamento IN INT,
+    nombre_departamento IN VARCHAR2
+)
+AS
+BEGIN
+    INSERT INTO departamentos (id_departamento, nombre_departamento)
+    VALUES (id_departamento, nombre_departamento);
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE actualizar_departamento(
+    id_departamento IN INT,
+    nombre_departamento IN VARCHHAR2
+)
+AS
+BEGIN
+    UPDATE departamentos
+    SET nombre_departamento = nombre_departamento
+    WHERE id_departamento = id_departamento;
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE eliminar_departamento(
+    id_departamento IN INT
+)
+AS
+BEGIN
+    DELETE FROM departamentos
+    WHERE id_departamento = id_departamento;
+    COMMIT;
+END;
+
+
+--PROCEDIMIENTO PARA OBTENER ROLES DE USUARIO
+
+CREATE OR REPLACE PROCEDURE obtener_roles(
+    roles_cursor OUT SYS_REFCURSOR
+)
+AS 
+BEGIN
+    OPEN roles_cursor FOR
+    SELECT *
+    FROM roles;
+END;
+
+CREATE OR REPLACE PROCEDURE crear_rol(
+    id_rol IN INT,
+    nombre IN VARCHAR2,
+    descripcion IN VARCHAR2
+)
+AS 
+BEGIN
+    INSERT INTO roles (id_rol, nombre, descripcion)
+    VALUES (id_rol, nombre, descricion)
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE actualizar_rol(
+    id_rol IN INT,
+    nombre IN VARCHAR2,
+    descripcion IN VARCHAR2
+)
+AS 
+BEGIN
+    UPDATE roles
+    SET nombre = nombre,
+        descripcion = descripcion
+    WHERE id_rol = id_rol;
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE eliminar_rol(
+    id_rol IN INT
+)
+AS
+BEGIN
+    DELETE FROM roles
+    WHERE id_rol = id_rol;
+    COMMIT;
+END;
+
+
+--PROCEDIMIENTO PARA OBTENER LOS PROVEEDORES POR NOMBRE 
+
+CREATE OR REPLACE PROCEDURE obtener_proveedores_por_nombre(
+    nombre_proveedor IN VARCHAR2,
+    proveedores_cursor OUT SYS_REFCURSOR
+)
+AS
+BEGIN 
+    OPEN proveedores_cursor FOR
+    SELECT *
+    FROM proveedores
+    WHERE nombre LIKE '%' || nombre_proveedor || '%';
+END;
+
+CREATE OR REPLACE PROCEDURE crear_proveedor(
+    id_proveedor IN INT,
+    nombre IN VARCHAR2,
+    telefono IN VARCHAR2,
+    correo IN VARCHAR2
+)
+AS 
+BEGIN
+    INSERT INTO proveedores (id_proveedor, nombre, telefono, correo)
+    VALUES (id_proveedor, nombre, telefono, correo);
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE actualizar_proveedor(
+    id_proveedor IN INT,
+    nombre IN VARCHAR2,
+    telefono IN VARCHAR2,
+    correo IN VARCHAR2
+)
+AS
+BEGIN
+    UPDATE proveedures
+    SET nombre = nombre,
+        telefono = telefono;
+        correo = correo
+    WHERE id_proveedor = id_proveedor;
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE eliminar_proveedor(
+    id_proveedor IN INT
+)
+AS
+BEGIN
+    DELETE FROM proveedores
+    WHERE id_proveedor = id_proveedor;
+    COMMIT;
+END;
+
+--PROCEDIMIENTO PARA OBTENER LAS RECEPCIONES POR FECHA
+
+CREATE OR REPLACE PROCEDURE obtener_recepciones_por_fecha(
+    fecha_recepcion IN DATE,
+    recepciones_cursor OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN recepciones_cursor FOR
+    SELECT *
+    FROM recepciones
+    WHERE fecha = fecha_recepcion;
+END;
+
+CREATE OR REPLACE PROCEDURE crear_recepcion(
+    id_recepcion IN INT,
+    id_equipo IN INT,
+    id_almacen IN INT,
+    fecha IN DATE,
+    hora IN TIMESTAMP
+)
+AS
+BEGIN
+    INSERT INTO recepciones (id_recepcion, id_equipo, id_almacen, fecha, hora)
+    VALUES (id_recepcion, id_equipo, id_almacen, fecha, hora);
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE actualizar_recepcion(
+    id_recepcion IN INT,
+    id_equipo IN INT,
+    id_almacen IN INT,
+    fecha IN DATE,
+    hora IN TIMESTAMP
+)
+AS
+BEGIN
+    UPDATE recepciones
+    SET id_equipo = id_equipo,
+        id_almacen = id_almacen,
+        fecha = fecha,
+        hora = hora
+    WHERE id_recepcion = id_recepcion;
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE eliminar_recepcion(
+    id_recepcion IN INT
+)
+AS
+BEGIN
+    DELETE FROM recepciones
+    WHERE id_recepcion = id_recepcion;
+    COMMIT;
+END;
+
+
+--PROCEDIMIENTO PARA OBTENER LOS USUARIOS POR DEPARTAMENTO
+
+CREATE OR REPLACE PROCEDURE obtener_usuarios_por_departamento(
+    departamento_id IN INT,
+    usuarios_cursor OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN usuarios_cursor FOR
+    SELECT *
+    FROM usuarios
+    WHERE id_departamento = departamento_id;
+END;
+
+CREATE OR REPLACE PROCEDURE crear_usuario(
+    id_usuario IN INT,
+    id_personal IN INT,
+    username IN VARCHAR2,
+    password IN VARCHAR2,
+    id_rol IN INT
+)
+AS 
+BEGIN
+    INSERT INTO usuarios (id_usuario, id_personal, username, password, id_rol)
+    VALUES (id_usuario, id_personal, username, password, id_rol);
+    COMMIT;
+END;
+
+CREATE FOR REPLACE PROCEDURE actualizar_usuario(
+    id_usuario IN INT,
+    id_personal IN INT, 
+    username IN VARCHAR2,
+    password IN VARCHAR2,
+    id_rol IN INT
+)
+AS
+BEGIN
+    UPDATE usuarios
+    SET id_personal = id_personal,
+        username = username,
+        password = password,
+        id_rol = id_rol
+    WHERE id_usuario = id_usuario;
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE eliminar_usuario(
+    id_usuario IN INT
+)
+AS 
+BEGIN
+    DELETE FROM usuarios
+    WHERE id_usuario = id_usuario;
+    COMMIT;
+END;
+
+--PROCEDIMIENTO PARA OBTENER LA CANTIDAD TOTAL DE EQUIPOS POR CATEGORIA
+
+CREATE OR REPLACE PROCEDURE obtener_cantidad_equipos_por_categoria(
+    categoria_id IN INT,
+    cantidad_equipos OUT INT
+)
+AS
+BEGIN
+    SELECT COUNT(*)
+    INTO cantidad_equipos
+    FROM equipos
+    WHERE categoria = categoria_id;
+END;
+
+CREATE OR REPLACE PROCEDURE crear_categoria(
+    id_categoria IN INT,
+    nombre_categoria IN VARCHAR2
+)
+AS
+BEGIN
+    INSERT INTO categorias (id_categoria, nombre_categoria)
+    VALUES (id_categoria, nombre_categoria);
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE actualizar_categoria(
+    id_categoria IN INT,
+    nombre_categoria IN VARCHAR2
+)
+AS
+BEGIN
+    UPDATE categorias
+    SET nombre_categoria = nombre_categoria
+    WHERE id_categoria = id_categoria;
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE eliminar_categoria(
+    id_categoria IN INT
+)
+AS
+BEGIN
+    DELETE FROM categorias
+    WHERE id_categoria = id_categoria;
+    COMMIT;
+END;
+
+--PROCEDIMIENTTO PARA OBTENER EL DETALLE DE UNA COMPRA
+
+CREATE OR REPLACE PROCEDURE obtener_detalle_compra(
+    compra_id IN INT,
+    detalle_compra_cursor OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN detalle_compra_cursor FOR
+    SELECT *
+    FROM detalle_compra
+    WHERE id_compra = compra_id;
+END;
+
+CREATE OR REPLACE PROCEDURE crear_detalle_compra(
+    id_detalle_compra IN INT,
+    materia IN VARCHAR2,
+    cantidad IN INT,
+    precio_unitario IN DECIMAL
+)
+AS 
+BEGIN
+    INSERT INTO detalle_compra (id_detalle_compra, material, cantidad, precio_unitario)
+    VALUES (id_detalle_compra, material, cantidad, precio_unitario);
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE actualizar_detalle_compra(
+    id_detalle_compra IN INT,
+    material IN VARCHAR2,
+    cantidad IN INT,
+    precio_unitario IN DECIMAL
+)
+AS
+BEGIN
+    UPDATE detalle_compra
+    SET material = material,
+        cantidad = cantidad,
+        precio_unitario = precio_unitario
+    WHERE id_detalle_compra = id_detalle_compra;
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE eliminar_detalle_compra(
+    id_detalle_compra IN INT
+)
+AS
+BEGIN
+    DELETE FROM detalle_compra
+    WHERE id_detalle_compra = id_detalle_compra;
+    COMMIT;
+END;
+
+
+--PROCEDIMIENTO PARA ACTUALIZAR LA CANTIDAD DISPONIBLE DE UN EQUIPO
+--Ya se incluyo en los procedimientos del CRUD de equipos anteriormente
+
+CREATE OR REPLACE PROCEDURE actualizar_cantidad_disponibles(
+    equipo_id IN INT,
+    nueva_cantidad IN INT
+)
+AS
+BEGIN
+    UPDATE equipos
+    SET cantidad_disponible = nueva_cantidad
+    WHERE id_equipo = equipo_id;
+    COMMIT;
+END;
+
+
+--PROCEDIMIENTO PARA ELIMINAR UN PROVEEDOR Y SUS COMPRAS ASOCIADAS 
+--Ya se incluyo en los procedimientos del CRUD de proveedores.
+
+CREATE OR REPLACE PROCEDURE eliminar_proveedor(
+    id_proveedor IN INT
+)
+AS
+BEGIN
+    DELETE FROM compras
+    WHERE id_proveedor = id_proveedor;
+
+    DELETE FROM proveedores
+    WHERE id_proveedor = id_proveedor;
+    COMMIT;
+END;
+
+
+--PROCEDIMIENTO PARA OBTENER EQUIPOS RECIBIDOS EN UNA FECHA Y DEPARTAMENTO ESPECIFICO
+--Ya se incluyo en los procedimientos del CRUD de recepciones y equipos
+
+CREATE OR REPLACE PROCEDURE obtener_equipos_recibidos(
+    fecha_recepcion IN DATE,
+    departamento_id IN INT,
+    equipos_cursor OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN equipos_cursor FOR
+    SELECT e.*
+    FROM equipos e
+    INNER JOIN recepciones r ON e.id_equipo = r.id_equipo
+    WHERE r.fecha = fecha_recepcion
+    AND r.id_departamento = departamento_id;
+END;
+
+--PROCEDIMIENTO ALMACENADO PARA OBTENER EL TOTAL DE INVENTARIO
+
+CREATE OR REPLACE PROCEDURE obtener_total_inventario(
+    total OUT INT
+)
+AS
+BEGIN
+    SELECT SUM(cantidad_disponible)
+    INTO total
+    FROM inventario,
+END;
+
+
+
+</pre>
+</div>
+</div>
+</div>
+</body>
+</html>
