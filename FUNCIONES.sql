@@ -85,6 +85,23 @@ BEGIN
 END;
 /
 
+--Eliminar Categoria
+CREATE OR REPLACE FUNCTION eliminar_categoria (id_categoria IN INT) 
+RETURN VARCHAR2 
+IS 
+BEGIN 
+    DELETE FROM categorias 
+    WHERE id_categoria = id_categoria;
+    COMMIT;
+    
+    RETURN 'Categoría eliminada exitosamente.';
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RETURN 'Error al eliminar la categoría: ' || SQLERRM;
+END;
+/
+
 --obtener el salario maximo de todos los empleados
 
 --obtener la cantidad total de empleados
