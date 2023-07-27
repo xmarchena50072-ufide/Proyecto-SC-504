@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -152,6 +153,25 @@ private JPanel updatePanel() {
         public void actionPerformed(ActionEvent e) {
             String sql = "{CALL procedure_update_personal(" + personalIDPersonalTextField.getText() + ", '" + personalNombreTextField.getText() + "', '" + personalTelefonoTextField.getText() + "', '" + personalCorreoTextField.getText() + "', " + personalIdDepartamentoTextField.getText() + ", ?)}";
             fetchData(sql, panel);
+            
+            try{
+                CallableStatement statement = dataAccessLayer.getConnection().prepareCall(sql);
+                
+                //Configura los parametros del procedimiento
+                statement.setInt(personalIDPersonalTextField.getText(), 1);
+                statement.setInt(personalNombreTextField.getText(),2);
+                statement.setInt(personalTelefonoTextField.getText(),3);
+                statement.setInt(personalCorreoTextField.getText(),4);
+                statement.setInt(personalIdDepartamentoTextField.getText(),5);
+                
+                statement.execute();
+                
+                //Se muestra un mensaje en la interfaz cuando se hizo el ingreso con exito
+                JOptionPane.showMessageDialog(null,"El Personal se actualizo satisfactoriamente");
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }
     });
 
