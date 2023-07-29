@@ -111,3 +111,31 @@ END;
 --obtener la cantidad total de empleados por departamento
 
 --obtener la cantidad de empleados con salarios mayores o iguales
+
+
+--funciones de login
+CREATE OR REPLACE FUNCTION verifica_login_fun(
+    p_username IN VARCHAR2,
+    p_password IN VARCHAR2
+)
+RETURN VARCHAR2
+IS
+    v_count NUMBER;
+BEGIN
+    --Si username y password existen en la tabla
+    SELECT COUNT(*) INTO v_count
+    FROM USUARIOS
+    WHERE USERNAME = p_username AND PASSWORD = p_password;
+    
+    IF v_count > 0 THEN
+        RETURN 'true';
+    ELSE
+        RETURN 'false';
+    END IF;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 'false';
+    WHEN OTHERS THEN
+        RETURN 'false';
+END;
+/

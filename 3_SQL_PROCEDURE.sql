@@ -486,6 +486,18 @@ BEGIN
     FROM inventario,
 END;
 
+--procedimientos de login
+CREATE OR REPLACE PROCEDURE verifica_login_prc(
+    p_username IN VARCHAR2,
+    p_password IN VARCHAR2,
+    o_result OUT VARCHAR2
+)
+AS
+BEGIN
+    o_result := verifica_login_fun(p_username, p_password);
+END;
+/
+
 
 
 
