@@ -30,11 +30,9 @@ public class Proyecto_bd {
 //            JOptionPane.showMessageDialog(null, e);
 //        } finally {
 //        }
-
         AccesoDatos dataAccessLayer = new AccesoDatos();
 
-        InterfazGrafica userInterface = new InterfazGrafica(dataAccessLayer);
-
-        userInterface.launch();
+        LoginVentana loginVentana = new LoginVentana(dataAccessLayer);
+        loginVentana.launch();
     }
 }

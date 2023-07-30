@@ -53,6 +53,24 @@ public class AccesoDatos {
         return resultSet;
 }
     
+    public String verificaLogin(String sql) {
+        String result = "";
+        //String sql = "{? = call function_verify_login(?, ?)}";
+
+        try (CallableStatement stmt = connection.prepareCall(sql)) {
+            stmt.registerOutParameter(1, OracleTypes.VARCHAR);
+            stmt.execute();
+
+            result = stmt.getString(1);
+
+        } catch (SQLException e) {
+            result = "false"; // Falso si hay exception
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+    
  
     
         public void closeConnection() {
