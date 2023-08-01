@@ -12,9 +12,11 @@ public class InterfazGrafica {
     private AccesoDatos dataAccessLayer;
     private JFrame frame;
     private JTabbedPane tabbedPane;
+    private String rol;
 
-    public InterfazGrafica(AccesoDatos dataAccessLayer) {
+    public InterfazGrafica(AccesoDatos dataAccessLayer, String rol) {
         this.dataAccessLayer = dataAccessLayer;
+        this.rol=rol;
 
         frame = new JFrame("INVENTARIO Application");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,18 +24,16 @@ public class InterfazGrafica {
         frame.setLayout(new BorderLayout());
 
         tabbedPane = new JTabbedPane();
-
-        JPanel sqlPanel = createPanel();
-        tabbedPane.addTab("Create", sqlPanel);
-
-        JPanel vistasPanel = readPanel();
-        tabbedPane.addTab("Read", vistasPanel);
-
-        JPanel proceduresPanel = updatePanel();
-        tabbedPane.addTab("Update", proceduresPanel);
-
-        JPanel functionsPanel = deletePanel();
-        tabbedPane.addTab("Delete", functionsPanel);
+        
+// Based on the user's permission, dynamically create and add the appropriate tabs
+        if (rol.equals("CRUD")) {
+            crudTabs();
+        } else if (rol.equals("READ")) {
+            readTabs();
+        } else {
+            // Handle other permissions or default case as needed
+            //addDefaultTabs();
+        }
 
         frame.add(tabbedPane, BorderLayout.CENTER);
     }
@@ -236,5 +236,25 @@ private void fetchData(String sql, JPanel resultPanel) {
         e.printStackTrace();
     }
   }
+
+    private void crudTabs() {
+        JPanel createPanel = createPanel();
+        tabbedPane.addTab("Create", createPanel);
+
+        JPanel readPanel = readPanel();
+        tabbedPane.addTab("Read", readPanel);
+
+        JPanel updatePanel = updatePanel();
+        tabbedPane.addTab("Update", updatePanel);
+
+        JPanel deletePanel = deletePanel();
+        tabbedPane.addTab("Delete", deletePanel);
+        
+    }
+
+    private void readTabs() {
+        JPanel readPanel = readPanel();
+        tabbedPane.addTab("Read", readPanel);    
+    }
 
 }
