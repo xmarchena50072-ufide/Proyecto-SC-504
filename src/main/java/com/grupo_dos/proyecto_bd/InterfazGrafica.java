@@ -156,7 +156,7 @@ private JPanel updatePanel() {
             
             try{
                 CallableStatement statement = dataAccessLayer.getConnection().prepareCall(sql);
-                
+                System.out.println("Listo hasta aqui corre bien ");
                 //Configura los parametros del procedimiento
                 statement.setInt(personalIDPersonalTextField.getText(), 1);
                 statement.setInt(personalNombreTextField.getText(),2);

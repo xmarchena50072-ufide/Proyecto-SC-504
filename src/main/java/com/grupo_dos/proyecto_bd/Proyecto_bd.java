@@ -32,6 +32,7 @@ public class Proyecto_bd {
 //        }
 
         AccesoDatos dataAccessLayer = new AccesoDatos();
+        
 
         InterfazGrafica userInterface = new InterfazGrafica(dataAccessLayer);
 
