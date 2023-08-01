@@ -26,17 +26,28 @@ END;
 /
 
 --obtener la cantidad total de roles de usuario
-CREATE OR REPLACE FUNCTION obtener_cantidad_roles_usuario
-RETURN INT
+CREATE OR REPLACE FUNCTION obtener_rol_usuario(
+    p_username IN VARCHAR2
+)
+RETURN VARCHAR2
 AS
-  v_cantidad_roles INT;
+    v_rol VARCHAR2(50); 
 BEGIN
-  SELECT COUNT(*)
-  INTO v_cantidad_roles
-  FROM roles;
-  RETURN v_cantidad_roles;
+    SELECT r.descripcion
+    INTO v_rol
+    FROM usuarios u
+    JOIN roles r ON u.id_rol = r.id_rol 
+    WHERE username = p_username;
+
+    RETURN v_rol;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 'Usuario no encontrado';
+    WHEN OTHERS THEN
+        RETURN 'Error';
 END;
 /
+
 
 --obtener la cantidad de proveedores con nombre en cadena
 CREATE OR REPLACE FUNCTION obtener_cantidad_proveedores_por_nombre(

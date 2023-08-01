@@ -35,12 +35,16 @@ public class LoginVentana {
                 String sql = "{CALL verifica_login_prc('" + username + "', '" + password + "', ?)}";
 
                 
-                String loginSuccess = dataAccessLayer.verificaLogin(sql);
+                String loginSuccess = dataAccessLayer.callProcedure(sql);
 
                 if (loginSuccess.equals("true")) {
                     frame.dispose();
+                    
+                    sql = "{CALL obtener_rol_prc('" + username + "', ?)}";
+                    String rol = dataAccessLayer.callProcedure(sql);
 
-                    InterfazGrafica interfazGrafica = new InterfazGrafica(dataAccessLayer);
+
+                    InterfazGrafica interfazGrafica = new InterfazGrafica(dataAccessLayer, rol);
                     interfazGrafica.launch();
                 } else {
 

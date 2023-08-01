@@ -498,6 +498,16 @@ BEGIN
 END;
 /
 
+CREATE OR REPLACE PROCEDURE obtener_rol_prc(
+    p_username IN VARCHAR2,
+    o_rol OUT VARCHAR2
+)
+AS
+BEGIN
+    o_rol := obtener_rol_usuario(p_username);
+END;
+/
+
 
 
 
