@@ -57,7 +57,26 @@ public class AccesoDatos {
         return resultSet;
 }
     
- 
+    public String callProcedure(String sql) {
+        String result = "";
+        //String sql = "{? = call function_verify_login(?, ?)}";
+        System.err.println(sql);
+
+        try (CallableStatement stmt = connection.prepareCall(sql)) {
+            stmt.registerOutParameter(1, OracleTypes.VARCHAR);
+            stmt.execute();
+
+            result = stmt.getString(1);
+            System.err.println(result);
+
+
+        } catch (SQLException e) {
+            result = "false"; // Falso si hay exception
+            e.printStackTrace();
+        }
+
+        return result;
+    }
     
         public void closeConnection() {
         if (connection != null) {
@@ -68,4 +87,5 @@ public class AccesoDatos {
             }
         }
     }
+
 }
