@@ -113,17 +113,6 @@ EXCEPTION
 END;
 /
 
---obtener el salario maximo de todos los empleados
-
---obtener la cantidad total de empleados
-
---obtener la cantidad de equipos recibidos en una fecha y departamento específicos
-
---obtener la cantidad total de empleados por departamento
-
---obtener la cantidad de empleados con salarios mayores o iguales
-
-
 --funciones de login
 CREATE OR REPLACE FUNCTION verifica_login_fun(
     p_username IN VARCHAR2,
