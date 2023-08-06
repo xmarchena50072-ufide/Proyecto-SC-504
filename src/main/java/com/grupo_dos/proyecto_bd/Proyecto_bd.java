@@ -31,6 +31,7 @@ public class Proyecto_bd {
 //        } finally {
 //        }
         AccesoDatos dataAccessLayer = new AccesoDatos();
+        
 
         LoginVentana loginVentana = new LoginVentana(dataAccessLayer);
         loginVentana.launch();

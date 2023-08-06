@@ -25,6 +25,10 @@ public class AccesoDatos {
             e.printStackTrace();
         }
     }
+    
+    public Connection getConnection(){
+        return connection;
+    }
 
 //    public ResultSet executeQuery(String sql) throws SQLException {
 //        PreparedStatement statement = connection.prepareCall(sql);

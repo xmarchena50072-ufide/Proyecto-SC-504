@@ -5,8 +5,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InterfazGrafica {
     private AccesoDatos dataAccessLayer;
@@ -152,6 +155,23 @@ private JPanel updatePanel() {
         public void actionPerformed(ActionEvent e) {
             String sql = "{CALL procedure_update_personal(" + personalIDPersonalTextField.getText() + ", '" + personalNombreTextField.getText() + "', '" + personalTelefonoTextField.getText() + "', '" + personalCorreoTextField.getText() + "', " + personalIdDepartamentoTextField.getText() + ", ?)}";
             fetchData(sql, panel);
+            
+            try{
+                CallableStatement statement = dataAccessLayer.getConnection().prepareCall(sql);
+                //Configura los parametros del procedimiento
+                statement.setInt(personalIDPersonalTextField.getText(), 1);
+                statement.setInt(personalNombreTextField.getText(),2);
+                statement.setInt(personalTelefonoTextField.getText(),3);
+                statement.setInt(personalCorreoTextField.getText(),4);
+                statement.setInt(personalIdDepartamentoTextField.getText(),5);
+                
+                statement.execute();
+                
+                JOptionPane.showMessageDialog(null,"El Personal se actualizo satisfactoriamente");
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }
     });
 
@@ -238,17 +258,29 @@ private void fetchData(String sql, JPanel resultPanel) {
   }
 
     private void crudTabs() {
-        JPanel createPanel = createPanel();
-        tabbedPane.addTab("Create", createPanel);
+//        JPanel createPanel = createPanel();
+//        tabbedPane.addTab("Create", createPanel);
+//
+//        JPanel readPanel = readPanel();
+//        tabbedPane.addTab("Read", readPanel);
+//
+//        JPanel updatePanel = updatePanel();
+//        tabbedPane.addTab("Update", updatePanel);
+//
+//        JPanel deletePanel = deletePanel();
+//        tabbedPane.addTab("Delete", deletePanel);
 
-        JPanel readPanel = readPanel();
-        tabbedPane.addTab("Read", readPanel);
+    JTabbedPane createSubTabs = createSubTabsForCreate();
+    tabbedPane.addTab("Create", createSubTabs);
 
-        JPanel updatePanel = updatePanel();
-        tabbedPane.addTab("Update", updatePanel);
+    JTabbedPane readSubTabs = createSubTabsForRead();
+    tabbedPane.addTab("Read", readSubTabs);
 
-        JPanel deletePanel = deletePanel();
-        tabbedPane.addTab("Delete", deletePanel);
+    JTabbedPane updateSubTabs = createSubTabsForUpdate();
+    tabbedPane.addTab("Update", updateSubTabs);
+
+    JTabbedPane deleteSubTabs = createSubTabsForDelete();
+    tabbedPane.addTab("Delete", deleteSubTabs);
         
     }
 
@@ -256,5 +288,144 @@ private void fetchData(String sql, JPanel resultPanel) {
         JPanel readPanel = readPanel();
         tabbedPane.addTab("Read", readPanel);    
     }
+    
+private JTabbedPane createSubTabsForCreate() {
+    JTabbedPane subTabbedPane = new JTabbedPane();
+    
+    String sql = "{CALL obtener_nombres_tablas_prc(?)}";
+    fetchTables(sql, subTabbedPane);
+   
+    
+    return subTabbedPane;
+}
+
+    
+    private JTabbedPane createSubTabsForRead() {
+    JTabbedPane subTabbedPane = new JTabbedPane();
+    for (int i = 1; i <= 12; i++) {
+        JPanel subPanel = new JPanel();
+        subPanel.add(new JLabel("Sub-tab " + i));
+        subTabbedPane.addTab("Sub-tab " + i, subPanel);
+    }
+    return subTabbedPane;
+}
+
+    private JTabbedPane createSubTabsForUpdate() {
+    JTabbedPane subTabbedPane = new JTabbedPane();
+    for (int i = 1; i <= 12; i++) {
+        JPanel subPanel = new JPanel();
+        subPanel.add(new JLabel("Sub-tab " + i));
+        subTabbedPane.addTab("Sub-tab " + i, subPanel);
+    }
+    return subTabbedPane;
+}
+
+    private JTabbedPane createSubTabsForDelete() {
+    JTabbedPane subTabbedPane = new JTabbedPane();
+    for (int i = 1; i <= 12; i++) {
+        JPanel subPanel = new JPanel();
+        subPanel.add(new JLabel("Sub-tab " + i));
+        subTabbedPane.addTab("Sub-tab " + i, subPanel);
+    }
+    return subTabbedPane;
+}
+
+    private void fetchTables(String sql, JTabbedPane subTabbedPane) {
+        try {
+            
+        ResultSet resultSet = dataAccessLayer.executeQuery(sql);
+        // Iterate through the table names and create sub-tabs
+        while (resultSet.next()) {
+            String tableName = resultSet.getString("nombre_tabla");
+            JPanel subPanel = new JPanel();
+            
+            //Pasa tableName a metodo que llamar a procedure 
+            
+            createForms(tableName, subPanel);
+            
+            //subPanel.add(new JLabel("Tabla: " + tableName));
+            
+            subTabbedPane.addTab(tableName, subPanel);
+        }
+        
+        // Close resources
+        resultSet.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    }
+
+private void createForms(String tableName, JPanel subPanel) {
+    try {
+        ResultSet resultSet = dataAccessLayer.executeQuery("{CALL obtener_info_columnas_prc('" + tableName + "', ?)}");
+        Map<String, JComponent> inputComponentsMap = new HashMap<>();
+        
+        while (resultSet.next()) {
+            String columnName = resultSet.getString("nombre_columna");
+            String dataType = resultSet.getString("tipo_dato");
+            int dataLength = resultSet.getInt("longitud_dato");
+
+            JLabel label = new JLabel(columnName + ":");
+            JComponent inputComponent = createInputComponent(dataType, dataLength); // Crea input basado en el tipo de dato
+            //JButton button = new JButton("Submit");
+
+            JPanel columnPanel = new JPanel(new BorderLayout());
+            columnPanel.add(label, BorderLayout.NORTH);
+            columnPanel.add(inputComponent, BorderLayout.CENTER);
+            //columnPanel.add(button, BorderLayout.SOUTH);
+
+            subPanel.add(columnPanel);
+            
+            // Store the input component in the map with the column name as the key
+            inputComponentsMap.put(columnName, inputComponent);
+        }
+        JButton button = new JButton("Submit");
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //IF o switch para llamar al procedimiento segun valor de tabla
+                switch (tableName) {
+                    case "PERSONAL":
+                        JComponent personalNameInput = inputComponentsMap.get("NOMBRE");
+                        String sql = "{CALL procedure_create_personal('" + ((JTextField) personalNameInput).getText() + "',?)}";
+                        fetchData(sql, subPanel);
+                        
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+                
+
+            }
+        });
+        
+        subPanel.add(button);
+
+        // Close resources
+        resultSet.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+private JComponent createInputComponent(String dataType, int dataLength) {
+    JComponent inputComponent = null;
+
+    if (dataType.equalsIgnoreCase("DATE")) {
+        inputComponent = new JTextField(30);
+    } else if (dataType.equalsIgnoreCase("NUMBER")) {
+        inputComponent = new JTextField(30);
+    } else if (dataType.toUpperCase().startsWith("VARCHAR2")) {
+        inputComponent = new JTextField(30);
+    } else {
+        inputComponent = new JTextField(30);
+    }
+
+    return inputComponent;
+}
+
+
+
+
 
 }
