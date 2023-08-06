@@ -508,6 +508,32 @@ BEGIN
 END;
 /
 
+--procedimientos para crear UI
+SET SERVEROUTPUT ON;
+CREATE OR REPLACE PROCEDURE obtener_nombres_tablas_prc(p_cursor OUT SYS_REFCURSOR) AS
+BEGIN
+    OPEN p_cursor FOR
+    SELECT table_name as "nombre_tabla"
+    FROM user_tables;
+END;
+/
+
+
+EXEC obtener_nombres_tablas_prc;
+
+CREATE OR REPLACE PROCEDURE obtener_info_columnas_prc(
+    p_table_name IN VARCHAR2,
+    p_cursor OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN p_cursor FOR
+    SELECT column_name as "nombre_columna", data_type as "tipo_dato", data_length as "longitud_dato"
+    FROM user_tab_columns
+    WHERE table_name = p_table_name;
+END;
+/
+
 
 
 
