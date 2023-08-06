@@ -61,3 +61,147 @@ BEGIN
         :NEW.CORREO := 'N/A';
     END IF;
 END;
+
+-- "CATEGORÍAS"
+CREATE OR REPLACE TRIGGER categorias_trigger
+BEFORE INSERT ON categorias
+FOR EACH ROW
+BEGIN
+  SELECT categorias_seq.nextval
+  INTO :new.ID_CATEGORIA
+  FROM dual;
+END;
+/
+
+-- "ROLES"
+CREATE OR REPLACE TRIGGER roles_trigger
+BEFORE INSERT ON roles
+FOR EACH ROW
+BEGIN
+  SELECT roles_seq.nextval
+  INTO :new.ID_ROL
+  FROM dual;
+END;
+/
+
+-- "PERMISOS"
+CREATE OR REPLACE TRIGGER permisos_trigger
+BEFORE INSERT ON permisos
+FOR EACH ROW
+BEGIN
+  SELECT permisos_seq.nextval
+  INTO :new.ID_PERMISOS
+  FROM dual;
+END;
+/
+
+-- "PROVEEDORES"
+CREATE OR REPLACE TRIGGER proveedores_trigger
+BEFORE INSERT ON proveedores
+FOR EACH ROW
+BEGIN
+  SELECT proveedores_seq.nextval
+  INTO :new.ID_PROVEEDOR
+  FROM dual;
+END;
+/
+
+-- "ALMACENES"
+CREATE OR REPLACE TRIGGER almacenes_trigger
+BEFORE INSERT ON almacenes
+FOR EACH ROW
+BEGIN
+  SELECT almacenes_seq.nextval
+  INTO :new.ID_ALMACEN
+  FROM dual;
+END;
+/
+
+-- "EQUIPOS"
+CREATE OR REPLACE TRIGGER equipos_trigger
+BEFORE INSERT ON equipos
+FOR EACH ROW
+BEGIN
+  SELECT equipos_seq.nextval
+  INTO :new.ID_EQUIPO
+  FROM dual;
+END;
+/
+
+-- "DEPARTAMENTOS"
+CREATE OR REPLACE TRIGGER departamentos_trigger
+BEFORE INSERT ON departamentos
+FOR EACH ROW
+BEGIN
+  SELECT departamentos_seq.nextval
+  INTO :new.ID_DEPARTAMENTO
+  FROM dual;
+END;
+/
+
+-- "PERSONAL"
+CREATE OR REPLACE TRIGGER personal_trigger
+BEFORE INSERT ON personal
+FOR EACH ROW
+BEGIN
+  SELECT personal_seq.nextval
+  INTO :new.ID_PERSONAL
+  FROM dual;
+END;
+/
+
+-- "RECEPCIONES"
+CREATE OR REPLACE TRIGGER recepciones_trigger
+BEFORE INSERT ON recepciones
+FOR EACH ROW
+BEGIN
+  SELECT recepciones_seq.nextval
+  INTO :new.ID_RECEPCION
+  FROM dual;
+END;
+/
+
+-- "DESPACHOS"
+CREATE OR REPLACE TRIGGER despachos_trigger
+BEFORE INSERT ON despachos
+FOR EACH ROW
+BEGIN
+  SELECT despachos_seq.nextval
+  INTO :new.ID_DESPACHO
+  FROM dual;
+END;
+/
+
+-- "USUARIOS"
+CREATE OR REPLACE TRIGGER usuarios_trigger
+BEFORE INSERT ON usuarios
+FOR EACH ROW
+BEGIN
+  SELECT usuarios_seq.nextval
+  INTO :new.ID_USUARIOS
+  FROM dual;
+END;
+/
+
+-- "COMPRA"
+CREATE OR REPLACE TRIGGER compra_trigger
+BEFORE INSERT ON compra
+FOR EACH ROW
+BEGIN
+  SELECT compra_seq.nextval
+  INTO :new.ID_COMPRA
+  FROM dual;
+END;
+/
+
+-- "DETALLE_COMPRA"
+CREATE OR REPLACE TRIGGER detalle_compra_trigger
+BEFORE INSERT ON detalle_compra
+FOR EACH ROW
+BEGIN
+  SELECT detalle_compra_seq.nextval
+  INTO :new.ID_DETALLE_COMPRA
+  FROM dual;
+END;
+/
+
