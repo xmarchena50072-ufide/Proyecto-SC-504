@@ -34,7 +34,7 @@ CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_CREAR_PKG AS
   /* Procedimientos para equipos */
   PROCEDURE crear_equipos(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
                          num_serie IN VARCHAR2, cantidad_disponible IN INT,
-                         categoria IN INT, o_c_dbuser OUT SYS_REFCURSOR);
+                         id_categoria IN INT, o_c_dbuser OUT SYS_REFCURSOR);
 
   /* Procedimientos para departamentos */
   PROCEDURE crear_departamentos(id_departamento IN INT, nombre_departamento IN VARCHAR2,
@@ -102,7 +102,7 @@ END INVENTARIO_MGMT_CREAR_PKG;
 CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_ACTUALIZAR_PKG AS
   /* Procedimientos para equipos */
   PROCEDURE actualizar_equipo(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
-                              num_serie IN VARCHAR2, cantidad_disponible IN INT, categoria IN INT);
+                              num_serie IN VARCHAR2, cantidad_disponible IN INT, id_categoria IN INT);
   /* Procedimientos para departamentos */
   PROCEDURE actualizar_departamento(id_departamento IN INT, nombre_departamento IN VARCHAR2);
   /* Procedimientos para roles */
@@ -262,12 +262,12 @@ END INVENTARIO_MGMT_ELIMINAR_PKG;
 CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
   /* Procedimientos para equipos */
   PROCEDURE crear_equipos(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
-                         num_serie IN VARCHAR2, cantidad_disponible IN INT, categoria IN INT,
+                         num_serie IN VARCHAR2, cantidad_disponible IN INT, id_categoria IN INT,
                          o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
-    INSERT INTO equipos (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, categoria)
-    VALUES (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, categoria);
+    INSERT INTO equipos (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, id_categoria)
+    VALUES (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, id_categoria);
     COMMIT;
 
     OPEN o_c_dbuser FOR
@@ -467,7 +467,7 @@ END INVENTARIO_MGMT_CREAR_PKG;
 CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ACTUALIZAR_PKG AS
   /* Procedimientos para equipos */
   PROCEDURE actualizar_equipo(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
-                              num_serie IN VARCHAR2, cantidad_disponible IN INT, categoria IN INT)
+                              num_serie IN VARCHAR2, cantidad_disponible IN INT, id_categoria IN INT)
   AS
   BEGIN
     UPDATE equipos
@@ -475,7 +475,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ACTUALIZAR_PKG AS
         descripcion = descripcion,
         num_serie = num_serie,
         cantidad_disponible = cantidad_disponible,
-        categoria = categoria
+        id_categoria = id_categoria
     WHERE id_equipo = id_equipo;
     COMMIT;
   END;
