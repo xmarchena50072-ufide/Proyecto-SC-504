@@ -6,9 +6,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class InterfazGrafica {
@@ -358,7 +362,7 @@ private JTabbedPane createSubTabsForCreate() {
 private void createForms(String tableName, JPanel subPanel) {
     try {
         ResultSet resultSet = dataAccessLayer.executeQuery("{CALL obtener_info_columnas_prc('" + tableName + "', ?)}");
-        Map<String, JComponent> inputComponentsMap = new HashMap<>();
+        Map<String, JComponent> inputComponentsMap = new LinkedHashMap<>();
         
         while (resultSet.next()) {
             String columnName = resultSet.getString("nombre_columna");
@@ -380,23 +384,55 @@ private void createForms(String tableName, JPanel subPanel) {
             inputComponentsMap.put(columnName, inputComponent);
         }
         JButton button = new JButton("Submit");
-        button.addActionListener(new ActionListener() {
+button.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                //IF o switch para llamar al procedimiento segun valor de tabla
-                switch (tableName) {
-                    case "PERSONAL":
-                        JComponent personalNameInput = inputComponentsMap.get("NOMBRE");
-                        String sql = "{CALL procedure_create_personal('" + ((JTextField) personalNameInput).getText() + "',?)}";
-                        fetchData(sql, subPanel);
-                        
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
-                
+public void actionPerformed(ActionEvent e) {
+    try {
+        StringBuilder sqlBuilder = new StringBuilder("{CALL INVENTARIO_MGMT_CREAR_PKG.crear_");
+        sqlBuilder.append(tableName.toLowerCase()).append("(");
 
+        boolean first = true;
+        for (String columnName : inputComponentsMap.keySet()) {
+            if (!first) {
+                sqlBuilder.append(", ");
             }
+            JComponent inputComponent = inputComponentsMap.get(columnName);
+            Object value = null;
+
+            if (inputComponent instanceof JTextField) {
+                String textValue = ((JTextField) inputComponent).getText();
+                // Escape single quotes for VARCHAR2 or other string inputs
+                value = "'" + textValue.replace("'", "''") + "'";
+            } 
+            else if (inputComponent instanceof JFormattedTextField) {
+                JFormattedTextField formattedTextField = (JFormattedTextField) inputComponent;
+                Object fieldValue = formattedTextField.getValue();
+                
+                if (fieldValue != null) {
+                    if (fieldValue instanceof Date) {
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
+                        value = "TO_DATE('" + dateFormat.format((Date) fieldValue) + "', 'DD-MON-YY')";
+                    } 
+                    else if (fieldValue instanceof Timestamp) {
+                        SimpleDateFormat timestampFormat = new SimpleDateFormat("dd-MMM-yy hh.mm.ss.SSS a");
+                        value = "TO_TIMESTAMP('" + timestampFormat.format((Timestamp) fieldValue) + "', 'DD-MON-YY HH.MI.SS.FF6 AM')";
+                    }
+                }
+            }
+
+            sqlBuilder.append(value);
+            first = false;
+        }
+        sqlBuilder.append(", ?)}");
+
+        fetchData(sqlBuilder.toString(), subPanel);
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
+}
+
+
+
         });
         
         subPanel.add(button);
@@ -412,7 +448,17 @@ private JComponent createInputComponent(String dataType, int dataLength) {
     JComponent inputComponent = null;
 
     if (dataType.equalsIgnoreCase("DATE")) {
-        inputComponent = new JTextField(30);
+        // Use JFormattedTextField with a suitable date format for Oracle DATE
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
+        JFormattedTextField dateField = new JFormattedTextField(dateFormat);
+        dateField.setColumns(30);
+        inputComponent = dateField;
+    } else if (dataType.equalsIgnoreCase("TIMESTAMP")) {
+        // Use JFormattedTextField with a suitable timestamp format for Oracle TIMESTAMP
+        SimpleDateFormat timestampFormat = new SimpleDateFormat("dd-MMM-yy hh.mm.ss.SSS a");
+        JFormattedTextField timestampField = new JFormattedTextField(timestampFormat);
+        timestampField.setColumns(30);
+        inputComponent = timestampField;
     } else if (dataType.equalsIgnoreCase("NUMBER")) {
         inputComponent = new JTextField(30);
     } else if (dataType.toUpperCase().startsWith("VARCHAR2")) {
@@ -423,6 +469,7 @@ private JComponent createInputComponent(String dataType, int dataLength) {
 
     return inputComponent;
 }
+
 
 
 
