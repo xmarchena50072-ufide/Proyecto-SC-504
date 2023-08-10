@@ -63,6 +63,8 @@ CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_CREAR_PKG AS
   /* Procedimientos para el detalle de compras */
   PROCEDURE crear_detalle_compras(id_detalle_compra IN INT, material IN VARCHAR2, cantidad IN INT, precio_unitario IN DECIMAL,
                                  id_compra IN INT, o_c_dbuser OUT SYS_REFCURSOR);
+  /* Procedimientos para compras */
+  PROCEDURE crear_compras(id_compra IN INT, id_proveedor IN INT, fecha_compra IN DATE, o_c_dbuser OUT SYS_REFCURSOR);                               
                              
   /* Procedimientos para almacenes */
   PROCEDURE crear_almacenes(id_almacen IN INT, nombre_almacen IN VARCHAR2,
@@ -371,15 +373,34 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
                                  o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
-    INSERT INTO detalle_compra (id_detalle_compra, material, cantidad, precio_unitario)
+    INSERT INTO detalle_compras (id_detalle_compra, material, cantidad, precio_unitario)
     VALUES (id_detalle_compra, material, cantidad, precio_unitario);
     COMMIT;
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM detalle_compra
+    FROM detalle_compras
     WHERE id_detalle_compra = id_detalle_compra;
   END;
+  
+  /* Procedimientos para compras */
+  PROCEDURE crear_compras (
+    id_compra IN INT,
+    id_proveedor IN INT,
+    fecha_compra IN DATE,
+    o_c_dbuser OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    INSERT INTO compras (id_compra, id_proveedor, fecha_compra)
+    VALUES (id_compra, id_proveedor, fecha_compra);
+    COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM compras
+    WHERE id_compra = id_compra;
+END;
   
 /* Procedimientos para almacenes */
   PROCEDURE crear_almacenes(id_almacen IN INT, nombre_almacen IN VARCHAR2,

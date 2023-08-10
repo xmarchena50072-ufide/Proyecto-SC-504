@@ -4,6 +4,7 @@ CREATE SEQUENCE categorias_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "ROLES"
 CREATE SEQUENCE roles_seq
@@ -11,6 +12,7 @@ CREATE SEQUENCE roles_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "PERMISOS"
 CREATE SEQUENCE permisos_seq
@@ -18,6 +20,7 @@ CREATE SEQUENCE permisos_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "PROVEEDORES"
 CREATE SEQUENCE proveedores_seq
@@ -25,6 +28,7 @@ CREATE SEQUENCE proveedores_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "ALMACENES"
 CREATE SEQUENCE almacenes_seq
@@ -32,6 +36,7 @@ CREATE SEQUENCE almacenes_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "EQUIPOS"
 CREATE SEQUENCE equipos_seq
@@ -39,6 +44,7 @@ CREATE SEQUENCE equipos_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "DEPARTAMENTOS"
 CREATE SEQUENCE departamentos_seq
@@ -46,6 +52,7 @@ CREATE SEQUENCE departamentos_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "PERSONAL"
 CREATE SEQUENCE personal_seq
@@ -53,6 +60,7 @@ CREATE SEQUENCE personal_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "RECEPCIONES"
 CREATE SEQUENCE recepciones_seq
@@ -60,6 +68,7 @@ CREATE SEQUENCE recepciones_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "DESPACHOS"
 CREATE SEQUENCE despachos_seq
@@ -67,6 +76,7 @@ CREATE SEQUENCE despachos_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "USUARIOS"
 CREATE SEQUENCE usuarios_seq
@@ -74,17 +84,20 @@ CREATE SEQUENCE usuarios_seq
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
 -- Tabla "COMPRA"
-CREATE SEQUENCE compra_seq
+CREATE SEQUENCE compras_seq
    START WITH 1
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/
 
--- Tabla "DETALLE_COMPRA"
-CREATE SEQUENCE detalle_compra_seq
+-- Tabla "DETALLE_COMPRAS"
+CREATE SEQUENCE detalle_compras_seq
    START WITH 1
    INCREMENT BY 1
    NOCACHE
    NOCYCLE;
+/

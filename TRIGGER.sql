@@ -183,23 +183,23 @@ BEGIN
 END;
 /
 
--- "COMPRA"
-CREATE OR REPLACE TRIGGER compra_trigger
-BEFORE INSERT ON compra
+-- "COMPRAS"
+CREATE OR REPLACE TRIGGER compras_trigger
+BEFORE INSERT ON compras
 FOR EACH ROW
 BEGIN
-  SELECT compra_seq.nextval
+  SELECT compras_seq.nextval
   INTO :new.ID_COMPRA
   FROM dual;
 END;
 /
 
--- "DETALLE_COMPRA"
-CREATE OR REPLACE TRIGGER detalle_compra_trigger
-BEFORE INSERT ON detalle_compra
+-- "DETALLE_COMPRAS"
+CREATE OR REPLACE TRIGGER detalle_compras_trigger
+BEFORE INSERT ON detalle_compras
 FOR EACH ROW
 BEGIN
-  SELECT detalle_compra_seq.nextval
+  SELECT detalle_compras_seq.nextval
   INTO :new.ID_DETALLE_COMPRA
   FROM dual;
 END;

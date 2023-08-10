@@ -448,13 +448,13 @@ private JComponent createInputComponent(String dataType, int dataLength) {
     JComponent inputComponent = null;
 
     if (dataType.equalsIgnoreCase("DATE")) {
-        // Use JFormattedTextField with a suitable date format for Oracle DATE
+        // Oracle DATE
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
         JFormattedTextField dateField = new JFormattedTextField(dateFormat);
         dateField.setColumns(30);
         inputComponent = dateField;
     } else if (dataType.equalsIgnoreCase("TIMESTAMP")) {
-        // Use JFormattedTextField with a suitable timestamp format for Oracle TIMESTAMP
+        //Oracle TIMESTAMP
         SimpleDateFormat timestampFormat = new SimpleDateFormat("dd-MMM-yy hh.mm.ss.SSS a");
         JFormattedTextField timestampField = new JFormattedTextField(timestampFormat);
         timestampField.setColumns(30);
