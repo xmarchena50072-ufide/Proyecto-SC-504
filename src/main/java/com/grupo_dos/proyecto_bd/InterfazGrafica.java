@@ -258,6 +258,7 @@ private void fetchData(String sql, JPanel resultPanel) {
         //dataAccessLayer.closeConnection();
     } catch (SQLException e) {
         e.printStackTrace();
+        JOptionPane.showMessageDialog(null, e);
     }
   }
 
@@ -356,6 +357,7 @@ private JTabbedPane createSubTabsForCreate() {
         resultSet.close();
     } catch (SQLException e) {
         e.printStackTrace();
+        JOptionPane.showMessageDialog(null, e);
     }
     }
 
