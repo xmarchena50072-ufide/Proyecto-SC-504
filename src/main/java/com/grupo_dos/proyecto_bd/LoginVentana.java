@@ -15,7 +15,7 @@ public class LoginVentana {
 
         frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 150);
+        frame.setSize(300, 300);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         JLabel usernameLabel = new JLabel("Username:");
