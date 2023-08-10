@@ -38,7 +38,7 @@ public class InterfazGrafica {
         } else if (rol.equals("READ")) {
             readTabs();
         } else {
-            // Handle other permissions or default case as needed
+            // Otros permisos o caso default
             //addDefaultTabs();
         }
 
@@ -382,7 +382,6 @@ private void createForms(String tableName, JPanel subPanel) {
 
             subPanel.add(columnPanel);
             
-            // Store the input component in the map with the column name as the key
             inputComponentsMap.put(columnName, inputComponent);
         }
         JButton button = new JButton("Submit");
@@ -403,7 +402,7 @@ public void actionPerformed(ActionEvent e) {
 
             if (inputComponent instanceof JTextField) {
                 String textValue = ((JTextField) inputComponent).getText();
-                // Escape single quotes for VARCHAR2 or other string inputs
+                // Escape para VARCHAR2 or otros string inputs
                 value = "'" + textValue.replace("'", "''") + "'";
             } 
             else if (inputComponent instanceof JFormattedTextField) {
@@ -412,10 +411,12 @@ public void actionPerformed(ActionEvent e) {
                 
                 if (fieldValue != null) {
                     if (fieldValue instanceof Date) {
+                        //En caso de fecha
                         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
                         value = "TO_DATE('" + dateFormat.format((Date) fieldValue) + "', 'DD-MON-YY')";
                     } 
                     else if (fieldValue instanceof Timestamp) {
+                        //En caso de timestamp
                         SimpleDateFormat timestampFormat = new SimpleDateFormat("dd-MMM-yy hh.mm.ss.SSS a");
                         value = "TO_TIMESTAMP('" + timestampFormat.format((Timestamp) fieldValue) + "', 'DD-MON-YY HH.MI.SS.FF6 AM')";
                     }
@@ -439,7 +440,7 @@ public void actionPerformed(ActionEvent e) {
         
         subPanel.add(button);
 
-        // Close resources
+        // Cierra recursos
         resultSet.close();
     } catch (Exception e) {
         e.printStackTrace();
