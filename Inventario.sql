@@ -16,7 +16,7 @@ ALTER USER inventario quota unlimited on USERS;
 
 ------------------------------------------------------------
 -- Ejecutar en SQLDEVELOPER
--- Tabla "CATEGORÕAS"
+-- Tabla "CATEGOR√çAS"
 CREATE TABLE CATEGORIAS (
 ID_CATEGORIA INT PRIMARY KEY,
 NOMBRE_CATEGORIA VARCHAR(100)
@@ -226,3 +226,24 @@ DROP TABLE "ALMACENES" CASCADE CONSTRAINTS;
 DROP TABLE "RECEPCIONES" CASCADE CONSTRAINTS;
 DROP TABLE "DETALLE_COMPRAS" CASCADE CONSTRAINTS;
 DROP TABLE "COMPRAS" CASCADE CONSTRAINTS;
+
+--Eliminar todos los views
+select 'drop view "'||view_name||'";' as statements from user_views;
+
+drop view "VISTA_DETALLE_COMPRAS";
+drop view "VISTA_EQUIPO";
+drop view "VISTA_CATEGORIAS";
+drop view "VISTA_DEPTO";
+drop view "VISTA_PERSONAL";
+drop view "VISTA_ROLES";
+drop view "VISTA_PERMISOS";
+drop view "VISTA_RECEPCIONES";
+drop view "VISTA_ALMACENES";
+drop view "VISTA_DESPACHOS";
+drop view "VISTA_COMPRA";
+drop view "VISTA_USUARIO";
+drop view "VISTA_DETALLES";
+drop view "VIEW_DETALLE_COMPRA";
+drop view "VISTA_EQUIPOS";
+drop view "VISTA_DEPARTAMENTOS";
+drop view "VISTA_USUARIOS";
