@@ -274,8 +274,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM equipos
-    WHERE id_equipo = id_equipo;
+    FROM equipos;
   END;
 
   /* Procedimientos para departamentos */
@@ -289,8 +288,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM departamentos
-    WHERE id_departamento = id_departamento;
+    FROM departamentos;
   END;
 
   /* Procedimientos para roles */
@@ -304,8 +302,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM roles
-    WHERE id_rol = id_rol;
+    FROM roles;
   END;
 
   /* Procedimientos para proveedores */
@@ -319,8 +316,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM proveedores
-    WHERE id_proveedor = id_proveedor;
+    FROM proveedores;
   END;
 
   /* Procedimientos para recepciones */
@@ -334,8 +330,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM recepciones
-    WHERE id_recepcion = id_recepcion;
+    FROM recepciones;
   END;
 
   /* Procedimientos para usuarios */
@@ -349,8 +344,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM usuarios
-    WHERE id_usuarios = id_usuario;
+    FROM usuarios;
   END;
 
   /* Procedimientos para categorías */
@@ -364,8 +358,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM categorias
-    WHERE id_categoria = id_categoria;
+    FROM categorias;
   END;
 
   /* Procedimientos para el detalle de compras */
@@ -379,8 +372,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM detalle_compras
-    WHERE id_detalle_compra = id_detalle_compra;
+    FROM detalle_compras;
   END;
   
   /* Procedimientos para compras */
@@ -398,8 +390,7 @@ BEGIN
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM compras
-    WHERE id_compra = id_compra;
+    FROM compras;
 END;
   
 /* Procedimientos para almacenes */
@@ -413,8 +404,7 @@ END;
     
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM almacenes
-    WHERE id_almacen = id_almacen;
+    FROM almacenes;
   END;
   
   -- Procedimiento para la tabla PERMISOS
@@ -433,8 +423,7 @@ BEGIN
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM PERMISOS
-    WHERE ID_PERMISOS = p_id_permisos;
+    FROM PERMISOS;
 END;
 
 
@@ -456,8 +445,7 @@ BEGIN
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM DESPACHOS
-    WHERE ID_DESPACHO = p_id_despacho;
+    FROM DESPACHOS;
 END;
 
 
@@ -478,8 +466,7 @@ BEGIN
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM PERSONAL
-    WHERE ID_PERSONAL = p_id_personal;
+    FROM PERSONAL;
 END;
 
 
