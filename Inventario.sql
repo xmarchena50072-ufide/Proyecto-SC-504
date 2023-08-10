@@ -16,7 +16,7 @@ ALTER USER inventario quota unlimited on USERS;
 
 ------------------------------------------------------------
 -- Ejecutar en SQLDEVELOPER
--- Tabla "CATEGOR√çAS"
+-- Tabla "CATEGORÕAS"
 CREATE TABLE CATEGORIAS (
 ID_CATEGORIA INT PRIMARY KEY,
 NOMBRE_CATEGORIA VARCHAR(100)
@@ -114,14 +114,14 @@ FOREIGN KEY (ID_PERSONAL) REFERENCES PERSONAL(ID_PERSONAL),
 FOREIGN KEY (ID_ROL) REFERENCES ROLES(ID_ROL)
 );
 
--- Tabla "COMPRA"
+-- Tabla "COMPRAS"
 CREATE TABLE COMPRAS (
     ID_COMPRA INT PRIMARY KEY,
     ID_PROVEEDOR INT,
     FECHA_COMPRA DATE
 );
 
--- Tabla "DETALLE_COMPRA"
+-- Tabla "DETALLE_COMPRAS"
 CREATE TABLE DETALLE_COMPRAS (
     ID_DETALLE_COMPRA INT PRIMARY KEY,
     MATERIAL VARCHAR(100),
@@ -131,84 +131,6 @@ CREATE TABLE DETALLE_COMPRAS (
     FOREIGN KEY (ID_COMPRA) REFERENCES COMPRAS(ID_COMPRA)
 );
 
-CREATE VIEW VIEW_DETALLE_COMPRA AS
-SELECT ID_DETALLE_COMPRA, MATERIAL, CANTIDAD, PRECIO_UNITARIO, CANTIDAD * PRECIO_UNITARIO AS TOTAL
-FROM DETALLE_COMPRA;
-
-
-CREATE OR REPLACE PROCEDURE procedure_read_detalle_compra(
-	   o_c_dbuser OUT SYS_REFCURSOR)
-    AS
-    BEGIN
-
-      OPEN o_c_dbuser FOR
-      SELECT * FROM view_detalle_compra;
-
-    END;
-
-CREATE OR REPLACE PROCEDURE procedure_create_personal(
-    p_nombre IN PERSONAL.NOMBRE%TYPE,
-    o_c_dbuser OUT SYS_REFCURSOR
-)
-AS
-BEGIN
-    INSERT INTO PERSONAL (NOMBRE, TELEFONO, CORREO, ID_DEPARTAMENTO)
-    VALUES (p_nombre, '123456789', 'example@example.com', 2);
-
-    OPEN o_c_dbuser FOR
-    SELECT *
-    FROM PERSONAL
-    WHERE NOMBRE = p_nombre;
-END;
-
-CREATE OR REPLACE PROCEDURE procedure_read_personal(
-    o_c_dbuser OUT SYS_REFCURSOR
-)
-AS
-BEGIN
-    OPEN o_c_dbuser FOR
-    SELECT *
-    FROM PERSONAL;
-END;
-
-
-CREATE OR REPLACE PROCEDURE procedure_update_personal(
-    p_id_personal IN PERSONAL.ID_PERSONAL%TYPE,
-    p_nombre IN PERSONAL.NOMBRE%TYPE,
-    p_telefono IN PERSONAL.TELEFONO%TYPE,
-    p_correo IN PERSONAL.CORREO%TYPE,
-    p_id_departamento IN PERSONAL.ID_DEPARTAMENTO%TYPE,
-    o_c_dbuser OUT SYS_REFCURSOR
-)
-AS
-BEGIN
-    UPDATE PERSONAL
-    SET NOMBRE = p_nombre,
-        TELEFONO = p_telefono,
-        CORREO = p_correo,
-        ID_DEPARTAMENTO = p_id_departamento
-    WHERE ID_PERSONAL = p_id_personal;
-
-    OPEN o_c_dbuser FOR
-    SELECT *
-    FROM PERSONAL
-    WHERE ID_PERSONAL = p_id_personal;
-END;
-
-CREATE OR REPLACE PROCEDURE procedure_delete_personal(
-    p_id_personal IN PERSONAL.ID_PERSONAL%TYPE,
-    o_c_dbuser OUT SYS_REFCURSOR
-)
-AS
-BEGIN
-    DELETE FROM PERSONAL
-    WHERE ID_PERSONAL = p_id_personal;
-
-    OPEN o_c_dbuser FOR
-    SELECT *
-    FROM PERSONAL
-    WHERE ID_PERSONAL = p_id_personal;
-END;
 
 --Obtener drop table de todas las tablas
 SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
@@ -231,19 +153,15 @@ DROP TABLE "COMPRAS" CASCADE CONSTRAINTS;
 select 'drop view "'||view_name||'";' as statements from user_views;
 
 drop view "VISTA_DETALLE_COMPRAS";
-drop view "VISTA_EQUIPO";
+drop view "VISTA_COMPRAS";
+drop view "VISTA_PROVEEDORES";
 drop view "VISTA_CATEGORIAS";
-drop view "VISTA_DEPTO";
 drop view "VISTA_PERSONAL";
 drop view "VISTA_ROLES";
 drop view "VISTA_PERMISOS";
 drop view "VISTA_RECEPCIONES";
 drop view "VISTA_ALMACENES";
 drop view "VISTA_DESPACHOS";
-drop view "VISTA_COMPRA";
-drop view "VISTA_USUARIO";
-drop view "VISTA_DETALLES";
-drop view "VIEW_DETALLE_COMPRA";
 drop view "VISTA_EQUIPOS";
 drop view "VISTA_DEPARTAMENTOS";
 drop view "VISTA_USUARIOS";
