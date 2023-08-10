@@ -34,7 +34,7 @@ CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_CREAR_PKG AS
   /* Procedimientos para equipos */
   PROCEDURE crear_equipos(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
                          num_serie IN VARCHAR2, cantidad_disponible IN INT,
-                         categoria IN INT, o_c_dbuser OUT SYS_REFCURSOR);
+                         id_categoria IN INT, o_c_dbuser OUT SYS_REFCURSOR);
 
   /* Procedimientos para departamentos */
   PROCEDURE crear_departamentos(id_departamento IN INT, nombre_departamento IN VARCHAR2,
@@ -63,6 +63,8 @@ CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_CREAR_PKG AS
   /* Procedimientos para el detalle de compras */
   PROCEDURE crear_detalle_compras(id_detalle_compra IN INT, material IN VARCHAR2, cantidad IN INT, precio_unitario IN DECIMAL,
                                  id_compra IN INT, o_c_dbuser OUT SYS_REFCURSOR);
+  /* Procedimientos para compras */
+  PROCEDURE crear_compras(id_compra IN INT, id_proveedor IN INT, fecha_compra IN DATE, o_c_dbuser OUT SYS_REFCURSOR);                               
                              
   /* Procedimientos para almacenes */
   PROCEDURE crear_almacenes(id_almacen IN INT, nombre_almacen IN VARCHAR2,
@@ -102,7 +104,7 @@ END INVENTARIO_MGMT_CREAR_PKG;
 CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_ACTUALIZAR_PKG AS
   /* Procedimientos para equipos */
   PROCEDURE actualizar_equipo(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
-                              num_serie IN VARCHAR2, cantidad_disponible IN INT, categoria IN INT);
+                              num_serie IN VARCHAR2, cantidad_disponible IN INT, id_categoria IN INT);
   /* Procedimientos para departamentos */
   PROCEDURE actualizar_departamento(id_departamento IN INT, nombre_departamento IN VARCHAR2);
   /* Procedimientos para roles */
@@ -262,18 +264,17 @@ END INVENTARIO_MGMT_ELIMINAR_PKG;
 CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
   /* Procedimientos para equipos */
   PROCEDURE crear_equipos(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
-                         num_serie IN VARCHAR2, cantidad_disponible IN INT, categoria IN INT,
+                         num_serie IN VARCHAR2, cantidad_disponible IN INT, id_categoria IN INT,
                          o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
-    INSERT INTO equipos (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, categoria)
-    VALUES (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, categoria);
+    INSERT INTO equipos (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, id_categoria)
+    VALUES (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, id_categoria);
     COMMIT;
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM equipos
-    WHERE id_equipo = id_equipo;
+    FROM equipos;
   END;
 
   /* Procedimientos para departamentos */
@@ -287,8 +288,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM departamentos
-    WHERE id_departamento = id_departamento;
+    FROM departamentos;
   END;
 
   /* Procedimientos para roles */
@@ -302,8 +302,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM roles
-    WHERE id_rol = id_rol;
+    FROM roles;
   END;
 
   /* Procedimientos para proveedores */
@@ -317,8 +316,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM proveedores
-    WHERE id_proveedor = id_proveedor;
+    FROM proveedores;
   END;
 
   /* Procedimientos para recepciones */
@@ -332,8 +330,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM recepciones
-    WHERE id_recepcion = id_recepcion;
+    FROM recepciones;
   END;
 
   /* Procedimientos para usuarios */
@@ -347,8 +344,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM usuarios
-    WHERE id_usuarios = id_usuario;
+    FROM usuarios;
   END;
 
   /* Procedimientos para categorías */
@@ -362,8 +358,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM categorias
-    WHERE id_categoria = id_categoria;
+    FROM categorias;
   END;
 
   /* Procedimientos para el detalle de compras */
@@ -371,15 +366,32 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
                                  o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
-    INSERT INTO detalle_compra (id_detalle_compra, material, cantidad, precio_unitario)
+    INSERT INTO detalle_compras (id_detalle_compra, material, cantidad, precio_unitario)
     VALUES (id_detalle_compra, material, cantidad, precio_unitario);
     COMMIT;
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM detalle_compra
-    WHERE id_detalle_compra = id_detalle_compra;
+    FROM detalle_compras;
   END;
+  
+  /* Procedimientos para compras */
+  PROCEDURE crear_compras (
+    id_compra IN INT,
+    id_proveedor IN INT,
+    fecha_compra IN DATE,
+    o_c_dbuser OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    INSERT INTO compras (id_compra, id_proveedor, fecha_compra)
+    VALUES (id_compra, id_proveedor, fecha_compra);
+    COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM compras;
+END;
   
 /* Procedimientos para almacenes */
   PROCEDURE crear_almacenes(id_almacen IN INT, nombre_almacen IN VARCHAR2,
@@ -392,8 +404,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
     
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM almacenes
-    WHERE id_almacen = id_almacen;
+    FROM almacenes;
   END;
   
   -- Procedimiento para la tabla PERMISOS
@@ -412,8 +423,7 @@ BEGIN
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM PERMISOS
-    WHERE ID_PERMISOS = p_id_permisos;
+    FROM PERMISOS;
 END;
 
 
@@ -435,8 +445,7 @@ BEGIN
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM DESPACHOS
-    WHERE ID_DESPACHO = p_id_despacho;
+    FROM DESPACHOS;
 END;
 
 
@@ -457,8 +466,7 @@ BEGIN
 
     OPEN o_c_dbuser FOR
     SELECT *
-    FROM PERSONAL
-    WHERE ID_PERSONAL = p_id_personal;
+    FROM PERSONAL;
 END;
 
 
@@ -467,7 +475,7 @@ END INVENTARIO_MGMT_CREAR_PKG;
 CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ACTUALIZAR_PKG AS
   /* Procedimientos para equipos */
   PROCEDURE actualizar_equipo(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
-                              num_serie IN VARCHAR2, cantidad_disponible IN INT, categoria IN INT)
+                              num_serie IN VARCHAR2, cantidad_disponible IN INT, id_categoria IN INT)
   AS
   BEGIN
     UPDATE equipos
@@ -475,7 +483,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ACTUALIZAR_PKG AS
         descripcion = descripcion,
         num_serie = num_serie,
         cantidad_disponible = cantidad_disponible,
-        categoria = categoria
+        id_categoria = id_categoria
     WHERE id_equipo = id_equipo;
     COMMIT;
   END;
