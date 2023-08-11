@@ -1,11 +1,17 @@
 CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_OBTENER_PKG AS
-  /* Procedimientos para equipos */
-  PROCEDURE obtener_equipos_disponibles(equipos_cursor OUT SYS_REFCURSOR);
-  PROCEDURE obtener_departamentos(departamentos_cursor OUT SYS_REFCURSOR);
-  PROCEDURE obtener_recepciones_por_fecha(fecha_recepcion IN DATE, recepciones_cursor OUT SYS_REFCURSOR);
-  PROCEDURE obtener_usuarios_por_departamento(departamento_id IN INT, usuarios_cursor OUT SYS_REFCURSOR);
-  PROCEDURE obtener_detalle_compra(compra_id IN INT, detalle_compra_cursor OUT SYS_REFCURSOR);
-  PROCEDURE obtener_equipos_recibidos(fecha_recepcion IN DATE, departamento_id IN INT, equipos_cursor OUT SYS_REFCURSOR);
+    /* Procedimientos para departamentos */
+    PROCEDURE obtener_compras(compras_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_roles(roles_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_permisos(permisos_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_proveedores(proveedores_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_almacenes(almacenes_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_equipos(equipos_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_departamentos(departamentos_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_personal(personal_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_recepciones(recepciones_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_despachos(despachos_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_usuarios(usuarios_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_detalle_compras(detalle_compras_cursor OUT SYS_REFCURSOR);
 END INVENTARIO_MGMT_OBTENER_PKG;
 
 CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_ELIMINAR_PKG AS
@@ -123,68 +129,90 @@ CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_ACTUALIZAR_PKG AS
 END INVENTARIO_MGMT_ACTUALIZAR_PKG;
 
 CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_OBTENER_PKG AS
-  /* Procedimientos para equipos */
-  PROCEDURE obtener_equipos_disponibles(equipos_cursor OUT SYS_REFCURSOR)
-  AS
-  BEGIN
-    OPEN equipos_cursor FOR
-    SELECT *
-    FROM vista_equipo
-    WHERE cantidad_disponible > 0;
-  END;
+ 
+    PROCEDURE obtener_compras(compras_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN compras_cursor FOR
+        SELECT *
+        FROM vista_compras;
+    END;
 
-  /* Procedimientos para departamentos */
-  PROCEDURE obtener_departamentos(departamentos_cursor OUT SYS_REFCURSOR)
-  AS
-  BEGIN
-    OPEN departamentos_cursor FOR
-    SELECT *
-    FROM departamentos;
-  END;
+    PROCEDURE obtener_roles(roles_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN roles_cursor FOR
+        SELECT *
+        FROM vista_roles;
+    END;
 
-  /* Procedimientos para recepciones */
-  PROCEDURE obtener_recepciones_por_fecha(fecha_recepcion IN DATE, recepciones_cursor OUT SYS_REFCURSOR)
-  AS
-  BEGIN
-    OPEN recepciones_cursor FOR
-    SELECT *
-    FROM recepciones
-    WHERE fecha = fecha_recepcion;
-  END;
+    PROCEDURE obtener_permisos(permisos_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN permisos_cursor FOR
+        SELECT *
+        FROM vista_permisos;
+    END;
 
-  /* Procedimientos para usuarios */
-  PROCEDURE obtener_usuarios_por_departamento(departamento_id IN INT, usuarios_cursor OUT SYS_REFCURSOR)
-  AS
-  BEGIN
-    OPEN usuarios_cursor FOR
-    SELECT *
-    FROM usuarios u
-    INNER JOIN personal p ON u.id_personal = p.id_personal
-    WHERE p.id_departamento = departamento_id;
-  END;
+    PROCEDURE obtener_proveedores(proveedores_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN proveedores_cursor FOR
+        SELECT *
+        FROM vista_proveedores;
+    END;
 
-  /* Procedimientos para el detalle de compras */
-  PROCEDURE obtener_detalle_compra(compra_id IN INT, detalle_compra_cursor OUT SYS_REFCURSOR)
-  AS
-  BEGIN
-    OPEN detalle_compra_cursor FOR
-    SELECT *
-    FROM detalle_compra
-    WHERE id_detalle_compra = compra_id;
-  END;
+    PROCEDURE obtener_almacenes(almacenes_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN almacenes_cursor FOR
+        SELECT *
+        FROM vista_almacenes;
+    END;
 
-  /* Procedimientos adicionales */
-  PROCEDURE obtener_equipos_recibidos(fecha_recepcion IN DATE, departamento_id IN INT, equipos_cursor OUT SYS_REFCURSOR)
-  AS
-  BEGIN
-    OPEN equipos_cursor FOR
-    SELECT e.*
-    FROM equipos e
-    INNER JOIN recepciones r ON e.id_equipo = r.id_equipo
-    INNER JOIN despachos d ON e.id_equipo = d.id_equipo
-    WHERE r.fecha = fecha_recepcion
-    AND d.id_departamento = departamento_id;
-  END;
+    PROCEDURE obtener_equipos(equipos_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN equipos_cursor FOR
+        SELECT *
+        FROM vista_equipos;
+    END;
+
+    PROCEDURE obtener_departamentos(departamentos_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN departamentos_cursor FOR
+        SELECT *
+        FROM vista_departamentos;
+    END;
+
+    PROCEDURE obtener_personal(personal_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN personal_cursor FOR
+        SELECT *
+        FROM vista_personal;
+    END;
+
+    PROCEDURE obtener_recepciones(recepciones_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN recepciones_cursor FOR
+        SELECT *
+        FROM vista_recepciones;
+    END;
+
+    PROCEDURE obtener_despachos(despachos_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN despachos_cursor FOR
+        SELECT *
+        FROM vista_despachos;
+    END;
+
+    PROCEDURE obtener_usuarios(usuarios_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN usuarios_cursor FOR
+        SELECT *
+        FROM vista_usuarios;
+    END;
+
+    PROCEDURE obtener_detalle_compras(detalle_compras_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN detalle_compras_cursor FOR
+        SELECT *
+        FROM vista_detalle_compras;
+    END;
 END INVENTARIO_MGMT_OBTENER_PKG;
 
 CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ELIMINAR_PKG AS
