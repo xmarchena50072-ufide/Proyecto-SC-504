@@ -139,3 +139,19 @@ EXCEPTION
         RETURN 'false';
 END;
 /
+
+--buscar y devolver el nombre de usuario
+CREATE OR REPLACE FUNCTION obtener_nombre_usuario(id_usuario_param INT)
+RETURNS VARCHAR(100)
+AS
+DECLARE
+    nombre_usuario VARCHAR(100);
+BEGIN
+    SELECT USERNAME
+    INTO nombre_usuario
+    FROM USUARIOS
+    WHERE ID_USUARIOS = id_usuario_param;
+    
+    RETURN nombre_usuario;
+END;
+
