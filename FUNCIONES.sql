@@ -155,3 +155,17 @@ BEGIN
     RETURN nombre_usuario;
 END;
 
+--calcular el costo total para un material específico
+CREATE OR REPLACE FUNCTION calcular_costo_total(material_param VARCHAR)
+RETURNS DECIMAL(10, 2)
+AS
+DECLARE
+    total DECIMAL(10, 2);
+BEGIN
+    SELECT SUM(CANTIDAD * PRECIO_UNITARIO)
+    INTO total
+    FROM DETALLE_COMPRAS
+    WHERE MATERIAL = material_param;
+    
+    RETURN total;
+END;
