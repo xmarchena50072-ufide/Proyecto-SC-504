@@ -298,7 +298,7 @@ private JTabbedPane createSubTabsForCreate() {
     JTabbedPane subTabbedPane = new JTabbedPane();
     
     String sql = "{CALL obtener_nombres_tablas_prc(?)}";
-    fetchTables(sql, subTabbedPane);
+    fetchTables(sql, subTabbedPane, "Create");
    
     
     return subTabbedPane;
@@ -307,11 +307,11 @@ private JTabbedPane createSubTabsForCreate() {
     
     private JTabbedPane createSubTabsForRead() {
     JTabbedPane subTabbedPane = new JTabbedPane();
-    for (int i = 1; i <= 12; i++) {
-        JPanel subPanel = new JPanel();
-        subPanel.add(new JLabel("Sub-tab " + i));
-        subTabbedPane.addTab("Sub-tab " + i, subPanel);
-    }
+    
+    String sql = "{CALL obtener_nombres_tablas_prc(?)}";
+    fetchTables(sql, subTabbedPane, "Read");
+   
+    
     return subTabbedPane;
 }
 
@@ -335,7 +335,7 @@ private JTabbedPane createSubTabsForCreate() {
     return subTabbedPane;
 }
 
-    private void fetchTables(String sql, JTabbedPane subTabbedPane) {
+    private void fetchTables(String sql, JTabbedPane subTabbedPane, String crud) {
         try {
             
         ResultSet resultSet = dataAccessLayer.executeQuery(sql);
@@ -345,8 +345,11 @@ private JTabbedPane createSubTabsForCreate() {
             JPanel subPanel = new JPanel();
             
             //Pasa tableName a metodo que llamar a procedure 
-            
-            createForms(tableName, subPanel);
+            if (crud.equals("Create")) {
+                createForms(tableName, subPanel);
+            } else if (crud.equals("Read")) {
+                readForms(tableName, subPanel);
+            }
             
             //subPanel.add(new JLabel("Tabla: " + tableName));
             
@@ -387,7 +390,7 @@ private void createForms(String tableName, JPanel subPanel) {
         JButton button = new JButton("Submit");
 button.addActionListener(new ActionListener() {
             @Override
-public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
     try {
         StringBuilder sqlBuilder = new StringBuilder("{CALL INVENTARIO_MGMT_CREAR_PKG.crear_");
         sqlBuilder.append(tableName.toLowerCase()).append("(");
@@ -472,6 +475,32 @@ private JComponent createInputComponent(String dataType, int dataLength) {
 
     return inputComponent;
 }
+
+    private void readForms(String tableName, JPanel subPanel) {
+        try {
+        JButton generarReporteButton = new JButton("Generar Reporte");
+        generarReporteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    StringBuilder sqlBuilder = new StringBuilder("{CALL INVENTARIO_MGMT_OBTENER_PKG.obtener_");
+                    sqlBuilder.append(tableName).append("(");
+
+                    boolean first = true;
+                    sqlBuilder.append("?)");
+
+                    fetchData(sqlBuilder.toString(), subPanel);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        subPanel.add(generarReporteButton);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+  }
 
 
 

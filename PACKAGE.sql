@@ -12,6 +12,8 @@ CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_OBTENER_PKG AS
     PROCEDURE obtener_despachos(despachos_cursor OUT SYS_REFCURSOR);
     PROCEDURE obtener_usuarios(usuarios_cursor OUT SYS_REFCURSOR);
     PROCEDURE obtener_detalle_compras(detalle_compras_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_categorias(categorias_cursor OUT SYS_REFCURSOR);
+
 END INVENTARIO_MGMT_OBTENER_PKG;
 
 CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_ELIMINAR_PKG AS
@@ -212,6 +214,13 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_OBTENER_PKG AS
         OPEN detalle_compras_cursor FOR
         SELECT *
         FROM vista_detalle_compras;
+    END;
+    
+    PROCEDURE obtener_categorias(categorias_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN categorias_cursor FOR
+        SELECT *
+        FROM vista_categorias;
     END;
 END INVENTARIO_MGMT_OBTENER_PKG;
 
