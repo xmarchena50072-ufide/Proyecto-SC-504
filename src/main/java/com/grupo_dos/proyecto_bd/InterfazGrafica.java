@@ -248,9 +248,20 @@ public class InterfazGrafica {
             //Cierra Connection
             //dataAccessLayer.closeConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, e);
+        e.printStackTrace();
+        String errorMessage = "Error";
+
+        if (e.getMessage() != null && !e.getMessage().isEmpty()) {
+            if (e.getMessage().contains("unique constraint")) {
+                errorMessage = "Los datos ingresados ya existen en la base de datos.";
+            } else if (e.getMessage().contains("numeric or value error")) {
+                errorMessage = "Error en los datos ingresados, caracteres no se pueden convertir a número";
+            }
+            // Otros errores
         }
+
+        JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }
 
     private void crudTabs() {
@@ -326,7 +337,6 @@ public class InterfazGrafica {
         try {
 
             ResultSet resultSet = dataAccessLayer.executeQuery(sql);
-            // Iterate through the table names and create sub-tabs
             while (resultSet.next()) {
                 String tableName = resultSet.getString("nombre_tabla");
                 JPanel subPanel = new JPanel();
@@ -344,7 +354,7 @@ public class InterfazGrafica {
                 subTabbedPane.addTab(tableName, subPanel);
             }
 
-            // Close resources
+            // Cierra recursos
             resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -393,7 +403,7 @@ public class InterfazGrafica {
 
                             if (inputComponent instanceof JTextField) {
                                 String textValue = ((JTextField) inputComponent).getText();
-                                // Escape para VARCHAR2 or otros string inputs
+                                // Escape para VARCHAR2 o otros string inputs
                                 value = "'" + textValue.replace("'", "''") + "'";
                             } else if (inputComponent instanceof JFormattedTextField) {
                                 JFormattedTextField formattedTextField = (JFormattedTextField) inputComponent;
