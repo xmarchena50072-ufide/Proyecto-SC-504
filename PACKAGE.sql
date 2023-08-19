@@ -170,6 +170,29 @@ CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_ACTUALIZAR_PKG AS
   
 END INVENTARIO_MGMT_ACTUALIZAR_PKG;
 
+CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_LOGIN_PKG AS
+    PROCEDURE verifica_login_prc(
+        p_username IN VARCHAR2,
+        p_password IN VARCHAR2,
+        o_result OUT VARCHAR2
+    );
+
+    PROCEDURE obtener_rol_prc(
+        p_username IN VARCHAR2,
+        o_rol OUT VARCHAR2
+    );
+END INVENTARIO_MGMT_LOGIN_PKG;
+
+CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_UI_PKG AS
+    PROCEDURE obtener_nombres_tablas_prc(p_cursor OUT SYS_REFCURSOR);
+
+    PROCEDURE obtener_info_columnas_prc(
+        p_table_name IN VARCHAR2,
+        p_cursor OUT SYS_REFCURSOR
+    );
+END INVENTARIO_MGMT_UI_PKG;
+/
+
 CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_OBTENER_PKG AS
  
     PROCEDURE obtener_compras(compras_cursor OUT SYS_REFCURSOR) AS
@@ -753,6 +776,51 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ACTUALIZAR_PKG AS
   END actualizar_permisos;
 
 END INVENTARIO_MGMT_ACTUALIZAR_PKG;
+
+CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_LOGIN_PKG AS
+    --procedimientos de login
+    PROCEDURE verifica_login_prc(
+        p_username IN VARCHAR2,
+        p_password IN VARCHAR2,
+        o_result OUT VARCHAR2
+    )
+    AS
+    BEGIN
+        o_result := verifica_login_fun(p_username, p_password);
+    END;
+
+    PROCEDURE obtener_rol_prc(
+        p_username IN VARCHAR2,
+        o_rol OUT VARCHAR2
+    )
+    AS
+    BEGIN
+        o_rol := obtener_rol_usuario_fun(p_username);
+    END;
+END INVENTARIO_MGMT_LOGIN_PKG;
+
+CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_UI_PKG AS
+    PROCEDURE obtener_nombres_tablas_prc(p_cursor OUT SYS_REFCURSOR) AS
+    BEGIN
+        OPEN p_cursor FOR
+        SELECT table_name as "nombre_tabla"
+        FROM user_tables;
+    END;
+
+    PROCEDURE obtener_info_columnas_prc(
+        p_table_name IN VARCHAR2,
+        p_cursor OUT SYS_REFCURSOR
+    )
+    AS
+    BEGIN
+        OPEN p_cursor FOR
+        SELECT column_name as "nombre_columna", data_type as "tipo_dato", data_length as "longitud_dato"
+        FROM user_tab_columns
+        WHERE table_name = p_table_name;
+    END;
+END INVENTARIO_MGMT_UI_PKG;
+/
+
 
 --PRUEBAS
 SET SERVEROUTPUT ON;
