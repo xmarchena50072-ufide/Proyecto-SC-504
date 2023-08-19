@@ -504,7 +504,7 @@ CREATE OR REPLACE PROCEDURE obtener_rol_prc(
 )
 AS
 BEGIN
-    o_rol := obtener_rol_usuario(p_username);
+    o_rol := obtener_rol_usuario_fun(p_username);
 END;
 /
 

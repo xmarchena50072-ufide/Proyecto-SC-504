@@ -32,7 +32,7 @@ public class LoginVentana {
                 char[] passwordChars = passwordField.getPassword();
                 String password = new String(passwordChars);
                 
-                String sql = "{CALL verifica_login_prc('" + username + "', '" + password + "', ?)}";
+                String sql = "{CALL INVENTARIO_MGMT_LOGIN_PKG.verifica_login_prc('" + username + "', '" + password + "', ?)}";
 
                 
                 String loginSuccess = dataAccessLayer.callProcedure(sql);
@@ -40,7 +40,7 @@ public class LoginVentana {
                 if (loginSuccess.equals("true")) {
                     frame.dispose();
                     
-                    sql = "{CALL obtener_rol_prc('" + username + "', ?)}";
+                    sql = "{CALL INVENTARIO_MGMT_LOGIN_PKG.obtener_rol_prc('" + username + "', ?)}";
                     String rol = dataAccessLayer.callProcedure(sql);
 
 

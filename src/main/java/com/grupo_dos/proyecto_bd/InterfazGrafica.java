@@ -308,7 +308,7 @@ public class InterfazGrafica {
     private JTabbedPane createSubTabsForRead() {
         JTabbedPane subTabbedPane = new JTabbedPane();
 
-        String sql = "{CALL obtener_nombres_tablas_prc(?)}";
+        String sql = "{CALL INVENTARIO_MGMT_UI_PKG.obtener_nombres_tablas_prc(?)}";
         fetchTables(sql, subTabbedPane, "Read");
 
         return subTabbedPane;
@@ -317,7 +317,7 @@ public class InterfazGrafica {
     private JTabbedPane createSubTabsForUpdate() {
         JTabbedPane subTabbedPane = new JTabbedPane();
 
-        String sql = "{CALL obtener_nombres_tablas_prc(?)}";
+        String sql = "{CALL INVENTARIO_MGMT_UI_PKG.obtener_nombres_tablas_prc(?)}";
         fetchTables(sql, subTabbedPane, "Update");
 
         return subTabbedPane;
@@ -364,7 +364,7 @@ public class InterfazGrafica {
 
     private void createForms(String tableName, JPanel subPanel) {
         try {
-            ResultSet resultSet = dataAccessLayer.executeQuery("{CALL obtener_info_columnas_prc('" + tableName + "', ?)}");
+            ResultSet resultSet = dataAccessLayer.executeQuery("{CALL INVENTARIO_MGMT_UI_PKG.obtener_info_columnas_prc('" + tableName + "', ?)}");
             Map<String, JComponent> inputComponentsMap = new LinkedHashMap<>();
 
             while (resultSet.next()) {
@@ -498,7 +498,7 @@ public class InterfazGrafica {
 
     private void updateForms(String tableName, JPanel subPanel) {
             try {
-            ResultSet resultSet = dataAccessLayer.executeQuery("{CALL obtener_info_columnas_prc('" + tableName + "', ?)}");
+            ResultSet resultSet = dataAccessLayer.executeQuery("{CALL INVENTARIO_MGMT_UI_PKG.obtener_info_columnas_prc('" + tableName + "', ?)}");
             Map<String, JComponent> inputComponentsMap = new LinkedHashMap<>();
 
             while (resultSet.next()) {

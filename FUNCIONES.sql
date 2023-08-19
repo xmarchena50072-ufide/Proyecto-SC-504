@@ -26,7 +26,7 @@ END;
 /
 
 --obtener la cantidad total de roles de usuario
-CREATE OR REPLACE FUNCTION obtener_rol_usuario(
+CREATE OR REPLACE FUNCTION obtener_rol_usuario_fun(
     p_username IN VARCHAR2
 )
 RETURN VARCHAR2
@@ -141,11 +141,11 @@ END;
 /
 
 --buscar y devolver el nombre de usuario
-CREATE OR REPLACE FUNCTION obtener_nombre_usuario(id_usuario_param INT)
-RETURNS VARCHAR(100)
+CREATE OR REPLACE FUNCTION obtener_nombre_usuario(id_usuario_param IN INT)
+RETURN VARCHAR2
 AS
 DECLARE
-    nombre_usuario VARCHAR(100);
+    nombre_usuario VARCHAR2;
 BEGIN
     SELECT USERNAME
     INTO nombre_usuario
@@ -157,7 +157,7 @@ END;
 
 --calcular el costo total para un material específico
 CREATE OR REPLACE FUNCTION calcular_costo_total(material_param VARCHAR)
-RETURNS DECIMAL(10, 2)
+RETURN DECIMAL(10, 2)
 AS
 DECLARE
     total DECIMAL(10, 2);
