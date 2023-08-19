@@ -299,7 +299,7 @@ public class InterfazGrafica {
     private JTabbedPane createSubTabsForCreate() {
         JTabbedPane subTabbedPane = new JTabbedPane();
 
-        String sql = "{CALL obtener_nombres_tablas_prc(?)}";
+        String sql = "{CALL INVENTARIO_MGMT_UI_PKG.obtener_nombres_tablas_prc(?)}";
         fetchTables(sql, subTabbedPane, "Create");
 
         return subTabbedPane;
