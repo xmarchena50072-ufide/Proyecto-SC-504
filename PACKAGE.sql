@@ -845,3 +845,4 @@ BEGIN
   CLOSE equipos_cursor;
 END;
 
+-- sql prueba
