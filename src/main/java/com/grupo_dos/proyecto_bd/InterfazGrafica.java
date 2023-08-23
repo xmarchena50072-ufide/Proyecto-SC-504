@@ -292,8 +292,8 @@ public class InterfazGrafica {
     }
 
     private void readTabs() {
-        JPanel readPanel = readPanel();
-        tabbedPane.addTab("Read", readPanel);
+        JTabbedPane readSubTabs = createSubTabsForRead();
+        tabbedPane.addTab("Read", readSubTabs);
     }
 
     private JTabbedPane createSubTabsForCreate() {
