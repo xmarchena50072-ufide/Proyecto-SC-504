@@ -76,23 +76,31 @@ FROM RECEPCIONES;
 
 CREATE OR REPLACE VIEW vista_despachos AS
 SELECT
-    ID_DESPACHO AS "Identificador de despacho",
-    ID_EQUIPO AS "Identificador de equipo",
-    ID_DEPARTAMENTO AS "Identificador de departamento",
-    FECHA AS "Fecha de despacho",
-    HORA AS "Hora de despacho",
-    ID_PERSONAL AS "Identificador de personal"
-FROM DESPACHOS;
+    D.ID_DESPACHO AS "Identificador de despacho",
+    D.ID_EQUIPO AS "Identificador de equipo",
+    D.ID_DEPARTAMENTO AS "Identificador de departamento",
+    D.FECHA AS "Fecha de despacho",
+    D.HORA AS "Hora de despacho",
+    D.ID_PERSONAL AS "Identificador de personal",
+    P.NOMBRE AS "Nombre de personal",
+    P.TELEFONO AS "Teléfono de personal",
+    P.CORREO AS "Correo de personal"
+FROM DESPACHOS D
+INNER JOIN PERSONAL P ON D.ID_PERSONAL = P.ID_PERSONAL;
 /
+
 
 CREATE OR REPLACE VIEW vista_usuarios AS
 SELECT
-    ID_USUARIOS AS "Identificador de usuario",
-    ID_PERSONAL AS "Identificador de personal",
-    USERNAME AS "Nombre de usuario",
-    PASSWORD AS "Contraseña",
-    ID_ROL AS "Identificador de rol"
-FROM USUARIOS;
+    U.ID_USUARIOS AS "Identificador de usuario",
+    U.ID_PERSONAL AS "Identificador de personal",
+    U.USERNAME AS "Nombre de usuario",
+    U.PASSWORD AS "Contraseña",
+    R.ID_ROL AS "Identificador de rol",
+    R.NOMBRE AS "Nombre de rol",
+    R.DESCRIPCION AS "Descripción de rol"
+FROM USUARIOS U
+INNER JOIN ROLES R ON U.ID_ROL = R.ID_ROL;
 /
 
 CREATE OR REPLACE VIEW vista_compras AS
@@ -105,10 +113,15 @@ FROM COMPRAS;
 
 CREATE OR REPLACE VIEW vista_detalle_compras AS
 SELECT
-    ID_DETALLE_COMPRA AS "Identificador de detalle de compra",
-    MATERIAL AS "Material",
-    CANTIDAD AS "Cantidad",
-    PRECIO_UNITARIO AS "Precio unitario",
-    ID_COMPRA AS "Identificador de compra"
-FROM DETALLE_COMPRAS;
+    DC.ID_DETALLE_COMPRA AS "Identificador de detalle de compra",
+    DC.MATERIAL AS "Material",
+    DC.CANTIDAD AS "Cantidad",
+    DC.PRECIO_UNITARIO AS "Precio unitario",
+    DC.ID_COMPRA AS "Identificador de compra",
+    C.ID_PROVEEDOR AS "Identificador de proveedor",
+    C.FECHA_COMPRA AS "Fecha de compra"
+FROM DETALLE_COMPRAS DC
+INNER JOIN COMPRAS C ON DC.ID_COMPRA = C.ID_COMPRA;
+
+
 /
