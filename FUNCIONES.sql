@@ -1,30 +1,4 @@
---obtener la cantidad de equipos disponibles
-CREATE OR REPLACE FUNCTION obtener_cantidad_equipos_disponibles
-RETURN INT
-AS
-  v_cantidad_equipos INT;
-BEGIN
-  SELECT COUNT(*)
-  INTO v_cantidad_equipos
-  FROM equipos
-  WHERE cantidad_disponible > 0;
-  RETURN v_cantidad_equipos;
-END;
-/
-
---obtener la cantidad de departamentos
-CREATE OR REPLACE FUNCTION obtener_cantidad_departamentos
-RETURN INT
-AS
-  v_cantidad_departamentos INT;
-BEGIN
-  SELECT COUNT(*)
-  INTO v_cantidad_departamentos
-  FROM departamentos;
-  RETURN v_cantidad_departamentos;
-END;
-/
-
+--Funciones llamadas desde package
 --obtener la cantidad total de roles de usuario
 CREATE OR REPLACE FUNCTION obtener_rol_usuario_fun(
     p_username IN VARCHAR2
@@ -45,71 +19,6 @@ EXCEPTION
         RETURN 'Usuario no encontrado';
     WHEN OTHERS THEN
         RETURN 'Error';
-END;
-/
-
-
---obtener la cantidad de proveedores con nombre en cadena
-CREATE OR REPLACE FUNCTION obtener_cantidad_proveedores_por_nombre(
-  nombre_proveedor IN VARCHAR2
-)
-RETURN INT
-AS
-  v_cantidad_proveedores INT;
-BEGIN
-  SELECT COUNT(*)
-  INTO v_cantidad_proveedores
-  FROM proveedores
-  WHERE nombre LIKE '%' || nombre_proveedor || '%';
-  RETURN v_cantidad_proveedores;
-END;
-/
-
---obtener la cantidad de recepciones en una fecha especifica
-CREATE OR REPLACE FUNCTION obtener_cantidad_recepciones_por_fecha(
-  fecha_recepcion IN DATE
-)
-RETURN INT
-AS
-  v_cantidad_recepciones INT;
-BEGIN
-  SELECT COUNT(*)
-  INTO v_cantidad_recepciones
-  FROM recepciones
-  WHERE fecha = fecha_recepcion;
-  RETURN v_cantidad_recepciones;
-END;
-
--- obtener la cantidad total de equipos por categoria
-CREATE OR REPLACE FUNCTION obtener_cantidad_equipos_por_categoria(
-  categoria_id IN INT
-)
-RETURN INT
-AS
-  v_cantidad_equipos INT;
-BEGIN
-  SELECT COUNT(*)
-  INTO v_cantidad_equipos
-  FROM equipos
-  WHERE categoria = categoria_id;
-  RETURN v_cantidad_equipos;
-END;
-/
-
---Eliminar Categoria
-CREATE OR REPLACE FUNCTION eliminar_categoria (id_categoria IN INT) 
-RETURN VARCHAR2 
-IS 
-BEGIN 
-    DELETE FROM categorias 
-    WHERE id_categoria = id_categoria;
-    COMMIT;
-    
-    RETURN 'Categoría eliminada exitosamente.';
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        RETURN 'Error al eliminar la categoría: ' || SQLERRM;
 END;
 /
 
@@ -139,33 +48,4 @@ EXCEPTION
         RETURN 'false';
 END;
 /
-
---buscar y devolver el nombre de usuario
-CREATE OR REPLACE FUNCTION obtener_nombre_usuario(id_usuario_param IN INT)
-RETURN VARCHAR2
-AS
-DECLARE
-    nombre_usuario VARCHAR2;
-BEGIN
-    SELECT USERNAME
-    INTO nombre_usuario
-    FROM USUARIOS
-    WHERE ID_USUARIOS = id_usuario_param;
-    
-    RETURN nombre_usuario;
-END;
-
---calcular el costo total para un material específico
-CREATE OR REPLACE FUNCTION calcular_costo_total(material_param VARCHAR)
-RETURN DECIMAL(10, 2)
-AS
-DECLARE
-    total DECIMAL(10, 2);
-BEGIN
-    SELECT SUM(CANTIDAD * PRECIO_UNITARIO)
-    INTO total
-    FROM DETALLE_COMPRAS
-    WHERE MATERIAL = material_param;
-    
-    RETURN total;
-END;
+--Fin Funciones llamadas desde package
