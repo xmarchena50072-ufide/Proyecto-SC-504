@@ -58,7 +58,7 @@
 </tr>
 <tr>
 <td>OBJECT_ID</td>
-<td>74098</td>
+<td>75882</td>
 </tr>
 <tr>
 <td>DATA_OBJECT_ID</td>
@@ -70,15 +70,15 @@
 </tr>
 <tr>
 <td>CREATED</td>
-<td>05-JUL-23</td>
+<td>09-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>05-JUL-23</td>
+<td>09-AUG-23</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
-<td>2023-07-05:19:27:52</td>
+<td>2023-08-09:19:58:26</td>
 </tr>
 <tr>
 <td>STATUS</td>
@@ -199,11 +199,11 @@ TRIGGER proveedores_trigger
 BEFORE INSERT ON proveedores
 FOR EACH ROW
 BEGIN
-    -- Cambiar CORREO a 'N/A' si es NULL
-    IF :NEW.CORREO IS NULL THEN
-        :NEW.CORREO := 'N/A';
-    END IF;
-END;</pre>
+  SELECT proveedores_seq.nextval
+  INTO :new.ID_PROVEEDOR
+  FROM dual;
+END;
+</pre>
 </div>
 </div>
 </div>

@@ -58,7 +58,7 @@
 <th>DELETABLE</th>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 0)" class="currentrow">
-<td class="currentcell">ID_PERSONAL</td>
+<td class="currentcell">Identificador&nbsp;de&nbsp;personal</td>
 <td class="currentcell">NUMBER(38)</td>
 <td class="currentcell">No</td>
 <td class="currentcell">null</td>
@@ -69,7 +69,7 @@
 <td class="currentcell">YES</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 1)">
-<td>NOMBRE</td>
+<td>Nombre</td>
 <td>VARCHAR2(100)</td>
 <td>Yes</td>
 <td>null</td>
@@ -80,7 +80,7 @@
 <td>YES</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 2)">
-<td>TELEFONO</td>
+<td>Teléfono</td>
 <td>VARCHAR2(20)</td>
 <td>Yes</td>
 <td>null</td>
@@ -91,7 +91,7 @@
 <td>YES</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 3)">
-<td>CORREO</td>
+<td>Correo</td>
 <td>VARCHAR2(100)</td>
 <td>Yes</td>
 <td>null</td>
@@ -102,7 +102,7 @@
 <td>YES</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 4)">
-<td>ID_DEPARTAMENTO</td>
+<td>Identificador&nbsp;de&nbsp;departamento</td>
 <td>NUMBER(38)</td>
 <td>Yes</td>
 <td>null</td>
@@ -139,6 +139,14 @@
 <th>REFERENCED_NAME</th>
 <th>REFERENCED_TYPE</th>
 </tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 0)" class="currentrow">
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">INVENTARIO_MGMT_OBTENER_PKG</td>
+<td class="currentcell">PACKAGE&nbsp;BODY</td>
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">VISTA_PERSONAL</td>
+<td class="currentcell">VIEW</td>
+</tr>
 </table>
 <br/>
 <hr/>
@@ -151,22 +159,43 @@
 </div>
 <br/>
 <div id="ChildReports.2">
+<div id="Child.0.0.2">
+<div class="currentchildreport"><table id="Table.3" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+<tr onclick="table_onSelectRow(this, 3)" class="currentrow">
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">VISTA_PERSONAL</td>
+<td class="currentcell">VIEW</td>
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">PERSONAL</td>
+<td class="currentcell">TABLE</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="Master.3">
 <div class="masterreport">
-<table id="Table.3" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.4" cellpadding="0" cellspacing="0" summary="">
 <th>NAME</th>
 <th>VALUE</th>
 </tr>
 <tr>
 <td>CREATED</td>
-<td>17-JUL-23</td>
+<td>09-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>17-JUL-23</td>
+<td>09-AUG-23</td>
 </tr>
 <tr>
 <td>OWNER</td>
@@ -178,15 +207,27 @@
 </tr>
 <tr>
 <td>TEXT_LENGTH</td>
-<td>76</td>
+<td>200</td>
 </tr>
 <tr>
 <td>TEXT</td>
-<td>SELECT&nbsp;ID_PERSONAL,&nbsp;NOMBRE,&nbsp;TELEFONO&nbsp;,&nbsp;CORREO,&nbsp;ID_DEPARTAMENTO&nbsp;FROM&nbsp;PERSONAL</td>
+<td>SELECT
+&nbsp;&nbsp;&nbsp;&nbsp;ID_PERSONAL&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;personal",
+&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE&nbsp;AS&nbsp;"Nombre",
+&nbsp;&nbsp;&nbsp;&nbsp;TELEFONO&nbsp;AS&nbsp;"Teléfono",
+&nbsp;&nbsp;&nbsp;&nbsp;CORREO&nbsp;AS&nbsp;"Correo",
+&nbsp;&nbsp;&nbsp;&nbsp;ID_DEPARTAMENTO&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;departamento"
+FROM&nbsp;PERSONAL</td>
 </tr>
 <tr>
 <td>TEXT_VC</td>
-<td>SELECT&nbsp;ID_PERSONAL,&nbsp;NOMBRE,&nbsp;TELEFONO&nbsp;,&nbsp;CORREO,&nbsp;ID_DEPARTAMENTO&nbsp;FROM&nbsp;PERSONAL</td>
+<td>SELECT
+&nbsp;&nbsp;&nbsp;&nbsp;ID_PERSONAL&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;personal",
+&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE&nbsp;AS&nbsp;"Nombre",
+&nbsp;&nbsp;&nbsp;&nbsp;TELEFONO&nbsp;AS&nbsp;"Teléfono",
+&nbsp;&nbsp;&nbsp;&nbsp;CORREO&nbsp;AS&nbsp;"Correo",
+&nbsp;&nbsp;&nbsp;&nbsp;ID_DEPARTAMENTO&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;departamento"
+FROM&nbsp;PERSONAL</td>
 </tr>
 <tr>
 <td>TYPE_TEXT_LENGTH</td>
@@ -281,7 +322,7 @@
 </div>
 <div id="Master.4">
 <div class="masterreport">
-<table id="Table.4" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.5" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>OWNER</th>
 <th>TRIGGER_NAME</th>
@@ -307,7 +348,7 @@
 </div>
 <div id="Master.5">
 <div class="masterreport">
-<table id="Table.5" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.6" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>ATTRIBUTE</th>
 <th>Line:Position</th>

@@ -75,7 +75,7 @@
 <td class="currentcell">No</td>
 <td class="currentcell">null</td>
 <td class="currentcell">1</td>
-<td class="currentcell">Identificador&nbsp;y&nbsp;llave&nbsp;primaria&nbsp;de&nbsp;la&nbsp;categoría</td>
+<td class="currentcell">null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 1)">
 <td>NOMBRE_CATEGORIA</td>
@@ -83,7 +83,7 @@
 <td>Yes</td>
 <td>null</td>
 <td>2</td>
-<td>Nombre&nbsp;de&nbsp;la&nbsp;categoría</td>
+<td>null</td>
 </tr>
 </table>
 </div>
@@ -112,7 +112,7 @@
 <th>VIEW_RELATED</th>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 1, 0)" class="currentrow">
-<td class="currentcell">SYS_C007509</td>
+<td class="currentcell">SYS_C007810</td>
 <td class="currentcell">Primary_Key</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
@@ -125,9 +125,9 @@
 <td class="currentcell">GENERATED&nbsp;NAME</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
-<td class="currentcell">27-JUN-23</td>
+<td class="currentcell">08-AUG-23</td>
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007509</td>
+<td class="currentcell">SYS_C007810</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
 </tr>
@@ -180,7 +180,7 @@
 </tr>
 <tr>
 <td>NUM_ROWS</td>
-<td>2</td>
+<td>19</td>
 </tr>
 <tr>
 <td>BLOCKS</td>
@@ -188,19 +188,19 @@
 </tr>
 <tr>
 <td>AVG_ROW_LEN</td>
-<td>16</td>
+<td>15</td>
 </tr>
 <tr>
 <td>SAMPLE_SIZE</td>
-<td>2</td>
+<td>19</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED</td>
-<td>19-JUL-23</td>
+<td>23-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED_SINCE</td>
-<td>19-JUL-23</td>
+<td>23-AUG-23</td>
 </tr>
 </table>
 <br/>
@@ -228,6 +228,14 @@
 <th>STATUS</th>
 <th>TABLE_NAME</th>
 </tr>
+<tr onclick="table_onSelectMasterRow(this, 5, 0)" class="currentrow">
+<td class="currentcell">CATEGORIAS_TRIGGER</td>
+<td class="currentcell">BEFORE&nbsp;EACH&nbsp;ROW</td>
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">INSERT</td>
+<td class="currentcell">ENABLED</td>
+<td class="currentcell">CATEGORIAS</td>
+</tr>
 </table>
 <br/>
 <hr/>
@@ -240,6 +248,19 @@
 </div>
 <br/>
 <div id="ChildReports.4">
+<div id="Child.0.0.4">
+<div class="currentchildreport"><pre>
+TRIGGER categorias_trigger
+BEFORE INSERT ON categorias
+FOR EACH ROW
+BEGIN
+  SELECT categorias_seq.nextval
+  INTO :new.ID_CATEGORIA
+  FROM dual;
+END;
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -256,23 +277,23 @@
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 0)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">INVENTARIO_MGMT_ELIMINAR_PKG</td>
-<td class="currentcell">PACKAGE&nbsp;BODY</td>
+<td class="currentcell">VISTA_CATEGORIAS</td>
+<td class="currentcell">VIEW</td>
 <td class="currentcell">INVENTARIO</td>
 <td class="currentcell">CATEGORIAS</td>
 <td class="currentcell">TABLE</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 1)">
 <td>INVENTARIO</td>
-<td>INVENTARIO_MGMT_CREAR_PKG</td>
-<td>PACKAGE&nbsp;BODY</td>
+<td>CATEGORIAS_TRIGGER</td>
+<td>TRIGGER</td>
 <td>INVENTARIO</td>
 <td>CATEGORIAS</td>
 <td>TABLE</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 2)">
 <td>INVENTARIO</td>
-<td>INVENTARIO_MGMT_ACTUALIZAR_PKG</td>
+<td>INVENTARIO_MGMT_CATEGORIAS_PKG</td>
 <td>PACKAGE&nbsp;BODY</td>
 <td>INVENTARIO</td>
 <td>CATEGORIAS</td>
@@ -280,8 +301,32 @@
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 3)">
 <td>INVENTARIO</td>
-<td>VISTA_CATEGORIAS</td>
-<td>VIEW</td>
+<td>INVENTARIO_MGMT_ACTUALIZAR_PKG</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>INVENTARIO</td>
+<td>CATEGORIAS</td>
+<td>TABLE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 6, 4)">
+<td>INVENTARIO</td>
+<td>OBTENER_DESCRIPCION_CATEGORIA_FUN</td>
+<td>FUNCTION</td>
+<td>INVENTARIO</td>
+<td>CATEGORIAS</td>
+<td>TABLE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 6, 5)">
+<td>INVENTARIO</td>
+<td>INVENTARIO_MGMT_CREAR_PKG</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>INVENTARIO</td>
+<td>CATEGORIAS</td>
+<td>TABLE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 6, 6)">
+<td>INVENTARIO</td>
+<td>INVENTARIO_MGMT_ELIMINAR_PKG</td>
+<td>PACKAGE&nbsp;BODY</td>
 <td>INVENTARIO</td>
 <td>CATEGORIAS</td>
 <td>TABLE</td>
@@ -350,22 +395,61 @@
 </table>
 </div>
 </div>
+<div id="Child.0.4.5">
+<div class="childreport"><table id="Table.11" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+</table>
+</div>
+</div>
+<div id="Child.0.5.5">
+<div class="childreport"><table id="Table.12" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+</table>
+</div>
+</div>
+<div id="Child.0.6.5">
+<div class="childreport"><table id="Table.13" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="Master.6">
 <div class="masterreport">
-<table id="Table.11" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.14" cellpadding="0" cellspacing="0" summary="">
 <th>NAME</th>
 <th>VALUE</th>
 </tr>
 <tr>
 <td>CREATED</td>
-<td>27-JUN-23</td>
+<td>08-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>27-JUN-23</td>
+<td>08-AUG-23</td>
 </tr>
 <tr>
 <td>OWNER</td>
@@ -445,7 +529,7 @@
 </tr>
 <tr>
 <td>NUM_ROWS</td>
-<td>2</td>
+<td>19</td>
 </tr>
 <tr>
 <td>BLOCKS</td>
@@ -465,7 +549,7 @@
 </tr>
 <tr>
 <td>AVG_ROW_LEN</td>
-<td>16</td>
+<td>15</td>
 </tr>
 <tr>
 <td>AVG_SPACE_FREELIST_BLOCKS</td>
@@ -493,11 +577,11 @@
 </tr>
 <tr>
 <td>SAMPLE_SIZE</td>
-<td>2</td>
+<td>19</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED</td>
-<td>19-JUL-23</td>
+<td>23-AUG-23</td>
 </tr>
 <tr>
 <td>PARTITIONED</td>
@@ -605,14 +689,14 @@
 </tr>
 <tr>
 <td>COMMENTS</td>
-<td>Tabla&nbsp;que&nbsp;almacena&nbsp;las&nbsp;categorías&nbsp;de&nbsp;los&nbsp;equipos</td>
+<td>null</td>
 </tr>
 </table>
 </div>
 </div>
 <div id="Master.7">
 <div class="masterreport">
-<table id="Table.12" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.15" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>PARTITION_NAME</th>
 <th>LAST_ANALYZED</th>
@@ -638,7 +722,7 @@
 </div>
 <div id="Master.8">
 <div class="masterreport">
-<table id="Table.13" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.16" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>INDEX_OWNER</th>
 <th>INDEX_NAME</th>
@@ -651,9 +735,9 @@
 <th>JOIN_INDEX</th>
 <th>COLUMNS</th>
 </tr>
-<tr onclick="table_onSelectMasterRow(this, 13, 0)" class="currentrow">
+<tr onclick="table_onSelectMasterRow(this, 16, 0)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007509</td>
+<td class="currentcell">SYS_C007810</td>
 <td class="currentcell">UNIQUE</td>
 <td class="currentcell">VALID</td>
 <td class="currentcell">NORMAL</td>
@@ -676,7 +760,7 @@
 <br/>
 <div id="ChildReports.8">
 <div id="Child.0.0.8">
-<div class="currentchildreport"><table id="Table.14" cellpadding="0" cellspacing="0" summary="">
+<div class="currentchildreport"><table id="Table.17" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>INDEX_OWNER</th>
 <th>INDEX_NAME</th>
@@ -690,9 +774,9 @@
 <th>COLLATED_COLUMN_ID</th>
 <th>COLUMN_EXPRESSION</th>
 </tr>
-<tr onclick="table_onSelectRow(this, 14)" class="currentrow">
+<tr onclick="table_onSelectRow(this, 17)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007509</td>
+<td class="currentcell">SYS_C007810</td>
 <td class="currentcell">INVENTARIO</td>
 <td class="currentcell">CATEGORIAS</td>
 <td class="currentcell">ID_CATEGORIA</td>

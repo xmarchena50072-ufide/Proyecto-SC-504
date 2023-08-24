@@ -46,20 +46,34 @@
 <div id="Master.0">
 <div class="currentmasterreport">
 <TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
-<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P> Procedimientos para equipos </P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_departamentos">obtener_departamentos</A></B>( departamentos_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_detalle_compra">obtener_detalle_compra</A></B>( compra_id IN INT , detalle_compra_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_equipos_disponibles">obtener_equipos_disponibles</A></B>( equipos_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_equipos_recibidos">obtener_equipos_recibidos</A></B>( fecha_recepcion IN DATE , departamento_id IN INT , equipos_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_recepciones_por_fecha">obtener_recepciones_por_fecha</A></B>( fecha_recepcion IN DATE , recepciones_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_usuarios_por_departamento">obtener_usuarios_por_departamento</A></B>( departamento_id IN INT , usuarios_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P> Procedimientos para departamentos </P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_almacenes">obtener_almacenes</A></B>( almacenes_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_categorias">obtener_categorias</A></B>( categorias_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_compras">obtener_compras</A></B>( compras_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_departamentos">obtener_departamentos</A></B>( departamentos_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_despachos">obtener_despachos</A></B>( despachos_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_detalle_compras">obtener_detalle_compras</A></B>( detalle_compras_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_equipos">obtener_equipos</A></B>( equipos_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_permisos">obtener_permisos</A></B>( permisos_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_personal">obtener_personal</A></B>( personal_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_proveedores">obtener_proveedores</A></B>( proveedores_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_recepciones">obtener_recepciones</A></B>( recepciones_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_roles">obtener_roles</A></B>( roles_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#obtener_usuarios">obtener_usuarios</A></B>( usuarios_cursor OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
 </TABLE>
-<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="obtener_departamentos"></A>
-<H3>obtener_departamentos</H3><PRE>          <B>obtener_departamentos</B>( departamentos_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_detalle_compra"></A>
-<H3>obtener_detalle_compra</H3><PRE>          <B>obtener_detalle_compra</B>( compra_id IN INT , detalle_compra_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_equipos_disponibles"></A>
-<H3>obtener_equipos_disponibles</H3><PRE>          <B>obtener_equipos_disponibles</B>( equipos_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_equipos_recibidos"></A>
-<H3>obtener_equipos_recibidos</H3><PRE>          <B>obtener_equipos_recibidos</B>( fecha_recepcion IN DATE , departamento_id IN INT , equipos_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_recepciones_por_fecha"></A>
-<H3>obtener_recepciones_por_fecha</H3><PRE>          <B>obtener_recepciones_por_fecha</B>( fecha_recepcion IN DATE , recepciones_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_usuarios_por_departamento"></A>
-<H3>obtener_usuarios_por_departamento</H3><PRE>          <B>obtener_usuarios_por_departamento</B>( departamento_id IN INT , usuarios_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="obtener_almacenes"></A>
+<H3>obtener_almacenes</H3><PRE>          <B>obtener_almacenes</B>( almacenes_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_categorias"></A>
+<H3>obtener_categorias</H3><PRE>          <B>obtener_categorias</B>( categorias_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_compras"></A>
+<H3>obtener_compras</H3><PRE>          <B>obtener_compras</B>( compras_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_departamentos"></A>
+<H3>obtener_departamentos</H3><PRE>          <B>obtener_departamentos</B>( departamentos_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_despachos"></A>
+<H3>obtener_despachos</H3><PRE>          <B>obtener_despachos</B>( despachos_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_detalle_compras"></A>
+<H3>obtener_detalle_compras</H3><PRE>          <B>obtener_detalle_compras</B>( detalle_compras_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_equipos"></A>
+<H3>obtener_equipos</H3><PRE>          <B>obtener_equipos</B>( equipos_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_permisos"></A>
+<H3>obtener_permisos</H3><PRE>          <B>obtener_permisos</B>( permisos_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_personal"></A>
+<H3>obtener_personal</H3><PRE>          <B>obtener_personal</B>( personal_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_proveedores"></A>
+<H3>obtener_proveedores</H3><PRE>          <B>obtener_proveedores</B>( proveedores_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_recepciones"></A>
+<H3>obtener_recepciones</H3><PRE>          <B>obtener_recepciones</B>( recepciones_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_roles"></A>
+<H3>obtener_roles</H3><PRE>          <B>obtener_roles</B>( roles_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="obtener_usuarios"></A>
+<H3>obtener_usuarios</H3><PRE>          <B>obtener_usuarios</B>( usuarios_cursor OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
 <TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE></div>
 </div>
 <div id="Master.1">
@@ -98,11 +112,11 @@
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>18-JUL-23</td>
+<td>16-AUG-23</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
-<td>2023-07-18:22:36:14</td>
+<td>2023-08-16:19:42:15</td>
 </tr>
 <tr>
 <td>STATUS</td>
@@ -220,13 +234,21 @@
 <div class="masterreport">
 <pre>
 PACKAGE INVENTARIO_MGMT_OBTENER_PKG AS
-  /* Procedimientos para equipos */
-  PROCEDURE obtener_equipos_disponibles(equipos_cursor OUT SYS_REFCURSOR);
-  PROCEDURE obtener_departamentos(departamentos_cursor OUT SYS_REFCURSOR);
-  PROCEDURE obtener_recepciones_por_fecha(fecha_recepcion IN DATE, recepciones_cursor OUT SYS_REFCURSOR);
-  PROCEDURE obtener_usuarios_por_departamento(departamento_id IN INT, usuarios_cursor OUT SYS_REFCURSOR);
-  PROCEDURE obtener_detalle_compra(compra_id IN INT, detalle_compra_cursor OUT SYS_REFCURSOR);
-  PROCEDURE obtener_equipos_recibidos(fecha_recepcion IN DATE, departamento_id IN INT, equipos_cursor OUT SYS_REFCURSOR);
+    /* Procedimientos para departamentos */
+    PROCEDURE obtener_compras(compras_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_roles(roles_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_permisos(permisos_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_proveedores(proveedores_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_almacenes(almacenes_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_equipos(equipos_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_departamentos(departamentos_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_personal(personal_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_recepciones(recepciones_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_despachos(despachos_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_usuarios(usuarios_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_detalle_compras(detalle_compras_cursor OUT SYS_REFCURSOR);
+    PROCEDURE obtener_categorias(categorias_cursor OUT SYS_REFCURSOR);
+
 END INVENTARIO_MGMT_OBTENER_PKG;</pre>
 </div>
 </div>

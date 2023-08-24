@@ -58,22 +58,22 @@
 <th>DELETABLE</th>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 0)" class="currentrow">
-<td class="currentcell">ID_CATEGORIA</td>
-<td class="currentcell">NUMBER(38)</td>
-<td class="currentcell">No</td>
+<td class="currentcell">Nombre&nbsp;de&nbsp;la&nbsp;categoría</td>
+<td class="currentcell">VARCHAR2(100)</td>
+<td class="currentcell">Yes</td>
 <td class="currentcell">null</td>
-<td class="currentcell">1</td>
+<td class="currentcell">2</td>
 <td class="currentcell">null</td>
 <td class="currentcell">YES</td>
 <td class="currentcell">YES</td>
 <td class="currentcell">YES</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 1)">
-<td>NOMBRE_CATEGORIA</td>
-<td>VARCHAR2(100)</td>
-<td>Yes</td>
+<td>Identificador&nbsp;de&nbsp;categoría</td>
+<td>NUMBER(38)</td>
+<td>No</td>
 <td>null</td>
-<td>2</td>
+<td>1</td>
 <td>null</td>
 <td>YES</td>
 <td>YES</td>
@@ -106,6 +106,14 @@
 <th>REFERENCED_NAME</th>
 <th>REFERENCED_TYPE</th>
 </tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 0)" class="currentrow">
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">INVENTARIO_MGMT_OBTENER_PKG</td>
+<td class="currentcell">PACKAGE&nbsp;BODY</td>
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">VISTA_CATEGORIAS</td>
+<td class="currentcell">VIEW</td>
+</tr>
 </table>
 <br/>
 <hr/>
@@ -118,22 +126,43 @@
 </div>
 <br/>
 <div id="ChildReports.2">
+<div id="Child.0.0.2">
+<div class="currentchildreport"><table id="Table.3" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+<tr onclick="table_onSelectRow(this, 3)" class="currentrow">
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">VISTA_CATEGORIAS</td>
+<td class="currentcell">VIEW</td>
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">CATEGORIAS</td>
+<td class="currentcell">TABLE</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="Master.3">
 <div class="masterreport">
-<table id="Table.3" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.4" cellpadding="0" cellspacing="0" summary="">
 <th>NAME</th>
 <th>VALUE</th>
 </tr>
 <tr>
 <td>CREATED</td>
-<td>17-JUL-23</td>
+<td>09-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>17-JUL-23</td>
+<td>09-AUG-23</td>
 </tr>
 <tr>
 <td>OWNER</td>
@@ -145,15 +174,21 @@
 </tr>
 <tr>
 <td>TEXT_LENGTH</td>
-<td>53</td>
+<td>123</td>
 </tr>
 <tr>
 <td>TEXT</td>
-<td>SELECT&nbsp;ID_CATEGORIA,&nbsp;NOMBRE_CATEGORIA&nbsp;FROM&nbsp;CATEGORIAS</td>
+<td>SELECT
+&nbsp;&nbsp;&nbsp;&nbsp;ID_CATEGORIA&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;categoría",
+&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE_CATEGORIA&nbsp;AS&nbsp;"Nombre&nbsp;de&nbsp;la&nbsp;categoría"
+FROM&nbsp;CATEGORIAS</td>
 </tr>
 <tr>
 <td>TEXT_VC</td>
-<td>SELECT&nbsp;ID_CATEGORIA,&nbsp;NOMBRE_CATEGORIA&nbsp;FROM&nbsp;CATEGORIAS</td>
+<td>SELECT
+&nbsp;&nbsp;&nbsp;&nbsp;ID_CATEGORIA&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;categoría",
+&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE_CATEGORIA&nbsp;AS&nbsp;"Nombre&nbsp;de&nbsp;la&nbsp;categoría"
+FROM&nbsp;CATEGORIAS</td>
 </tr>
 <tr>
 <td>TYPE_TEXT_LENGTH</td>
@@ -248,7 +283,7 @@
 </div>
 <div id="Master.4">
 <div class="masterreport">
-<table id="Table.4" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.5" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>OWNER</th>
 <th>TRIGGER_NAME</th>
@@ -274,7 +309,7 @@
 </div>
 <div id="Master.5">
 <div class="masterreport">
-<table id="Table.5" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.6" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>ATTRIBUTE</th>
 <th>Line:Position</th>
