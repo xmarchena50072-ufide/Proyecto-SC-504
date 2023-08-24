@@ -75,7 +75,7 @@
 <td class="currentcell">No</td>
 <td class="currentcell">null</td>
 <td class="currentcell">1</td>
-<td class="currentcell">Identificador&nbsp;y&nbsp;llave&nbsp;primaria&nbsp;del&nbsp;proveedor</td>
+<td class="currentcell">null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 1)">
 <td>NOMBRE</td>
@@ -83,7 +83,7 @@
 <td>Yes</td>
 <td>null</td>
 <td>2</td>
-<td>Nombre&nbsp;del&nbsp;proveedor</td>
+<td>null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 2)">
 <td>TELEFONO</td>
@@ -91,7 +91,7 @@
 <td>Yes</td>
 <td>null</td>
 <td>3</td>
-<td>Número&nbsp;de&nbsp;teléfono&nbsp;del&nbsp;proveedor</td>
+<td>null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 3)">
 <td>CORREO</td>
@@ -99,7 +99,7 @@
 <td>Yes</td>
 <td>null</td>
 <td>4</td>
-<td>Correo&nbsp;electrónico&nbsp;del&nbsp;proveedor</td>
+<td>null</td>
 </tr>
 </table>
 </div>
@@ -128,7 +128,7 @@
 <th>VIEW_RELATED</th>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 1, 0)" class="currentrow">
-<td class="currentcell">SYS_C007516</td>
+<td class="currentcell">SYS_C007814</td>
 <td class="currentcell">Primary_Key</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
@@ -141,9 +141,9 @@
 <td class="currentcell">GENERATED&nbsp;NAME</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
-<td class="currentcell">27-JUN-23</td>
+<td class="currentcell">08-AUG-23</td>
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007516</td>
+<td class="currentcell">SYS_C007814</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
 </tr>
@@ -196,7 +196,7 @@
 </tr>
 <tr>
 <td>NUM_ROWS</td>
-<td>2</td>
+<td>5</td>
 </tr>
 <tr>
 <td>BLOCKS</td>
@@ -204,19 +204,19 @@
 </tr>
 <tr>
 <td>AVG_ROW_LEN</td>
-<td>48</td>
+<td>42</td>
 </tr>
 <tr>
 <td>SAMPLE_SIZE</td>
-<td>2</td>
+<td>5</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED</td>
-<td>08-JUL-23</td>
+<td>16-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED_SINCE</td>
-<td>08-JUL-23</td>
+<td>16-AUG-23</td>
 </tr>
 </table>
 <br/>
@@ -270,11 +270,11 @@ TRIGGER proveedores_trigger
 BEFORE INSERT ON proveedores
 FOR EACH ROW
 BEGIN
-    -- Cambiar CORREO a 'N/A' si es NULL
-    IF :NEW.CORREO IS NULL THEN
-        :NEW.CORREO := 'N/A';
-    END IF;
-END;</pre>
+  SELECT proveedores_seq.nextval
+  INTO :new.ID_PROVEEDOR
+  FROM dual;
+END;
+</pre>
 </div>
 </div>
 </div>
@@ -293,23 +293,23 @@ END;</pre>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 0)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">PROVEEDORES_TRIGGER</td>
-<td class="currentcell">TRIGGER</td>
+<td class="currentcell">VISTA_PROVEEDORES</td>
+<td class="currentcell">VIEW</td>
 <td class="currentcell">INVENTARIO</td>
 <td class="currentcell">PROVEEDORES</td>
 <td class="currentcell">TABLE</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 1)">
 <td>INVENTARIO</td>
-<td>INVENTARIO_MGMT_ELIMINAR_PKG</td>
-<td>PACKAGE&nbsp;BODY</td>
+<td>PROVEEDORES_TRIGGER</td>
+<td>TRIGGER</td>
 <td>INVENTARIO</td>
 <td>PROVEEDORES</td>
 <td>TABLE</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 2)">
 <td>INVENTARIO</td>
-<td>INVENTARIO_MGMT_CREAR_PKG</td>
+<td>INVENTARIO_MGMT_PROVEEDORES_PKG</td>
 <td>PACKAGE&nbsp;BODY</td>
 <td>INVENTARIO</td>
 <td>PROVEEDORES</td>
@@ -325,8 +325,32 @@ END;</pre>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 4)">
 <td>INVENTARIO</td>
-<td>OBTENER_CANTIDAD_PROVEEDORES_POR_NOMBRE</td>
+<td>INVENTARIO_MGMT_CREAR_PKG</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>INVENTARIO</td>
+<td>PROVEEDORES</td>
+<td>TABLE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 6, 5)">
+<td>INVENTARIO</td>
+<td>VERIFICA_EXISTENCIA_PROVEEDOR_FUN</td>
 <td>FUNCTION</td>
+<td>INVENTARIO</td>
+<td>PROVEEDORES</td>
+<td>TABLE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 6, 6)">
+<td>INVENTARIO</td>
+<td>OBTENER_NOMBRE_PROVEEDOR_POR_COMPRA_FUN</td>
+<td>FUNCTION</td>
+<td>INVENTARIO</td>
+<td>PROVEEDORES</td>
+<td>TABLE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 6, 7)">
+<td>INVENTARIO</td>
+<td>INVENTARIO_MGMT_ELIMINAR_PKG</td>
+<td>PACKAGE&nbsp;BODY</td>
 <td>INVENTARIO</td>
 <td>PROVEEDORES</td>
 <td>TABLE</td>
@@ -408,22 +432,61 @@ END;</pre>
 </table>
 </div>
 </div>
+<div id="Child.0.5.5">
+<div class="childreport"><table id="Table.12" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+</table>
+</div>
+</div>
+<div id="Child.0.6.5">
+<div class="childreport"><table id="Table.13" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+</table>
+</div>
+</div>
+<div id="Child.0.7.5">
+<div class="childreport"><table id="Table.14" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="Master.6">
 <div class="masterreport">
-<table id="Table.12" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.15" cellpadding="0" cellspacing="0" summary="">
 <th>NAME</th>
 <th>VALUE</th>
 </tr>
 <tr>
 <td>CREATED</td>
-<td>27-JUN-23</td>
+<td>08-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>27-JUN-23</td>
+<td>08-AUG-23</td>
 </tr>
 <tr>
 <td>OWNER</td>
@@ -503,7 +566,7 @@ END;</pre>
 </tr>
 <tr>
 <td>NUM_ROWS</td>
-<td>2</td>
+<td>5</td>
 </tr>
 <tr>
 <td>BLOCKS</td>
@@ -523,7 +586,7 @@ END;</pre>
 </tr>
 <tr>
 <td>AVG_ROW_LEN</td>
-<td>48</td>
+<td>42</td>
 </tr>
 <tr>
 <td>AVG_SPACE_FREELIST_BLOCKS</td>
@@ -551,11 +614,11 @@ END;</pre>
 </tr>
 <tr>
 <td>SAMPLE_SIZE</td>
-<td>2</td>
+<td>5</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED</td>
-<td>08-JUL-23</td>
+<td>16-AUG-23</td>
 </tr>
 <tr>
 <td>PARTITIONED</td>
@@ -663,14 +726,14 @@ END;</pre>
 </tr>
 <tr>
 <td>COMMENTS</td>
-<td>Tabla&nbsp;que&nbsp;almacena&nbsp;la&nbsp;información&nbsp;de&nbsp;los&nbsp;proveedores</td>
+<td>null</td>
 </tr>
 </table>
 </div>
 </div>
 <div id="Master.7">
 <div class="masterreport">
-<table id="Table.13" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.16" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>PARTITION_NAME</th>
 <th>LAST_ANALYZED</th>
@@ -696,7 +759,7 @@ END;</pre>
 </div>
 <div id="Master.8">
 <div class="masterreport">
-<table id="Table.14" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.17" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>INDEX_OWNER</th>
 <th>INDEX_NAME</th>
@@ -709,9 +772,9 @@ END;</pre>
 <th>JOIN_INDEX</th>
 <th>COLUMNS</th>
 </tr>
-<tr onclick="table_onSelectMasterRow(this, 14, 0)" class="currentrow">
+<tr onclick="table_onSelectMasterRow(this, 17, 0)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007516</td>
+<td class="currentcell">SYS_C007814</td>
 <td class="currentcell">UNIQUE</td>
 <td class="currentcell">VALID</td>
 <td class="currentcell">NORMAL</td>
@@ -734,7 +797,7 @@ END;</pre>
 <br/>
 <div id="ChildReports.8">
 <div id="Child.0.0.8">
-<div class="currentchildreport"><table id="Table.15" cellpadding="0" cellspacing="0" summary="">
+<div class="currentchildreport"><table id="Table.18" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>INDEX_OWNER</th>
 <th>INDEX_NAME</th>
@@ -748,9 +811,9 @@ END;</pre>
 <th>COLLATED_COLUMN_ID</th>
 <th>COLUMN_EXPRESSION</th>
 </tr>
-<tr onclick="table_onSelectRow(this, 15)" class="currentrow">
+<tr onclick="table_onSelectRow(this, 18)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007516</td>
+<td class="currentcell">SYS_C007814</td>
 <td class="currentcell">INVENTARIO</td>
 <td class="currentcell">PROVEEDORES</td>
 <td class="currentcell">ID_PROVEEDOR</td>

@@ -58,7 +58,7 @@
 </tr>
 <tr>
 <td>OBJECT_ID</td>
-<td>74092</td>
+<td>75883</td>
 </tr>
 <tr>
 <td>DATA_OBJECT_ID</td>
@@ -70,15 +70,15 @@
 </tr>
 <tr>
 <td>CREATED</td>
-<td>04-JUL-23</td>
+<td>09-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>04-JUL-23</td>
+<td>09-AUG-23</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
-<td>2023-07-04:19:30:54</td>
+<td>2023-08-09:19:58:26</td>
 </tr>
 <tr>
 <td>STATUS</td>
@@ -199,12 +199,11 @@ TRIGGER almacenes_trigger
 BEFORE INSERT ON almacenes
 FOR EACH ROW
 BEGIN
-
--- Valor de NOMBRE_ALMACEN a 'Almacén sin nombre' si es NULL
-IF :NEW.NOMBRE_ALMACEN IS NULL THEN
-:NEW.NOMBRE_ALMACEN := 'Almacén sin nombre';
-END IF;
-END;</pre>
+  SELECT almacenes_seq.nextval
+  INTO :new.ID_ALMACEN
+  FROM dual;
+END;
+</pre>
 </div>
 </div>
 </div>

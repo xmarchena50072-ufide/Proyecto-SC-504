@@ -75,7 +75,7 @@
 <td class="currentcell">No</td>
 <td class="currentcell">null</td>
 <td class="currentcell">1</td>
-<td class="currentcell">Identificador&nbsp;y&nbsp;llave&nbsp;primaria&nbsp;del&nbsp;equipo</td>
+<td class="currentcell">null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 1)">
 <td>NOMBRE_EQUIPO</td>
@@ -83,7 +83,7 @@
 <td>Yes</td>
 <td>null</td>
 <td>2</td>
-<td>Nombre&nbsp;del&nbsp;equipo</td>
+<td>null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 2)">
 <td>DESCRIPCION</td>
@@ -91,7 +91,7 @@
 <td>Yes</td>
 <td>null</td>
 <td>3</td>
-<td>Descripción&nbsp;del&nbsp;equipo</td>
+<td>null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 3)">
 <td>NUM_SERIE</td>
@@ -99,7 +99,7 @@
 <td>Yes</td>
 <td>null</td>
 <td>4</td>
-<td>Número&nbsp;de&nbsp;serie&nbsp;del&nbsp;equipo</td>
+<td>null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 4)">
 <td>CANTIDAD_DISPONIBLE</td>
@@ -107,15 +107,15 @@
 <td>Yes</td>
 <td>null</td>
 <td>5</td>
-<td>Cantidad&nbsp;disponible&nbsp;del&nbsp;equipo</td>
+<td>null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 5)">
-<td>CATEGORIA</td>
+<td>ID_CATEGORIA</td>
 <td>NUMBER(38,0)</td>
 <td>Yes</td>
 <td>null</td>
 <td>6</td>
-<td>ID&nbsp;de&nbsp;la&nbsp;categoría&nbsp;del&nbsp;equipo</td>
+<td>null</td>
 </tr>
 </table>
 </div>
@@ -144,7 +144,7 @@
 <th>VIEW_RELATED</th>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 1, 0)" class="currentrow">
-<td class="currentcell">SYS_C007524</td>
+<td class="currentcell">SYS_C007858</td>
 <td class="currentcell">Primary_Key</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
@@ -157,27 +157,27 @@
 <td class="currentcell">GENERATED&nbsp;NAME</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
-<td class="currentcell">27-JUN-23</td>
+<td class="currentcell">23-AUG-23</td>
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007524</td>
+<td class="currentcell">SYS_C007858</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 1, 1)">
-<td>SYS_C007525</td>
+<td>SYS_C007859</td>
 <td>Foreign_Key</td>
 <td>null</td>
 <td>INVENTARIO</td>
 <td>CATEGORIAS</td>
-<td>SYS_C007509</td>
-<td>NO&nbsp;ACTION</td>
+<td>SYS_C007810</td>
+<td>CASCADE</td>
 <td>ENABLED</td>
 <td>NOT&nbsp;DEFERRABLE</td>
 <td>VALIDATED</td>
 <td>GENERATED&nbsp;NAME</td>
 <td>null</td>
 <td>null</td>
-<td>27-JUN-23</td>
+<td>23-AUG-23</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
@@ -215,7 +215,7 @@
 <th>COLUMN_POSITION</th>
 </tr>
 <tr onclick="table_onSelectRow(this, 3)" class="currentrow">
-<td class="currentcell">CATEGORIA</td>
+<td class="currentcell">ID_CATEGORIA</td>
 <td class="currentcell">1</td>
 </tr>
 </table>
@@ -245,27 +245,27 @@
 </tr>
 <tr>
 <td>NUM_ROWS</td>
-<td>2</td>
+<td>null</td>
 </tr>
 <tr>
 <td>BLOCKS</td>
-<td>5</td>
+<td>null</td>
 </tr>
 <tr>
 <td>AVG_ROW_LEN</td>
-<td>51</td>
+<td>null</td>
 </tr>
 <tr>
 <td>SAMPLE_SIZE</td>
-<td>2</td>
+<td>null</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED</td>
-<td>18-JUL-23</td>
+<td>null</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED_SINCE</td>
-<td>18-JUL-23</td>
+<td>null</td>
 </tr>
 </table>
 <br/>
@@ -293,14 +293,6 @@
 <th>STATUS</th>
 <th>TABLE_NAME</th>
 </tr>
-<tr onclick="table_onSelectMasterRow(this, 6, 0)" class="currentrow">
-<td class="currentcell">EQUIPOS_TRIGGER</td>
-<td class="currentcell">BEFORE&nbsp;EACH&nbsp;ROW</td>
-<td class="currentcell">INVENTARIO</td>
-<td class="currentcell">INSERT</td>
-<td class="currentcell">ENABLED</td>
-<td class="currentcell">EQUIPOS</td>
-</tr>
 </table>
 <br/>
 <hr/>
@@ -313,20 +305,6 @@
 </div>
 <br/>
 <div id="ChildReports.4">
-<div id="Child.0.0.4">
-<div class="currentchildreport"><pre>
-TRIGGER equipos_trigger
-BEFORE INSERT ON equipos
-FOR EACH ROW
-BEGIN
-
--- Valor de CANTIDAD_DISPONIBLE a 0 si es negativo
-IF :NEW.CANTIDAD_DISPONIBLE &lt; 0 THEN
-:NEW.CANTIDAD_DISPONIBLE := 0;
-END IF;
-END;</pre>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -343,37 +321,13 @@ END;</pre>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 7, 0)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">EQUIPOS_TRIGGER</td>
-<td class="currentcell">TRIGGER</td>
+<td class="currentcell">INVENTARIO_MGMT_ACTUALIZAR_PKG</td>
+<td class="currentcell">PACKAGE&nbsp;BODY</td>
 <td class="currentcell">INVENTARIO</td>
 <td class="currentcell">EQUIPOS</td>
 <td class="currentcell">TABLE</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 7, 1)">
-<td>INVENTARIO</td>
-<td>VISTA_EQUIPO</td>
-<td>VIEW</td>
-<td>INVENTARIO</td>
-<td>EQUIPOS</td>
-<td>TABLE</td>
-</tr>
-<tr onclick="table_onSelectMasterRow(this, 7, 2)">
-<td>INVENTARIO</td>
-<td>INVENTARIO_MGMT_OBTENER_PKG</td>
-<td>PACKAGE&nbsp;BODY</td>
-<td>INVENTARIO</td>
-<td>EQUIPOS</td>
-<td>TABLE</td>
-</tr>
-<tr onclick="table_onSelectMasterRow(this, 7, 3)">
-<td>INVENTARIO</td>
-<td>INVENTARIO_MGMT_ELIMINAR_PKG</td>
-<td>PACKAGE&nbsp;BODY</td>
-<td>INVENTARIO</td>
-<td>EQUIPOS</td>
-<td>TABLE</td>
-</tr>
-<tr onclick="table_onSelectMasterRow(this, 7, 4)">
 <td>INVENTARIO</td>
 <td>INVENTARIO_MGMT_CREAR_PKG</td>
 <td>PACKAGE&nbsp;BODY</td>
@@ -381,25 +335,49 @@ END;</pre>
 <td>EQUIPOS</td>
 <td>TABLE</td>
 </tr>
+<tr onclick="table_onSelectMasterRow(this, 7, 2)">
+<td>INVENTARIO</td>
+<td>VERIFICA_EXISTENCIA_EQUIPO_FUN</td>
+<td>FUNCTION</td>
+<td>INVENTARIO</td>
+<td>EQUIPOS</td>
+<td>TABLE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 7, 3)">
+<td>INVENTARIO</td>
+<td>OBTENER_CANTIDAD_EQUIPOS_DISPONIBLES_CATEGORIA_FUN</td>
+<td>FUNCTION</td>
+<td>INVENTARIO</td>
+<td>EQUIPOS</td>
+<td>TABLE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 7, 4)">
+<td>INVENTARIO</td>
+<td>VISTA_EQUIPOS</td>
+<td>VIEW</td>
+<td>INVENTARIO</td>
+<td>EQUIPOS</td>
+<td>TABLE</td>
+</tr>
 <tr onclick="table_onSelectMasterRow(this, 7, 5)">
 <td>INVENTARIO</td>
-<td>INVENTARIO_MGMT_ACTUALIZAR_PKG</td>
-<td>PACKAGE&nbsp;BODY</td>
+<td>OBTENER_NUMERO_SERIE_EQUIPO_FUN</td>
+<td>FUNCTION</td>
 <td>INVENTARIO</td>
 <td>EQUIPOS</td>
 <td>TABLE</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 7, 6)">
 <td>INVENTARIO</td>
-<td>OBTENER_CANTIDAD_EQUIPOS_DISPONIBLES</td>
-<td>FUNCTION</td>
+<td>INVENTARIO_MGMT_ELIMINAR_PKG</td>
+<td>PACKAGE&nbsp;BODY</td>
 <td>INVENTARIO</td>
 <td>EQUIPOS</td>
 <td>TABLE</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 7, 7)">
 <td>INVENTARIO</td>
-<td>OBTENER_CANTIDAD_EQUIPOS_POR_CATEGORIA</td>
+<td>OBTENER_CANTIDAD_EQUIPOS_USUARIO_DEPARTAMENTO_FUN</td>
 <td>FUNCTION</td>
 <td>INVENTARIO</td>
 <td>EQUIPOS</td>
@@ -532,11 +510,11 @@ END;</pre>
 </tr>
 <tr>
 <td>CREATED</td>
-<td>27-JUN-23</td>
+<td>23-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>27-JUN-23</td>
+<td>23-AUG-23</td>
 </tr>
 <tr>
 <td>OWNER</td>
@@ -616,35 +594,35 @@ END;</pre>
 </tr>
 <tr>
 <td>NUM_ROWS</td>
-<td>2</td>
+<td>null</td>
 </tr>
 <tr>
 <td>BLOCKS</td>
-<td>5</td>
+<td>null</td>
 </tr>
 <tr>
 <td>EMPTY_BLOCKS</td>
-<td>0</td>
+<td>null</td>
 </tr>
 <tr>
 <td>AVG_SPACE</td>
-<td>0</td>
+<td>null</td>
 </tr>
 <tr>
 <td>CHAIN_CNT</td>
-<td>0</td>
+<td>null</td>
 </tr>
 <tr>
 <td>AVG_ROW_LEN</td>
-<td>51</td>
+<td>null</td>
 </tr>
 <tr>
 <td>AVG_SPACE_FREELIST_BLOCKS</td>
-<td>0</td>
+<td>null</td>
 </tr>
 <tr>
 <td>NUM_FREELIST_BLOCKS</td>
-<td>0</td>
+<td>null</td>
 </tr>
 <tr>
 <td>DEGREE</td>
@@ -664,11 +642,11 @@ END;</pre>
 </tr>
 <tr>
 <td>SAMPLE_SIZE</td>
-<td>2</td>
+<td>null</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED</td>
-<td>18-JUL-23</td>
+<td>null</td>
 </tr>
 <tr>
 <td>PARTITIONED</td>
@@ -712,7 +690,7 @@ END;</pre>
 </tr>
 <tr>
 <td>GLOBAL_STATS</td>
-<td>YES</td>
+<td>NO</td>
 </tr>
 <tr>
 <td>USER_STATS</td>
@@ -776,7 +754,7 @@ END;</pre>
 </tr>
 <tr>
 <td>COMMENTS</td>
-<td>Tabla&nbsp;que&nbsp;almacena&nbsp;la&nbsp;información&nbsp;de&nbsp;los&nbsp;equipos&nbsp;disponibles</td>
+<td>null</td>
 </tr>
 </table>
 </div>
@@ -824,7 +802,7 @@ END;</pre>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 18, 0)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007524</td>
+<td class="currentcell">SYS_C007858</td>
 <td class="currentcell">UNIQUE</td>
 <td class="currentcell">VALID</td>
 <td class="currentcell">NORMAL</td>
@@ -863,7 +841,7 @@ END;</pre>
 </tr>
 <tr onclick="table_onSelectRow(this, 19)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007524</td>
+<td class="currentcell">SYS_C007858</td>
 <td class="currentcell">INVENTARIO</td>
 <td class="currentcell">EQUIPOS</td>
 <td class="currentcell">ID_EQUIPO</td>

@@ -46,24 +46,26 @@
 <div id="Master.0">
 <div class="currentmasterreport">
 <TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
-<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P> Procedimientos para equipos </P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_categoria">eliminar_categoria</A></B>( id_categoria IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para categorías </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_departamento">eliminar_departamento</A></B>( id_departamento IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para departamentos </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_detalle_compra">eliminar_detalle_compra</A></B>( id_detalle_compra IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para el detalle de compras </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_equipo">eliminar_equipo</A></B>( id_equipo IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_proveedor">eliminar_proveedor</A></B>( id_proveedor IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para proveedores </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_recepcion">eliminar_recepcion</A></B>( id_recepcion IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para recepciones </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_rol">eliminar_rol</A></B>( id_rol IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para roles </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_usuario">eliminar_usuario</A></B>( id_usuario IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para usuarios </TD></TR>
+<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P> Procedimientos para equipos </P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_almacenes">eliminar_almacenes</A></B>( p_id_almacen IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para almacenes </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_categorias">eliminar_categorias</A></B>( p_id_categoria IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para categorías </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_departamentos">eliminar_departamentos</A></B>( id_departamento IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para departamentos </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_detalle_compras">eliminar_detalle_compras</A></B>( id_detalle_compra IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para el detalle de compras </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_equipos">eliminar_equipos</A></B>( id_equipo IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_proveedores">eliminar_proveedores</A></B>( id_proveedor IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para proveedores </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_recepciones">eliminar_recepciones</A></B>( id_recepcion IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para recepciones </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_roles">eliminar_roles</A></B>( id_rol IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para roles </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#eliminar_usuarios">eliminar_usuarios</A></B>( id_usuario IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para usuarios </TD></TR>
 </TABLE>
-<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="eliminar_categoria"></A>
-<H3>eliminar_categoria</H3><PRE>          <B>eliminar_categoria</B>( id_categoria IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para categorías <DD><DL></DL></DD></DL><HR><A NAME="eliminar_departamento"></A>
-<H3>eliminar_departamento</H3><PRE>          <B>eliminar_departamento</B>( id_departamento IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para departamentos <DD><DL></DL></DD></DL><HR><A NAME="eliminar_detalle_compra"></A>
-<H3>eliminar_detalle_compra</H3><PRE>          <B>eliminar_detalle_compra</B>( id_detalle_compra IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para el detalle de compras <DD><DL></DL></DD></DL><HR><A NAME="eliminar_equipo"></A>
-<H3>eliminar_equipo</H3><PRE>          <B>eliminar_equipo</B>( id_equipo IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="eliminar_proveedor"></A>
-<H3>eliminar_proveedor</H3><PRE>          <B>eliminar_proveedor</B>( id_proveedor IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para proveedores <DD><DL></DL></DD></DL><HR><A NAME="eliminar_recepcion"></A>
-<H3>eliminar_recepcion</H3><PRE>          <B>eliminar_recepcion</B>( id_recepcion IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para recepciones <DD><DL></DL></DD></DL><HR><A NAME="eliminar_rol"></A>
-<H3>eliminar_rol</H3><PRE>          <B>eliminar_rol</B>( id_rol IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para roles <DD><DL></DL></DD></DL><HR><A NAME="eliminar_usuario"></A>
-<H3>eliminar_usuario</H3><PRE>          <B>eliminar_usuario</B>( id_usuario IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para usuarios <DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="eliminar_almacenes"></A>
+<H3>eliminar_almacenes</H3><PRE>          <B>eliminar_almacenes</B>( p_id_almacen IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para almacenes <DD><DL></DL></DD></DL><HR><A NAME="eliminar_categorias"></A>
+<H3>eliminar_categorias</H3><PRE>          <B>eliminar_categorias</B>( p_id_categoria IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para categorías <DD><DL></DL></DD></DL><HR><A NAME="eliminar_departamentos"></A>
+<H3>eliminar_departamentos</H3><PRE>          <B>eliminar_departamentos</B>( id_departamento IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para departamentos <DD><DL></DL></DD></DL><HR><A NAME="eliminar_detalle_compras"></A>
+<H3>eliminar_detalle_compras</H3><PRE>          <B>eliminar_detalle_compras</B>( id_detalle_compra IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para el detalle de compras <DD><DL></DL></DD></DL><HR><A NAME="eliminar_equipos"></A>
+<H3>eliminar_equipos</H3><PRE>          <B>eliminar_equipos</B>( id_equipo IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="eliminar_proveedores"></A>
+<H3>eliminar_proveedores</H3><PRE>          <B>eliminar_proveedores</B>( id_proveedor IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para proveedores <DD><DL></DL></DD></DL><HR><A NAME="eliminar_recepciones"></A>
+<H3>eliminar_recepciones</H3><PRE>          <B>eliminar_recepciones</B>( id_recepcion IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para recepciones <DD><DL></DL></DD></DL><HR><A NAME="eliminar_roles"></A>
+<H3>eliminar_roles</H3><PRE>          <B>eliminar_roles</B>( id_rol IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para roles <DD><DL></DL></DD></DL><HR><A NAME="eliminar_usuarios"></A>
+<H3>eliminar_usuarios</H3><PRE>          <B>eliminar_usuarios</B>( id_usuario IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para usuarios <DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
 <TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE></div>
 </div>
 <div id="Master.1">
@@ -102,11 +104,11 @@
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>18-JUL-23</td>
+<td>24-AUG-23</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
-<td>2023-07-18:19:44:40</td>
+<td>2023-08-24:14:45:34</td>
 </tr>
 <tr>
 <td>STATUS</td>
@@ -225,22 +227,27 @@
 <pre>
 PACKAGE INVENTARIO_MGMT_ELIMINAR_PKG AS
   /* Procedimientos para equipos */
-  PROCEDURE eliminar_equipo(id_equipo IN INT);
+  PROCEDURE eliminar_equipos(id_equipo IN INT);
   /* Procedimientos para departamentos */
-  PROCEDURE eliminar_departamento(id_departamento IN INT);
+  PROCEDURE eliminar_departamentos(id_departamento IN INT);
   /* Procedimientos para roles */
-  PROCEDURE eliminar_rol(id_rol IN INT);
+  PROCEDURE eliminar_roles(id_rol IN INT);
   /* Procedimientos para proveedores */
-  PROCEDURE eliminar_proveedor(id_proveedor IN INT);
+  PROCEDURE eliminar_proveedores(id_proveedor IN INT);
   /* Procedimientos para recepciones */
-  PROCEDURE eliminar_recepcion(id_recepcion IN INT);
+  PROCEDURE eliminar_recepciones(id_recepcion IN INT);
   /* Procedimientos para usuarios */
-  PROCEDURE eliminar_usuario(id_usuario IN INT);
+  PROCEDURE eliminar_usuarios(id_usuario IN INT);
   /* Procedimientos para categorías */
-  PROCEDURE eliminar_categoria(id_categoria IN INT);
+  PROCEDURE eliminar_categorias(p_id_categoria IN INT, o_c_dbuser OUT SYS_REFCURSOR);
   /* Procedimientos para el detalle de compras */
-  PROCEDURE eliminar_detalle_compra(id_detalle_compra IN INT);
+  PROCEDURE eliminar_detalle_compras(id_detalle_compra IN INT);
+  /* Procedimientos para almacenes */
+  PROCEDURE eliminar_almacenes(p_id_almacen IN INT, o_c_dbuser OUT SYS_REFCURSOR);
+
   --PROCEDURE eliminar_proveedor_y_compras(id_proveedor IN INT);
+
+
 END INVENTARIO_MGMT_ELIMINAR_PKG;</pre>
 </div>
 </div>

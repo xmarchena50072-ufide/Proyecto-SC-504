@@ -58,7 +58,7 @@
 <th>DELETABLE</th>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 0)" class="currentrow">
-<td class="currentcell">ID_DESPACHO</td>
+<td class="currentcell">Identificador&nbsp;de&nbsp;despacho</td>
 <td class="currentcell">NUMBER(38)</td>
 <td class="currentcell">No</td>
 <td class="currentcell">null</td>
@@ -69,7 +69,7 @@
 <td class="currentcell">YES</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 1)">
-<td>ID_EQUIPO</td>
+<td>Identificador&nbsp;de&nbsp;equipo</td>
 <td>NUMBER(38)</td>
 <td>Yes</td>
 <td>null</td>
@@ -80,7 +80,7 @@
 <td>YES</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 2)">
-<td>ID_DEPARTAMENTO</td>
+<td>Identificador&nbsp;de&nbsp;departamento</td>
 <td>NUMBER(38)</td>
 <td>Yes</td>
 <td>null</td>
@@ -91,7 +91,7 @@
 <td>YES</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 3)">
-<td>FECHA</td>
+<td>Fecha&nbsp;de&nbsp;despacho</td>
 <td>DATE</td>
 <td>Yes</td>
 <td>null</td>
@@ -102,7 +102,7 @@
 <td>YES</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 4)">
-<td>HORA</td>
+<td>Hora&nbsp;de&nbsp;despacho</td>
 <td>TIMESTAMP(6)</td>
 <td>Yes</td>
 <td>null</td>
@@ -113,7 +113,7 @@
 <td>YES</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 5)">
-<td>ID_PERSONAL</td>
+<td>Identificador&nbsp;de&nbsp;personal</td>
 <td>NUMBER(38)</td>
 <td>Yes</td>
 <td>null</td>
@@ -122,6 +122,39 @@
 <td>YES</td>
 <td>YES</td>
 <td>YES</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 0, 6)">
+<td>Nombre&nbsp;de&nbsp;personal</td>
+<td>VARCHAR2(100)</td>
+<td>Yes</td>
+<td>null</td>
+<td>7</td>
+<td>null</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 0, 7)">
+<td>Teléfono&nbsp;de&nbsp;personal</td>
+<td>VARCHAR2(20)</td>
+<td>Yes</td>
+<td>null</td>
+<td>8</td>
+<td>null</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 0, 8)">
+<td>Correo&nbsp;de&nbsp;personal</td>
+<td>VARCHAR2(100)</td>
+<td>Yes</td>
+<td>null</td>
+<td>9</td>
+<td>null</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
 </tr>
 </table>
 </div>
@@ -150,6 +183,14 @@
 <th>REFERENCED_NAME</th>
 <th>REFERENCED_TYPE</th>
 </tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 0)" class="currentrow">
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">INVENTARIO_MGMT_OBTENER_PKG</td>
+<td class="currentcell">PACKAGE&nbsp;BODY</td>
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">VISTA_DESPACHOS</td>
+<td class="currentcell">VIEW</td>
+</tr>
 </table>
 <br/>
 <hr/>
@@ -162,22 +203,51 @@
 </div>
 <br/>
 <div id="ChildReports.2">
+<div id="Child.0.0.2">
+<div class="currentchildreport"><table id="Table.3" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+<tr onclick="table_onSelectRow(this, 3)" class="currentrow">
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">VISTA_DESPACHOS</td>
+<td class="currentcell">VIEW</td>
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">PERSONAL</td>
+<td class="currentcell">TABLE</td>
+</tr>
+<tr onclick="table_onSelectRow(this, 3)">
+<td>INVENTARIO</td>
+<td>VISTA_DESPACHOS</td>
+<td>VIEW</td>
+<td>INVENTARIO</td>
+<td>DESPACHOS</td>
+<td>TABLE</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="Master.3">
 <div class="masterreport">
-<table id="Table.3" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.4" cellpadding="0" cellspacing="0" summary="">
 <th>NAME</th>
 <th>VALUE</th>
 </tr>
 <tr>
 <td>CREATED</td>
-<td>17-JUL-23</td>
+<td>09-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>17-JUL-23</td>
+<td>22-AUG-23</td>
 </tr>
 <tr>
 <td>OWNER</td>
@@ -189,17 +259,37 @@
 </tr>
 <tr>
 <td>TEXT_LENGTH</td>
-<td>87</td>
+<td>470</td>
 </tr>
 <tr>
 <td>TEXT</td>
-<td>SELECT&nbsp;ID_DESPACHO,&nbsp;ID_EQUIPO,&nbsp;ID_DEPARTAMENTO,&nbsp;FECHA,&nbsp;HORA,&nbsp;ID_PERSONAL
-FROM&nbsp;DESPACHOS</td>
+<td>SELECT
+&nbsp;&nbsp;&nbsp;&nbsp;D.ID_DESPACHO&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;despacho",
+&nbsp;&nbsp;&nbsp;&nbsp;D.ID_EQUIPO&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;equipo",
+&nbsp;&nbsp;&nbsp;&nbsp;D.ID_DEPARTAMENTO&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;departamento",
+&nbsp;&nbsp;&nbsp;&nbsp;D.FECHA&nbsp;AS&nbsp;"Fecha&nbsp;de&nbsp;despacho",
+&nbsp;&nbsp;&nbsp;&nbsp;D.HORA&nbsp;AS&nbsp;"Hora&nbsp;de&nbsp;despacho",
+&nbsp;&nbsp;&nbsp;&nbsp;D.ID_PERSONAL&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;personal",
+&nbsp;&nbsp;&nbsp;&nbsp;P.NOMBRE&nbsp;AS&nbsp;"Nombre&nbsp;de&nbsp;personal",
+&nbsp;&nbsp;&nbsp;&nbsp;P.TELEFONO&nbsp;AS&nbsp;"Teléfono&nbsp;de&nbsp;personal",
+&nbsp;&nbsp;&nbsp;&nbsp;P.CORREO&nbsp;AS&nbsp;"Correo&nbsp;de&nbsp;personal"
+FROM&nbsp;DESPACHOS&nbsp;D
+INNER&nbsp;JOIN&nbsp;PERSONAL&nbsp;P&nbsp;ON&nbsp;D.ID_PERSONAL&nbsp;=&nbsp;P.ID_PERSONAL</td>
 </tr>
 <tr>
 <td>TEXT_VC</td>
-<td>SELECT&nbsp;ID_DESPACHO,&nbsp;ID_EQUIPO,&nbsp;ID_DEPARTAMENTO,&nbsp;FECHA,&nbsp;HORA,&nbsp;ID_PERSONAL
-FROM&nbsp;DESPACHOS</td>
+<td>SELECT
+&nbsp;&nbsp;&nbsp;&nbsp;D.ID_DESPACHO&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;despacho",
+&nbsp;&nbsp;&nbsp;&nbsp;D.ID_EQUIPO&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;equipo",
+&nbsp;&nbsp;&nbsp;&nbsp;D.ID_DEPARTAMENTO&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;departamento",
+&nbsp;&nbsp;&nbsp;&nbsp;D.FECHA&nbsp;AS&nbsp;"Fecha&nbsp;de&nbsp;despacho",
+&nbsp;&nbsp;&nbsp;&nbsp;D.HORA&nbsp;AS&nbsp;"Hora&nbsp;de&nbsp;despacho",
+&nbsp;&nbsp;&nbsp;&nbsp;D.ID_PERSONAL&nbsp;AS&nbsp;"Identificador&nbsp;de&nbsp;personal",
+&nbsp;&nbsp;&nbsp;&nbsp;P.NOMBRE&nbsp;AS&nbsp;"Nombre&nbsp;de&nbsp;personal",
+&nbsp;&nbsp;&nbsp;&nbsp;P.TELEFONO&nbsp;AS&nbsp;"Teléfono&nbsp;de&nbsp;personal",
+&nbsp;&nbsp;&nbsp;&nbsp;P.CORREO&nbsp;AS&nbsp;"Correo&nbsp;de&nbsp;personal"
+FROM&nbsp;DESPACHOS&nbsp;D
+INNER&nbsp;JOIN&nbsp;PERSONAL&nbsp;P&nbsp;ON&nbsp;D.ID_PERSONAL&nbsp;=&nbsp;P.ID_PERSONAL</td>
 </tr>
 <tr>
 <td>TYPE_TEXT_LENGTH</td>
@@ -294,7 +384,7 @@ FROM&nbsp;DESPACHOS</td>
 </div>
 <div id="Master.4">
 <div class="masterreport">
-<table id="Table.4" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.5" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>OWNER</th>
 <th>TRIGGER_NAME</th>
@@ -320,7 +410,7 @@ FROM&nbsp;DESPACHOS</td>
 </div>
 <div id="Master.5">
 <div class="masterreport">
-<table id="Table.5" cellpadding="0" cellspacing="0" summary="">
+<table id="Table.6" cellpadding="0" cellspacing="0" summary="">
 <tr>
 <th>ATTRIBUTE</th>
 <th>Line:Position</th>

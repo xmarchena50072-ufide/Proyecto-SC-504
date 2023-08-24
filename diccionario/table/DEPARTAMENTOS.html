@@ -75,7 +75,7 @@
 <td class="currentcell">No</td>
 <td class="currentcell">null</td>
 <td class="currentcell">1</td>
-<td class="currentcell">Identificador&nbsp;y&nbsp;llave&nbsp;primaria&nbsp;del&nbsp;departamento</td>
+<td class="currentcell">null</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 0, 1)">
 <td>NOMBRE_DEPARTAMENTO</td>
@@ -83,7 +83,7 @@
 <td>Yes</td>
 <td>null</td>
 <td>2</td>
-<td>Nombre&nbsp;del&nbsp;departamento</td>
+<td>null</td>
 </tr>
 </table>
 </div>
@@ -112,7 +112,7 @@
 <th>VIEW_RELATED</th>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 1, 0)" class="currentrow">
-<td class="currentcell">SYS_C007510</td>
+<td class="currentcell">SYS_C007818</td>
 <td class="currentcell">Primary_Key</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
@@ -125,9 +125,9 @@
 <td class="currentcell">GENERATED&nbsp;NAME</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
-<td class="currentcell">27-JUN-23</td>
+<td class="currentcell">08-AUG-23</td>
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007510</td>
+<td class="currentcell">SYS_C007818</td>
 <td class="currentcell">null</td>
 <td class="currentcell">null</td>
 </tr>
@@ -180,7 +180,7 @@
 </tr>
 <tr>
 <td>NUM_ROWS</td>
-<td>2</td>
+<td>6</td>
 </tr>
 <tr>
 <td>BLOCKS</td>
@@ -188,19 +188,19 @@
 </tr>
 <tr>
 <td>AVG_ROW_LEN</td>
-<td>18</td>
+<td>17</td>
 </tr>
 <tr>
 <td>SAMPLE_SIZE</td>
-<td>2</td>
+<td>6</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED</td>
-<td>08-JUL-23</td>
+<td>16-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED_SINCE</td>
-<td>08-JUL-23</td>
+<td>16-AUG-23</td>
 </tr>
 </table>
 <br/>
@@ -228,6 +228,14 @@
 <th>STATUS</th>
 <th>TABLE_NAME</th>
 </tr>
+<tr onclick="table_onSelectMasterRow(this, 5, 0)" class="currentrow">
+<td class="currentcell">DEPARTAMENTOS_TRIGGER</td>
+<td class="currentcell">BEFORE&nbsp;EACH&nbsp;ROW</td>
+<td class="currentcell">INVENTARIO</td>
+<td class="currentcell">INSERT</td>
+<td class="currentcell">ENABLED</td>
+<td class="currentcell">DEPARTAMENTOS</td>
+</tr>
 </table>
 <br/>
 <hr/>
@@ -240,6 +248,19 @@
 </div>
 <br/>
 <div id="ChildReports.4">
+<div id="Child.0.0.4">
+<div class="currentchildreport"><pre>
+TRIGGER departamentos_trigger
+BEFORE INSERT ON departamentos
+FOR EACH ROW
+BEGIN
+  SELECT departamentos_seq.nextval
+  INTO :new.ID_DEPARTAMENTO
+  FROM dual;
+END;
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -256,23 +277,23 @@
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 0)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">INVENTARIO_MGMT_OBTENER_PKG</td>
-<td class="currentcell">PACKAGE&nbsp;BODY</td>
+<td class="currentcell">VISTA_DEPARTAMENTOS</td>
+<td class="currentcell">VIEW</td>
 <td class="currentcell">INVENTARIO</td>
 <td class="currentcell">DEPARTAMENTOS</td>
 <td class="currentcell">TABLE</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 1)">
 <td>INVENTARIO</td>
-<td>VISTA_DEPTO</td>
-<td>VIEW</td>
+<td>DEPARTAMENTOS_TRIGGER</td>
+<td>TRIGGER</td>
 <td>INVENTARIO</td>
 <td>DEPARTAMENTOS</td>
 <td>TABLE</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 2)">
 <td>INVENTARIO</td>
-<td>INVENTARIO_MGMT_ELIMINAR_PKG</td>
+<td>INVENTARIO_MGMT_ACTUALIZAR_PKG</td>
 <td>PACKAGE&nbsp;BODY</td>
 <td>INVENTARIO</td>
 <td>DEPARTAMENTOS</td>
@@ -288,16 +309,16 @@
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 4)">
 <td>INVENTARIO</td>
-<td>INVENTARIO_MGMT_ACTUALIZAR_PKG</td>
-<td>PACKAGE&nbsp;BODY</td>
+<td>VERIFICA_EXISTENCIA_DEPARTAMENTO_FUN</td>
+<td>FUNCTION</td>
 <td>INVENTARIO</td>
 <td>DEPARTAMENTOS</td>
 <td>TABLE</td>
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 6, 5)">
 <td>INVENTARIO</td>
-<td>OBTENER_CANTIDAD_DEPARTAMENTOS</td>
-<td>FUNCTION</td>
+<td>INVENTARIO_MGMT_ELIMINAR_PKG</td>
+<td>PACKAGE&nbsp;BODY</td>
 <td>INVENTARIO</td>
 <td>DEPARTAMENTOS</td>
 <td>TABLE</td>
@@ -403,11 +424,11 @@
 </tr>
 <tr>
 <td>CREATED</td>
-<td>27-JUN-23</td>
+<td>08-AUG-23</td>
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>27-JUN-23</td>
+<td>08-AUG-23</td>
 </tr>
 <tr>
 <td>OWNER</td>
@@ -487,7 +508,7 @@
 </tr>
 <tr>
 <td>NUM_ROWS</td>
-<td>2</td>
+<td>6</td>
 </tr>
 <tr>
 <td>BLOCKS</td>
@@ -507,7 +528,7 @@
 </tr>
 <tr>
 <td>AVG_ROW_LEN</td>
-<td>18</td>
+<td>17</td>
 </tr>
 <tr>
 <td>AVG_SPACE_FREELIST_BLOCKS</td>
@@ -535,11 +556,11 @@
 </tr>
 <tr>
 <td>SAMPLE_SIZE</td>
-<td>2</td>
+<td>6</td>
 </tr>
 <tr>
 <td>LAST_ANALYZED</td>
-<td>08-JUL-23</td>
+<td>16-AUG-23</td>
 </tr>
 <tr>
 <td>PARTITIONED</td>
@@ -647,7 +668,7 @@
 </tr>
 <tr>
 <td>COMMENTS</td>
-<td>Tabla&nbsp;que&nbsp;almacena&nbsp;los&nbsp;departamentos</td>
+<td>null</td>
 </tr>
 </table>
 </div>
@@ -695,7 +716,7 @@
 </tr>
 <tr onclick="table_onSelectMasterRow(this, 15, 0)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007510</td>
+<td class="currentcell">SYS_C007818</td>
 <td class="currentcell">UNIQUE</td>
 <td class="currentcell">VALID</td>
 <td class="currentcell">NORMAL</td>
@@ -734,7 +755,7 @@
 </tr>
 <tr onclick="table_onSelectRow(this, 16)" class="currentrow">
 <td class="currentcell">INVENTARIO</td>
-<td class="currentcell">SYS_C007510</td>
+<td class="currentcell">SYS_C007818</td>
 <td class="currentcell">INVENTARIO</td>
 <td class="currentcell">DEPARTAMENTOS</td>
 <td class="currentcell">ID_DEPARTAMENTO</td>

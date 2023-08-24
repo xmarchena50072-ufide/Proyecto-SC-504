@@ -46,24 +46,34 @@
 <div id="Master.0">
 <div class="currentmasterreport">
 <TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
-<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P> Procedimientos para equipos </P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_categoria">actualizar_categoria</A></B>( id_categoria IN INT , nombre_categoria IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para categorías </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_departamento">actualizar_departamento</A></B>( id_departamento IN INT , nombre_departamento IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para departamentos </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_detalle_compra">actualizar_detalle_compra</A></B>( id_detalle_compra IN INT , material IN VARCHAR2 , cantidad IN INT , precio_unitario IN DECIMAL ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para el detalle de compras </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_equipo">actualizar_equipo</A></B>( id_equipo IN INT , nombre_equipo IN VARCHAR2 , descripcion IN VARCHAR2 , num_serie IN VARCHAR2 , cantidad_disponible IN INT , categoria IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_proveedor">actualizar_proveedor</A></B>( id_proveedor IN INT , nombre IN VARCHAR2 , telefono IN VARCHAR2 , correo IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para proveedores </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_recepcion">actualizar_recepcion</A></B>( id_recepcion IN INT , id_equipo IN INT , id_almacen IN INT , fecha IN DATE , hora IN TIMESTAMP ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para recepciones </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_rol">actualizar_rol</A></B>( id_rol IN INT , nombre IN VARCHAR2 , descripcion IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para roles </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_usuario">actualizar_usuario</A></B>( id_usuario IN INT , id_personal IN INT , username IN VARCHAR2 , password IN VARCHAR2 , id_rol IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para usuarios </TD></TR>
+<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P> Procedimiento para actualizar categorías </P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_almacenes">actualizar_almacenes</A></B>( p_id_almacen IN INT , p_nombre_almacen IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_categorias">actualizar_categorias</A></B>( p_id_categoria IN INT , p_nombre_categoria IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_compras">actualizar_compras</A></B>( p_id_compra IN INT , p_id_proveedor IN INT , p_fecha_compra IN DATE , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar compras </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_departamentos">actualizar_departamentos</A></B>( p_id_departamento IN INT , p_nombre_departamento IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar departamentos </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_despachos">actualizar_despachos</A></B>( p_id_despacho IN INT , p_id_equipo IN INT , p_id_departamento IN INT , p_fecha IN DATE , p_hora IN TIMESTAMP , p_id_personal IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar despachos </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_detalle_compras">actualizar_detalle_compras</A></B>( p_id_detalle_compra IN INT , p_material IN VARCHAR2 , p_cantidad IN INT , p_precio_unitario IN DECIMAL , p_id_compra IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar detalle de compras </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_equipos">actualizar_equipos</A></B>( p_id_equipo IN INT , p_nombre_equipo IN VARCHAR2 , p_descripcion IN VARCHAR2 , p_num_serie IN VARCHAR2 , p_cantidad_disponible IN INT , p_id_categoria IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_permisos">actualizar_permisos</A></B>( p_id_permisos IN INT , p_nombre IN VARCHAR2 , p_id_rol IN INT , p_descripcion IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar permisos</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_personal">actualizar_personal</A></B>( p_id_personal IN INT , p_nombre IN VARCHAR2 , p_telefono IN VARCHAR2 , p_correo IN VARCHAR2 , p_id_departamento IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar personal </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_proveedores">actualizar_proveedores</A></B>( p_id_proveedor IN INT , p_nombre IN VARCHAR2 , p_telefono IN VARCHAR2 , p_correo IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar proveedores </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_recepciones">actualizar_recepciones</A></B>( p_id_recepcion IN INT , p_id_equipo IN INT , p_id_almacen IN INT , p_fecha IN DATE , p_hora IN TIMESTAMP , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar recepciones </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_roles">actualizar_roles</A></B>( p_id_rol IN INT , p_nombre IN VARCHAR2 , p_descripcion IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar roles </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#actualizar_usuarios">actualizar_usuarios</A></B>( p_id_usuario IN INT , p_id_personal IN INT , p_username IN VARCHAR2 , p_password IN VARCHAR2 , p_id_rol IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar usuarios </TD></TR>
 </TABLE>
-<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="actualizar_categoria"></A>
-<H3>actualizar_categoria</H3><PRE>          <B>actualizar_categoria</B>( id_categoria IN INT , nombre_categoria IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para categorías <DD><DL></DL></DD></DL><HR><A NAME="actualizar_departamento"></A>
-<H3>actualizar_departamento</H3><PRE>          <B>actualizar_departamento</B>( id_departamento IN INT , nombre_departamento IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para departamentos <DD><DL></DL></DD></DL><HR><A NAME="actualizar_detalle_compra"></A>
-<H3>actualizar_detalle_compra</H3><PRE>          <B>actualizar_detalle_compra</B>( id_detalle_compra IN INT , material IN VARCHAR2 , cantidad IN INT , precio_unitario IN DECIMAL ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para el detalle de compras <DD><DL></DL></DD></DL><HR><A NAME="actualizar_equipo"></A>
-<H3>actualizar_equipo</H3><PRE>          <B>actualizar_equipo</B>( id_equipo IN INT , nombre_equipo IN VARCHAR2 , descripcion IN VARCHAR2 , num_serie IN VARCHAR2 , cantidad_disponible IN INT , categoria IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_proveedor"></A>
-<H3>actualizar_proveedor</H3><PRE>          <B>actualizar_proveedor</B>( id_proveedor IN INT , nombre IN VARCHAR2 , telefono IN VARCHAR2 , correo IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para proveedores <DD><DL></DL></DD></DL><HR><A NAME="actualizar_recepcion"></A>
-<H3>actualizar_recepcion</H3><PRE>          <B>actualizar_recepcion</B>( id_recepcion IN INT , id_equipo IN INT , id_almacen IN INT , fecha IN DATE , hora IN TIMESTAMP ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para recepciones <DD><DL></DL></DD></DL><HR><A NAME="actualizar_rol"></A>
-<H3>actualizar_rol</H3><PRE>          <B>actualizar_rol</B>( id_rol IN INT , nombre IN VARCHAR2 , descripcion IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para roles <DD><DL></DL></DD></DL><HR><A NAME="actualizar_usuario"></A>
-<H3>actualizar_usuario</H3><PRE>          <B>actualizar_usuario</B>( id_usuario IN INT , id_personal IN INT , username IN VARCHAR2 , password IN VARCHAR2 , id_rol IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para usuarios <DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="actualizar_almacenes"></A>
+<H3>actualizar_almacenes</H3><PRE>          <B>actualizar_almacenes</B>( p_id_almacen IN INT , p_nombre_almacen IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_categorias"></A>
+<H3>actualizar_categorias</H3><PRE>          <B>actualizar_categorias</B>( p_id_categoria IN INT , p_nombre_categoria IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_compras"></A>
+<H3>actualizar_compras</H3><PRE>          <B>actualizar_compras</B>( p_id_compra IN INT , p_id_proveedor IN INT , p_fecha_compra IN DATE , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar compras <DD><DL></DL></DD></DL><HR><A NAME="actualizar_departamentos"></A>
+<H3>actualizar_departamentos</H3><PRE>          <B>actualizar_departamentos</B>( p_id_departamento IN INT , p_nombre_departamento IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar departamentos <DD><DL></DL></DD></DL><HR><A NAME="actualizar_despachos"></A>
+<H3>actualizar_despachos</H3><PRE>          <B>actualizar_despachos</B>( p_id_despacho IN INT , p_id_equipo IN INT , p_id_departamento IN INT , p_fecha IN DATE , p_hora IN TIMESTAMP , p_id_personal IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar despachos <DD><DL></DL></DD></DL><HR><A NAME="actualizar_detalle_compras"></A>
+<H3>actualizar_detalle_compras</H3><PRE>          <B>actualizar_detalle_compras</B>( p_id_detalle_compra IN INT , p_material IN VARCHAR2 , p_cantidad IN INT , p_precio_unitario IN DECIMAL , p_id_compra IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar detalle de compras <DD><DL></DL></DD></DL><HR><A NAME="actualizar_equipos"></A>
+<H3>actualizar_equipos</H3><PRE>          <B>actualizar_equipos</B>( p_id_equipo IN INT , p_nombre_equipo IN VARCHAR2 , p_descripcion IN VARCHAR2 , p_num_serie IN VARCHAR2 , p_cantidad_disponible IN INT , p_id_categoria IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="actualizar_permisos"></A>
+<H3>actualizar_permisos</H3><PRE>          <B>actualizar_permisos</B>( p_id_permisos IN INT , p_nombre IN VARCHAR2 , p_id_rol IN INT , p_descripcion IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar permisos<DD><DL></DL></DD></DL><HR><A NAME="actualizar_personal"></A>
+<H3>actualizar_personal</H3><PRE>          <B>actualizar_personal</B>( p_id_personal IN INT , p_nombre IN VARCHAR2 , p_telefono IN VARCHAR2 , p_correo IN VARCHAR2 , p_id_departamento IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar personal <DD><DL></DL></DD></DL><HR><A NAME="actualizar_proveedores"></A>
+<H3>actualizar_proveedores</H3><PRE>          <B>actualizar_proveedores</B>( p_id_proveedor IN INT , p_nombre IN VARCHAR2 , p_telefono IN VARCHAR2 , p_correo IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar proveedores <DD><DL></DL></DD></DL><HR><A NAME="actualizar_recepciones"></A>
+<H3>actualizar_recepciones</H3><PRE>          <B>actualizar_recepciones</B>( p_id_recepcion IN INT , p_id_equipo IN INT , p_id_almacen IN INT , p_fecha IN DATE , p_hora IN TIMESTAMP , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar recepciones <DD><DL></DL></DD></DL><HR><A NAME="actualizar_roles"></A>
+<H3>actualizar_roles</H3><PRE>          <B>actualizar_roles</B>( p_id_rol IN INT , p_nombre IN VARCHAR2 , p_descripcion IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar roles <DD><DL></DL></DD></DL><HR><A NAME="actualizar_usuarios"></A>
+<H3>actualizar_usuarios</H3><PRE>          <B>actualizar_usuarios</B>( p_id_usuario IN INT , p_id_personal IN INT , p_username IN VARCHAR2 , p_password IN VARCHAR2 , p_id_rol IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimiento para actualizar usuarios <DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
 <TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE></div>
 </div>
 <div id="Master.1">
@@ -102,11 +112,11 @@
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>18-JUL-23</td>
+<td>16-AUG-23</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
-<td>2023-07-18:19:44:51</td>
+<td>2023-08-16:20:29:14</td>
 </tr>
 <tr>
 <td>STATUS</td>
@@ -224,24 +234,64 @@
 <div class="masterreport">
 <pre>
 PACKAGE INVENTARIO_MGMT_ACTUALIZAR_PKG AS
-  /* Procedimientos para equipos */
-  PROCEDURE actualizar_equipo(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
-                              num_serie IN VARCHAR2, cantidad_disponible IN INT, categoria IN INT);
-  /* Procedimientos para departamentos */
-  PROCEDURE actualizar_departamento(id_departamento IN INT, nombre_departamento IN VARCHAR2);
-  /* Procedimientos para roles */
-  PROCEDURE actualizar_rol(id_rol IN INT, nombre IN VARCHAR2, descripcion IN VARCHAR2);
-  /* Procedimientos para proveedores */
-  PROCEDURE actualizar_proveedor(id_proveedor IN INT, nombre IN VARCHAR2, telefono IN VARCHAR2, correo IN VARCHAR2);
-  /* Procedimientos para recepciones */
-  PROCEDURE actualizar_recepcion(id_recepcion IN INT, id_equipo IN INT, id_almacen IN INT, fecha IN DATE, hora IN TIMESTAMP);
-  /* Procedimientos para usuarios */
-  PROCEDURE actualizar_usuario(id_usuario IN INT, id_personal IN INT, username IN VARCHAR2, password IN VARCHAR2, id_rol IN INT);
-  /* Procedimientos para categorías */
-  PROCEDURE actualizar_categoria(id_categoria IN INT, nombre_categoria IN VARCHAR2);
-  /* Procedimientos para el detalle de compras */
-  PROCEDURE actualizar_detalle_compra(id_detalle_compra IN INT, material IN VARCHAR2, cantidad IN INT, precio_unitario IN DECIMAL);
-  --PROCEDURE actualizar_cantidad_disponibles(equipo_id IN INT, nueva_cantidad IN INT);
+  /* Procedimiento para actualizar categorías */
+  PROCEDURE actualizar_categorias(p_id_categoria IN INT, p_nombre_categoria IN VARCHAR2,
+                                  o_c_dbuser OUT SYS_REFCURSOR);
+
+  /* Procedimiento para actualizar roles */
+  PROCEDURE actualizar_roles(p_id_rol IN INT, p_nombre IN VARCHAR2, p_descripcion IN VARCHAR2,
+                              o_c_dbuser OUT SYS_REFCURSOR);
+
+  /* Procedimiento para actualizar proveedores */
+  PROCEDURE actualizar_proveedores(p_id_proveedor IN INT, p_nombre IN VARCHAR2, p_telefono IN VARCHAR2,
+                                   p_correo IN VARCHAR2, o_c_dbuser OUT SYS_REFCURSOR);
+
+  /* Procedimiento para actualizar departamentos */
+  PROCEDURE actualizar_departamentos(p_id_departamento IN INT, p_nombre_departamento IN VARCHAR2,
+                                      o_c_dbuser OUT SYS_REFCURSOR);
+
+  /* Procedimiento para actualizar personal */
+  PROCEDURE actualizar_personal(p_id_personal IN INT, p_nombre IN VARCHAR2, p_telefono IN VARCHAR2,
+                                 p_correo IN VARCHAR2, p_id_departamento IN INT, o_c_dbuser OUT SYS_REFCURSOR);
+
+  PROCEDURE actualizar_equipos(p_id_equipo IN INT, p_nombre_equipo IN VARCHAR2, p_descripcion IN VARCHAR2,
+                               p_num_serie IN VARCHAR2, p_cantidad_disponible IN INT, p_id_categoria IN INT,
+                               o_c_dbuser OUT SYS_REFCURSOR);
+
+  /* Procedimiento para actualizar recepciones */
+  PROCEDURE actualizar_recepciones(p_id_recepcion IN INT, p_id_equipo IN INT, p_id_almacen IN INT,
+                                   p_fecha IN DATE, p_hora IN TIMESTAMP, o_c_dbuser OUT SYS_REFCURSOR);
+
+  /* Procedimiento para actualizar despachos */
+  PROCEDURE actualizar_despachos(p_id_despacho IN INT, p_id_equipo IN INT, p_id_departamento IN INT,
+                                 p_fecha IN DATE, p_hora IN TIMESTAMP, p_id_personal IN INT,
+                                 o_c_dbuser OUT SYS_REFCURSOR);
+
+  /* Procedimiento para actualizar usuarios */
+  PROCEDURE actualizar_usuarios(p_id_usuario IN INT, p_id_personal IN INT, p_username IN VARCHAR2,
+                                p_password IN VARCHAR2, p_id_rol IN INT, o_c_dbuser OUT SYS_REFCURSOR);
+
+  /* Procedimiento para actualizar compras */
+  PROCEDURE actualizar_compras(p_id_compra IN INT, p_id_proveedor IN INT, p_fecha_compra IN DATE,
+                               o_c_dbuser OUT SYS_REFCURSOR);
+
+  /* Procedimiento para actualizar detalle de compras */
+  PROCEDURE actualizar_detalle_compras(
+    p_id_detalle_compra IN INT,
+    p_material IN VARCHAR2,
+    p_cantidad IN INT,
+    p_precio_unitario IN DECIMAL,
+    p_id_compra IN INT,
+    o_c_dbuser OUT SYS_REFCURSOR
+  );
+
+ PROCEDURE actualizar_almacenes(p_id_almacen IN INT, p_nombre_almacen IN VARCHAR2,
+                                 o_c_dbuser OUT SYS_REFCURSOR);
+
+  -- Procedimiento para actualizar permisos
+  PROCEDURE actualizar_permisos(p_id_permisos IN INT, p_nombre IN VARCHAR2, p_id_rol IN INT,
+                                p_descripcion IN VARCHAR2, o_c_dbuser OUT SYS_REFCURSOR);
+
 END INVENTARIO_MGMT_ACTUALIZAR_PKG;</pre>
 </div>
 </div>

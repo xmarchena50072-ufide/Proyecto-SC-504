@@ -85,15 +85,15 @@
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>18-JUL-23</td>
+<td>24-AUG-23</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
-<td>2023-07-18:22:36:51</td>
+<td>2023-08-24:14:49:57</td>
 </tr>
 <tr>
 <td>STATUS</td>
-<td>INVALID</td>
+<td>VALID</td>
 </tr>
 <tr>
 <td>TEMPORARY</td>
@@ -208,77 +208,213 @@
 <pre>
 PACKAGE BODY INVENTARIO_MGMT_CREAR_PKG AS
   /* Procedimientos para equipos */
-  PROCEDURE crear_equipo(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
-                         num_serie IN VARCHAR2, cantidad_disponible IN INT, categoria IN INT)
+  PROCEDURE crear_equipos(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
+                         num_serie IN VARCHAR2, cantidad_disponible IN INT, id_categoria IN INT,
+                         o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
-    INSERT INTO equipos (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, categoria)
-    VALUES (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, categoria);
+    INSERT INTO equipos (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, id_categoria)
+    VALUES (id_equipo, nombre_equipo, descripcion, num_serie, cantidad_disponible, id_categoria);
     COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM equipos;
   END;
 
   /* Procedimientos para departamentos */
-  PROCEDURE crear_departamento(id_departamento IN INT, nombre_departamento IN VARCHAR2)
+  PROCEDURE crear_departamentos(id_departamento IN INT, nombre_departamento IN VARCHAR2,
+                               o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
     INSERT INTO departamentos (id_departamento, nombre_departamento)
     VALUES (id_departamento, nombre_departamento);
     COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM departamentos;
   END;
 
   /* Procedimientos para roles */
-  PROCEDURE crear_rol(id_rol IN INT, nombre IN VARCHAR2, descripcion IN VARCHAR2)
+  PROCEDURE crear_roles(id_rol IN INT, nombre IN VARCHAR2, descripcion IN VARCHAR2,
+                      o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
     INSERT INTO roles (id_rol, nombre, descripcion)
     VALUES (id_rol, nombre, descripcion);
     COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM roles;
   END;
 
   /* Procedimientos para proveedores */
-  PROCEDURE crear_proveedor(id_proveedor IN INT, nombre IN VARCHAR2, telefono IN VARCHAR2, correo IN VARCHAR2)
+  PROCEDURE crear_proveedores(id_proveedor IN INT, nombre IN VARCHAR2, telefono IN VARCHAR2, correo IN VARCHAR2,
+                            o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
     INSERT INTO proveedores (id_proveedor, nombre, telefono, correo)
     VALUES (id_proveedor, nombre, telefono, correo);
     COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM proveedores;
   END;
 
   /* Procedimientos para recepciones */
-  PROCEDURE crear_recepcion(id_recepcion IN INT, id_equipo IN INT, id_almacen IN INT, fecha IN DATE, hora IN TIMESTAMP)
+  PROCEDURE crear_recepciones(id_recepcion IN INT, id_equipo IN INT, id_almacen IN INT, fecha IN DATE, hora IN TIMESTAMP,
+                            o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
     INSERT INTO recepciones (id_recepcion, id_equipo, id_almacen, fecha, hora)
     VALUES (id_recepcion, id_equipo, id_almacen, fecha, hora);
     COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM recepciones;
   END;
 
   /* Procedimientos para usuarios */
-  PROCEDURE crear_usuario(id_usuario IN INT, id_personal IN INT, username IN VARCHAR2, password IN VARCHAR2, id_rol IN INT)
+  PROCEDURE crear_usuarios(id_usuario IN INT, id_personal IN INT, username IN VARCHAR2, password IN VARCHAR2, id_rol IN INT,
+                          o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
     INSERT INTO usuarios (id_usuarios, id_personal, username, password, id_rol)
     VALUES (id_usuario, id_personal, username, password, id_rol);
     COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM usuarios;
   END;
 
   /* Procedimientos para categorías */
-  PROCEDURE crear_categoria(id_categoria IN INT, nombre_categoria IN VARCHAR2)
+  PROCEDURE crear_categorias(id_categoria IN INT, nombre_categoria IN VARCHAR2,
+                            o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
     INSERT INTO categorias (id_categoria, nombre_categoria)
     VALUES (id_categoria, nombre_categoria);
     COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM categorias;
   END;
 
   /* Procedimientos para el detalle de compras */
-  PROCEDURE crear_detalle_compra(id_detalle_compra IN INT, material IN VARCHAR2, cantidad IN INT, precio_unitario IN DECIMAL)
+  PROCEDURE crear_detalle_compras(id_detalle_compra IN INT, material IN VARCHAR2, cantidad IN INT, precio_unitario IN DECIMAL, id_compra IN INT,
+                                 o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
-    INSERT INTO detalle_compra (id_detalle_compra, material, cantidad, precio_unitario)
+    INSERT INTO detalle_compras (id_detalle_compra, material, cantidad, precio_unitario)
     VALUES (id_detalle_compra, material, cantidad, precio_unitario);
     COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM detalle_compras;
   END;
+
+  /* Procedimientos para compras */
+  PROCEDURE crear_compras (
+    id_compra IN INT,
+    id_proveedor IN INT,
+    fecha_compra IN DATE,
+    o_c_dbuser OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    INSERT INTO compras (id_compra, id_proveedor, fecha_compra)
+    VALUES (id_compra, id_proveedor, fecha_compra);
+    COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM compras;
+END;
+
+/* Procedimientos para almacenes */
+  PROCEDURE crear_almacenes(id_almacen IN INT, nombre_almacen IN VARCHAR2,
+                            o_c_dbuser OUT SYS_REFCURSOR)
+  AS
+  BEGIN
+    INSERT INTO almacenes (id_almacen, nombre_almacen)
+    VALUES (id_almacen, nombre_almacen);
+    COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM almacenes;
+  END;
+
+  -- Procedimiento para la tabla PERMISOS
+  PROCEDURE crear_permisos(
+    p_id_permisos IN PERMISOS.ID_PERMISOS%TYPE,
+    p_nombre IN PERMISOS.NOMBRE%TYPE,
+    p_id_rol IN PERMISOS.ID_ROL%TYPE,
+    p_descripcion IN PERMISOS.DESCRIPCION%TYPE,
+    o_c_dbuser OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    INSERT INTO PERMISOS (ID_PERMISOS, NOMBRE, ID_ROL, DESCRIPCION)
+    VALUES (p_id_permisos, p_nombre, p_id_rol, p_descripcion);
+    COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM PERMISOS;
+END;
+
+
+-- Procedimiento para la tabla DESPACHOS
+   PROCEDURE crear_despachos(
+    p_id_despacho IN DESPACHOS.ID_DESPACHO%TYPE,
+    p_id_equipo IN DESPACHOS.ID_EQUIPO%TYPE,
+    p_id_departamento IN DESPACHOS.ID_DEPARTAMENTO%TYPE,
+    p_fecha IN DESPACHOS.FECHA%TYPE,
+    p_hora IN DESPACHOS.HORA%TYPE,
+    p_id_personal IN DESPACHOS.ID_PERSONAL%TYPE,
+    o_c_dbuser OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    INSERT INTO DESPACHOS (ID_DESPACHO, ID_EQUIPO, ID_DEPARTAMENTO, FECHA, HORA, ID_PERSONAL)
+    VALUES (p_id_despacho, p_id_equipo, p_id_departamento, p_fecha, p_hora, p_id_personal);
+    COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM DESPACHOS;
+END;
+
+
+-- Procedimiento para la tabla PERSONAL
+ PROCEDURE crear_personal(
+    p_id_personal IN PERSONAL.ID_PERSONAL%TYPE,
+    p_nombre IN PERSONAL.NOMBRE%TYPE,
+    p_telefono IN PERSONAL.TELEFONO%TYPE,
+    p_correo IN PERSONAL.CORREO%TYPE,
+    p_id_departamento IN PERSONAL.ID_DEPARTAMENTO%TYPE,
+    o_c_dbuser OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    INSERT INTO PERSONAL (ID_PERSONAL, NOMBRE, TELEFONO, CORREO, ID_DEPARTAMENTO)
+    VALUES (p_id_personal, p_nombre, p_telefono, p_correo, p_id_departamento);
+    COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM PERSONAL;
+END;
+
+
 END INVENTARIO_MGMT_CREAR_PKG;</pre>
 </div>
 </div>

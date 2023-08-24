@@ -46,24 +46,34 @@
 <div id="Master.0">
 <div class="currentmasterreport">
 <TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
-<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P> Procedimientos para equipos </P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_categoria">crear_categoria</A></B>( id_categoria IN INT , nombre_categoria IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para categorías </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_departamento">crear_departamento</A></B>( id_departamento IN INT , nombre_departamento IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para departamentos </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_detalle_compra">crear_detalle_compra</A></B>( id_detalle_compra IN INT , material IN VARCHAR2 , cantidad IN INT , precio_unitario IN DECIMAL ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para el detalle de compras </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_equipo">crear_equipo</A></B>( id_equipo IN INT , nombre_equipo IN VARCHAR2 , descripcion IN VARCHAR2 , num_serie IN VARCHAR2 , cantidad_disponible IN INT , categoria IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_proveedor">crear_proveedor</A></B>( id_proveedor IN INT , nombre IN VARCHAR2 , telefono IN VARCHAR2 , correo IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para proveedores </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_recepcion">crear_recepcion</A></B>( id_recepcion IN INT , id_equipo IN INT , id_almacen IN INT , fecha IN DATE , hora IN TIMESTAMP ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para recepciones </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_rol">crear_rol</A></B>( id_rol IN INT , nombre IN VARCHAR2 , descripcion IN VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para roles </TD></TR>
-<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_usuario">crear_usuario</A></B>( id_usuario IN INT , id_personal IN INT , username IN VARCHAR2 , password IN VARCHAR2 , id_rol IN INT ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para usuarios </TD></TR>
+<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P> Procedimientos para equipos </P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_almacenes">crear_almacenes</A></B>( id_almacen IN INT , nombre_almacen IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para almacenes </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_categorias">crear_categorias</A></B>( id_categoria IN INT , nombre_categoria IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para categorías </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_compras">crear_compras</A></B>( id_compra IN INT , id_proveedor IN INT , fecha_compra IN DATE , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para compras </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_departamentos">crear_departamentos</A></B>( id_departamento IN INT , nombre_departamento IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para departamentos </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_despachos">crear_despachos</A></B>( p_id_despacho IN DESPACHOS . ID_DESPACHO % TYPE , p_id_equipo IN DESPACHOS . ID_EQUIPO % TYPE , p_id_departamento IN DESPACHOS . ID_DEPARTAMENTO % TYPE , p_fecha IN DESPACHOS . FECHA % TYPE , p_hora IN DESPACHOS . HORA % TYPE , p_id_personal IN DESPACHOS . ID_PERSONAL % TYPE , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para despachos </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_detalle_compras">crear_detalle_compras</A></B>( id_detalle_compra IN INT , material IN VARCHAR2 , cantidad IN INT , precio_unitario IN DECIMAL , id_compra IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para el detalle de compras </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_equipos">crear_equipos</A></B>( id_equipo IN INT , nombre_equipo IN VARCHAR2 , descripcion IN VARCHAR2 , num_serie IN VARCHAR2 , cantidad_disponible IN INT , id_categoria IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_permisos">crear_permisos</A></B>( p_id_permisos IN PERMISOS . ID_PERMISOS % TYPE , p_nombre IN PERMISOS . NOMBRE % TYPE , p_id_rol IN PERMISOS . ID_ROL % TYPE , p_descripcion IN PERMISOS . DESCRIPCION % TYPE , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para permisos </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_personal">crear_personal</A></B>( p_id_personal IN PERSONAL . ID_PERSONAL % TYPE , p_nombre IN PERSONAL . NOMBRE % TYPE , p_telefono IN PERSONAL . TELEFONO % TYPE , p_correo IN PERSONAL . CORREO % TYPE , p_id_departamento IN PERSONAL . ID_DEPARTAMENTO % TYPE , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para personal </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_proveedores">crear_proveedores</A></B>( id_proveedor IN INT , nombre IN VARCHAR2 , telefono IN VARCHAR2 , correo IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para proveedores </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_recepciones">crear_recepciones</A></B>( id_recepcion IN INT , id_equipo IN INT , id_almacen IN INT , fecha IN DATE , hora IN TIMESTAMP , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para recepciones </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_roles">crear_roles</A></B>( id_rol IN INT , nombre IN VARCHAR2 , descripcion IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para roles </TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#crear_usuarios">crear_usuarios</A></B>( id_usuario IN INT , id_personal IN INT , username IN VARCHAR2 , password IN VARCHAR2 , id_rol IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para usuarios </TD></TR>
 </TABLE>
-<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="crear_categoria"></A>
-<H3>crear_categoria</H3><PRE>          <B>crear_categoria</B>( id_categoria IN INT , nombre_categoria IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para categorías <DD><DL></DL></DD></DL><HR><A NAME="crear_departamento"></A>
-<H3>crear_departamento</H3><PRE>          <B>crear_departamento</B>( id_departamento IN INT , nombre_departamento IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para departamentos <DD><DL></DL></DD></DL><HR><A NAME="crear_detalle_compra"></A>
-<H3>crear_detalle_compra</H3><PRE>          <B>crear_detalle_compra</B>( id_detalle_compra IN INT , material IN VARCHAR2 , cantidad IN INT , precio_unitario IN DECIMAL ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para el detalle de compras <DD><DL></DL></DD></DL><HR><A NAME="crear_equipo"></A>
-<H3>crear_equipo</H3><PRE>          <B>crear_equipo</B>( id_equipo IN INT , nombre_equipo IN VARCHAR2 , descripcion IN VARCHAR2 , num_serie IN VARCHAR2 , cantidad_disponible IN INT , categoria IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="crear_proveedor"></A>
-<H3>crear_proveedor</H3><PRE>          <B>crear_proveedor</B>( id_proveedor IN INT , nombre IN VARCHAR2 , telefono IN VARCHAR2 , correo IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para proveedores <DD><DL></DL></DD></DL><HR><A NAME="crear_recepcion"></A>
-<H3>crear_recepcion</H3><PRE>          <B>crear_recepcion</B>( id_recepcion IN INT , id_equipo IN INT , id_almacen IN INT , fecha IN DATE , hora IN TIMESTAMP ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para recepciones <DD><DL></DL></DD></DL><HR><A NAME="crear_rol"></A>
-<H3>crear_rol</H3><PRE>          <B>crear_rol</B>( id_rol IN INT , nombre IN VARCHAR2 , descripcion IN VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para roles <DD><DL></DL></DD></DL><HR><A NAME="crear_usuario"></A>
-<H3>crear_usuario</H3><PRE>          <B>crear_usuario</B>( id_usuario IN INT , id_personal IN INT , username IN VARCHAR2 , password IN VARCHAR2 , id_rol IN INT ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para usuarios <DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="crear_almacenes"></A>
+<H3>crear_almacenes</H3><PRE>          <B>crear_almacenes</B>( id_almacen IN INT , nombre_almacen IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para almacenes <DD><DL></DL></DD></DL><HR><A NAME="crear_categorias"></A>
+<H3>crear_categorias</H3><PRE>          <B>crear_categorias</B>( id_categoria IN INT , nombre_categoria IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para categorías <DD><DL></DL></DD></DL><HR><A NAME="crear_compras"></A>
+<H3>crear_compras</H3><PRE>          <B>crear_compras</B>( id_compra IN INT , id_proveedor IN INT , fecha_compra IN DATE , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para compras <DD><DL></DL></DD></DL><HR><A NAME="crear_departamentos"></A>
+<H3>crear_departamentos</H3><PRE>          <B>crear_departamentos</B>( id_departamento IN INT , nombre_departamento IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para departamentos <DD><DL></DL></DD></DL><HR><A NAME="crear_despachos"></A>
+<H3>crear_despachos</H3><PRE>          <B>crear_despachos</B>( p_id_despacho IN DESPACHOS . ID_DESPACHO % TYPE , p_id_equipo IN DESPACHOS . ID_EQUIPO % TYPE , p_id_departamento IN DESPACHOS . ID_DEPARTAMENTO % TYPE , p_fecha IN DESPACHOS . FECHA % TYPE , p_hora IN DESPACHOS . HORA % TYPE , p_id_personal IN DESPACHOS . ID_PERSONAL % TYPE , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para despachos <DD><DL></DL></DD></DL><HR><A NAME="crear_detalle_compras"></A>
+<H3>crear_detalle_compras</H3><PRE>          <B>crear_detalle_compras</B>( id_detalle_compra IN INT , material IN VARCHAR2 , cantidad IN INT , precio_unitario IN DECIMAL , id_compra IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para el detalle de compras <DD><DL></DL></DD></DL><HR><A NAME="crear_equipos"></A>
+<H3>crear_equipos</H3><PRE>          <B>crear_equipos</B>( id_equipo IN INT , nombre_equipo IN VARCHAR2 , descripcion IN VARCHAR2 , num_serie IN VARCHAR2 , cantidad_disponible IN INT , id_categoria IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="crear_permisos"></A>
+<H3>crear_permisos</H3><PRE>          <B>crear_permisos</B>( p_id_permisos IN PERMISOS . ID_PERMISOS % TYPE , p_nombre IN PERMISOS . NOMBRE % TYPE , p_id_rol IN PERMISOS . ID_ROL % TYPE , p_descripcion IN PERMISOS . DESCRIPCION % TYPE , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para permisos <DD><DL></DL></DD></DL><HR><A NAME="crear_personal"></A>
+<H3>crear_personal</H3><PRE>          <B>crear_personal</B>( p_id_personal IN PERSONAL . ID_PERSONAL % TYPE , p_nombre IN PERSONAL . NOMBRE % TYPE , p_telefono IN PERSONAL . TELEFONO % TYPE , p_correo IN PERSONAL . CORREO % TYPE , p_id_departamento IN PERSONAL . ID_DEPARTAMENTO % TYPE , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para personal <DD><DL></DL></DD></DL><HR><A NAME="crear_proveedores"></A>
+<H3>crear_proveedores</H3><PRE>          <B>crear_proveedores</B>( id_proveedor IN INT , nombre IN VARCHAR2 , telefono IN VARCHAR2 , correo IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para proveedores <DD><DL></DL></DD></DL><HR><A NAME="crear_recepciones"></A>
+<H3>crear_recepciones</H3><PRE>          <B>crear_recepciones</B>( id_recepcion IN INT , id_equipo IN INT , id_almacen IN INT , fecha IN DATE , hora IN TIMESTAMP , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para recepciones <DD><DL></DL></DD></DL><HR><A NAME="crear_roles"></A>
+<H3>crear_roles</H3><PRE>          <B>crear_roles</B>( id_rol IN INT , nombre IN VARCHAR2 , descripcion IN VARCHAR2 , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para roles <DD><DL></DL></DD></DL><HR><A NAME="crear_usuarios"></A>
+<H3>crear_usuarios</H3><PRE>          <B>crear_usuarios</B>( id_usuario IN INT , id_personal IN INT , username IN VARCHAR2 , password IN VARCHAR2 , id_rol IN INT , o_c_dbuser OUT SYS_REFCURSOR ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedimientos para usuarios <DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
 <TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE></div>
 </div>
 <div id="Master.1">
@@ -102,11 +112,11 @@
 </tr>
 <tr>
 <td>LAST_DDL_TIME</td>
-<td>18-JUL-23</td>
+<td>09-AUG-23</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
-<td>2023-07-18:19:44:46</td>
+<td>2023-08-09:19:49:11</td>
 </tr>
 <tr>
 <td>STATUS</td>
@@ -225,22 +235,73 @@
 <pre>
 PACKAGE INVENTARIO_MGMT_CREAR_PKG AS
   /* Procedimientos para equipos */
-  PROCEDURE crear_equipo(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
-                         num_serie IN VARCHAR2, cantidad_disponible IN INT, categoria IN INT);
+  PROCEDURE crear_equipos(id_equipo IN INT, nombre_equipo IN VARCHAR2, descripcion IN VARCHAR2,
+                         num_serie IN VARCHAR2, cantidad_disponible IN INT,
+                         id_categoria IN INT, o_c_dbuser OUT SYS_REFCURSOR);
+
   /* Procedimientos para departamentos */
-  PROCEDURE crear_departamento(id_departamento IN INT, nombre_departamento IN VARCHAR2);
+  PROCEDURE crear_departamentos(id_departamento IN INT, nombre_departamento IN VARCHAR2,
+                               o_c_dbuser OUT SYS_REFCURSOR);
+
   /* Procedimientos para roles */
-  PROCEDURE crear_rol(id_rol IN INT, nombre IN VARCHAR2, descripcion IN VARCHAR2);
+  PROCEDURE crear_roles(id_rol IN INT, nombre IN VARCHAR2, descripcion IN VARCHAR2,
+                      o_c_dbuser OUT SYS_REFCURSOR);
+
   /* Procedimientos para proveedores */
-  PROCEDURE crear_proveedor(id_proveedor IN INT, nombre IN VARCHAR2, telefono IN VARCHAR2, correo IN VARCHAR2);
+  PROCEDURE crear_proveedores(id_proveedor IN INT, nombre IN VARCHAR2, telefono IN VARCHAR2, correo IN VARCHAR2,
+                            o_c_dbuser OUT SYS_REFCURSOR);
+
   /* Procedimientos para recepciones */
-  PROCEDURE crear_recepcion(id_recepcion IN INT, id_equipo IN INT, id_almacen IN INT, fecha IN DATE, hora IN TIMESTAMP);
+  PROCEDURE crear_recepciones(id_recepcion IN INT, id_equipo IN INT, id_almacen IN INT, fecha IN DATE, hora IN TIMESTAMP,
+                            o_c_dbuser OUT SYS_REFCURSOR);
+
   /* Procedimientos para usuarios */
-  PROCEDURE crear_usuario(id_usuario IN INT, id_personal IN INT, username IN VARCHAR2, password IN VARCHAR2, id_rol IN INT);
+  PROCEDURE crear_usuarios(id_usuario IN INT, id_personal IN INT, username IN VARCHAR2, password IN VARCHAR2, id_rol IN INT,
+                          o_c_dbuser OUT SYS_REFCURSOR);
+
   /* Procedimientos para categorías */
-  PROCEDURE crear_categoria(id_categoria IN INT, nombre_categoria IN VARCHAR2);
+  PROCEDURE crear_categorias(id_categoria IN INT, nombre_categoria IN VARCHAR2,
+                            o_c_dbuser OUT SYS_REFCURSOR);
+
   /* Procedimientos para el detalle de compras */
-  PROCEDURE crear_detalle_compra(id_detalle_compra IN INT, material IN VARCHAR2, cantidad IN INT, precio_unitario IN DECIMAL);
+  PROCEDURE crear_detalle_compras(id_detalle_compra IN INT, material IN VARCHAR2, cantidad IN INT, precio_unitario IN DECIMAL,
+                                 id_compra IN INT, o_c_dbuser OUT SYS_REFCURSOR);
+  /* Procedimientos para compras */
+  PROCEDURE crear_compras(id_compra IN INT, id_proveedor IN INT, fecha_compra IN DATE, o_c_dbuser OUT SYS_REFCURSOR);                               
+
+  /* Procedimientos para almacenes */
+  PROCEDURE crear_almacenes(id_almacen IN INT, nombre_almacen IN VARCHAR2,
+                            o_c_dbuser OUT SYS_REFCURSOR);
+  /* Procedimientos para permisos */
+  PROCEDURE crear_permisos(
+      p_id_permisos IN PERMISOS.ID_PERMISOS%TYPE,
+      p_nombre IN PERMISOS.NOMBRE%TYPE,
+      p_id_rol IN PERMISOS.ID_ROL%TYPE,
+      p_descripcion IN PERMISOS.DESCRIPCION%TYPE,
+      o_c_dbuser OUT SYS_REFCURSOR
+  );
+
+  /* Procedimientos para despachos */
+  PROCEDURE crear_despachos(
+      p_id_despacho IN DESPACHOS.ID_DESPACHO%TYPE,
+      p_id_equipo IN DESPACHOS.ID_EQUIPO%TYPE,
+      p_id_departamento IN DESPACHOS.ID_DEPARTAMENTO%TYPE,
+      p_fecha IN DESPACHOS.FECHA%TYPE,
+      p_hora IN DESPACHOS.HORA%TYPE,
+      p_id_personal IN DESPACHOS.ID_PERSONAL%TYPE,
+      o_c_dbuser OUT SYS_REFCURSOR
+  );
+
+  /* Procedimientos para personal */
+  PROCEDURE crear_personal(
+      p_id_personal IN PERSONAL.ID_PERSONAL%TYPE,
+      p_nombre IN PERSONAL.NOMBRE%TYPE,
+      p_telefono IN PERSONAL.TELEFONO%TYPE,
+      p_correo IN PERSONAL.CORREO%TYPE,
+      p_id_departamento IN PERSONAL.ID_DEPARTAMENTO%TYPE,
+      o_c_dbuser OUT SYS_REFCURSOR
+  );                       
+
 END INVENTARIO_MGMT_CREAR_PKG;</pre>
 </div>
 </div>
