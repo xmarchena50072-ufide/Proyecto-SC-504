@@ -18,21 +18,24 @@ END INVENTARIO_MGMT_OBTENER_PKG;
 
 CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_ELIMINAR_PKG AS
   /* Procedimientos para equipos */
-  PROCEDURE eliminar_equipo(id_equipo IN INT);
+  PROCEDURE eliminar_equipos(id_equipo IN INT);
   /* Procedimientos para departamentos */
-  PROCEDURE eliminar_departamento(id_departamento IN INT);
+  PROCEDURE eliminar_departamentos(id_departamento IN INT);
   /* Procedimientos para roles */
-  PROCEDURE eliminar_rol(id_rol IN INT);
+  PROCEDURE eliminar_roles(id_rol IN INT);
   /* Procedimientos para proveedores */
-  PROCEDURE eliminar_proveedor(id_proveedor IN INT);
+  PROCEDURE eliminar_proveedores(id_proveedor IN INT);
   /* Procedimientos para recepciones */
-  PROCEDURE eliminar_recepcion(id_recepcion IN INT);
+  PROCEDURE eliminar_recepciones(id_recepcion IN INT);
   /* Procedimientos para usuarios */
-  PROCEDURE eliminar_usuario(id_usuario IN INT);
+  PROCEDURE eliminar_usuarios(id_usuario IN INT);
   /* Procedimientos para categorías */
-  PROCEDURE eliminar_categoria(id_categoria IN INT);
+  PROCEDURE eliminar_categorias(p_id_categoria IN INT, o_c_dbuser OUT SYS_REFCURSOR);
   /* Procedimientos para el detalle de compras */
-  PROCEDURE eliminar_detalle_compra(id_detalle_compra IN INT);
+  PROCEDURE eliminar_detalle_compras(id_detalle_compra IN INT);
+  /* Procedimientos para almacenes */
+  PROCEDURE eliminar_almacenes(p_id_almacen IN INT, o_c_dbuser OUT SYS_REFCURSOR);
+  
   --PROCEDURE eliminar_proveedor_y_compras(id_proveedor IN INT);
   
   
@@ -349,7 +352,7 @@ END INVENTARIO_MGMT_OBTENER_PKG;
 
 CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ELIMINAR_PKG AS
   /* Procedimientos para equipos */
-  PROCEDURE eliminar_equipo(id_equipo IN INT)
+  PROCEDURE eliminar_equipos(id_equipo IN INT)
   AS
   BEGIN
     DELETE FROM equipos
@@ -358,7 +361,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ELIMINAR_PKG AS
   END;
 
   /* Procedimientos para departamentos */
-  PROCEDURE eliminar_departamento(id_departamento IN INT)
+  PROCEDURE eliminar_departamentos(id_departamento IN INT)
   AS
   BEGIN
     DELETE FROM departamentos
@@ -367,7 +370,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ELIMINAR_PKG AS
   END;
 
   /* Procedimientos para roles */
-  PROCEDURE eliminar_rol(id_rol IN INT)
+  PROCEDURE eliminar_roles(id_rol IN INT)
   AS
   BEGIN
     DELETE FROM roles
@@ -376,7 +379,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ELIMINAR_PKG AS
   END;
 
   /* Procedimientos para proveedores */
-  PROCEDURE eliminar_proveedor(id_proveedor IN INT)
+  PROCEDURE eliminar_proveedores(id_proveedor IN INT)
   AS
   BEGIN
     DELETE FROM proveedores
@@ -385,7 +388,7 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ELIMINAR_PKG AS
   END;
 
   /* Procedimientos para recepciones */
-  PROCEDURE eliminar_recepcion(id_recepcion IN INT)
+  PROCEDURE eliminar_recepciones(id_recepcion IN INT)
   AS
   BEGIN
     DELETE FROM recepciones
@@ -394,30 +397,47 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_ELIMINAR_PKG AS
   END;
 
   /* Procedimientos para usuarios */
-  PROCEDURE eliminar_usuario(id_usuario IN INT)
+  PROCEDURE eliminar_usuarios(id_usuario IN INT)
   AS
   BEGIN
     DELETE FROM usuarios
-    WHERE id_usuarios = id_usuario;
+    WHERE id_usuario = id_usuario;
     COMMIT;
   END;
 
   /* Procedimientos para categorías */
-  PROCEDURE eliminar_categoria(id_categoria IN INT)
+  PROCEDURE eliminar_categorias(p_id_categoria IN INT, o_c_dbuser OUT SYS_REFCURSOR)
   AS
   BEGIN
     DELETE FROM categorias
-    WHERE id_categoria = id_categoria;
+    WHERE id_categoria = p_id_categoria;
     COMMIT;
+    
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM categorias;
   END;
 
   /* Procedimientos para el detalle de compras */
-  PROCEDURE eliminar_detalle_compra(id_detalle_compra IN INT)
+  PROCEDURE eliminar_detalle_compras(id_detalle_compra IN INT)
   AS
   BEGIN
-    DELETE FROM detalle_compra
+    DELETE FROM detalle_compras
     WHERE id_detalle_compra = id_detalle_compra;
     COMMIT;
+  END;
+  
+    /* Procedimientos para almacenes */
+  PROCEDURE eliminar_almacenes(p_id_almacen IN INT, o_c_dbuser OUT SYS_REFCURSOR)
+  AS
+  BEGIN
+    DELETE FROM almacenes
+    WHERE id_almacen = p_id_almacen;
+    COMMIT;
+
+    OPEN o_c_dbuser FOR
+    SELECT *
+    FROM almacenes;
   END;
 END INVENTARIO_MGMT_ELIMINAR_PKG;
 
