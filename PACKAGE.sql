@@ -193,6 +193,66 @@ CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_UI_PKG AS
 END INVENTARIO_MGMT_UI_PKG;
 /
 
+CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_EQUIPOS_PKG AS
+  --obtener la cantidad de equipos disponibles
+  FUNCTION obtener_cantidad_equipos_disponibles
+  RETURN INT;
+  
+  --obtener la cantidad total de equipos por categoria
+  FUNCTION obtener_cantidad_equipos_por_categoria(
+    categoria_id IN INT
+  )
+  RETURN INT;
+  
+END INVENTARIO_MGMT_EQUIPOS_PKG;
+/
+
+CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_PROVEEDORES_PKG AS
+  --obtener la cantidad de proveedores con nombre en cadena
+  FUNCTION obtener_cantidad_proveedores_por_nombre(
+    nombre_proveedor IN VARCHAR2
+  )
+  RETURN INT;
+  
+END INVENTARIO_MGMT_PROVEEDORES_PKG;
+/
+
+CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_RECEPCIONES_PKG AS
+  --obtener la cantidad de recepciones en una fecha especifica
+  FUNCTION obtener_cantidad_recepciones_por_fecha(
+    fecha_recepcion IN DATE
+  )
+  RETURN INT;
+  
+END INVENTARIO_MGMT_RECEPCIONES_PKG;
+/
+
+CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_CATEGORIAS_PKG AS
+  --Eliminar Categoria
+  FUNCTION eliminar_categoria (id_categoria IN INT) 
+  RETURN VARCHAR2;
+  
+END INVENTARIO_MGMT_CATEGORIAS_PKG;
+/
+
+CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_USUARIOS_PKG AS
+  --buscar y devolver el nombre de usuario
+  FUNCTION obtener_nombre_usuario(id_usuario_param IN INT)
+  RETURN VARCHAR2;
+  
+END INVENTARIO_MGMT_USUARIOS_PKG;
+/
+
+CREATE OR REPLACE PACKAGE INVENTARIO_MGMT_DETALLE_COMPRAS_PKG AS
+  --calcular el costo total para un material especÃ­fico
+  FUNCTION calcular_costo_total(material_param VARCHAR)
+  RETURN DECIMAL;
+  
+END INVENTARIO_MGMT_DETALLE_COMPRAS_PKG;
+/
+
+
+
 CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_OBTENER_PKG AS
  
     PROCEDURE obtener_compras(compras_cursor OUT SYS_REFCURSOR) AS
@@ -819,6 +879,125 @@ CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_UI_PKG AS
         WHERE table_name = p_table_name;
     END;
 END INVENTARIO_MGMT_UI_PKG;
+/
+
+CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_EQUIPOS_PKG AS
+  --obtener la cantidad de equipos disponibles
+  FUNCTION obtener_cantidad_equipos_disponibles
+  RETURN INT IS
+    v_cantidad_equipos INT;
+  BEGIN
+    SELECT COUNT(*)
+    INTO v_cantidad_equipos
+    FROM equipos
+    WHERE cantidad_disponible > 0;
+    RETURN v_cantidad_equipos;
+  END obtener_cantidad_equipos_disponibles;
+  
+  --obtener la cantidad total de equipos por categoria
+  FUNCTION obtener_cantidad_equipos_por_categoria(
+    categoria_id IN INT
+  )
+  RETURN INT IS
+    v_cantidad_equipos INT;
+  BEGIN
+    SELECT COUNT(*)
+    INTO v_cantidad_equipos
+    FROM equipos
+    WHERE ID_CATEGORIA = categoria_id;
+    RETURN v_cantidad_equipos;
+  END obtener_cantidad_equipos_por_categoria;
+  
+END INVENTARIO_MGMT_EQUIPOS_PKG;
+/
+
+CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_PROVEEDORES_PKG AS
+  --obtener la cantidad de proveedores con nombre en cadena
+  FUNCTION obtener_cantidad_proveedores_por_nombre(
+    nombre_proveedor IN VARCHAR2
+  )
+  RETURN INT IS
+    v_cantidad_proveedores INT;
+  BEGIN
+    SELECT COUNT(*)
+    INTO v_cantidad_proveedores
+    FROM proveedores
+    WHERE nombre LIKE '%' || nombre_proveedor || '%';
+    RETURN v_cantidad_proveedores;
+  END obtener_cantidad_proveedores_por_nombre;
+  
+END INVENTARIO_MGMT_PROVEEDORES_PKG;
+/
+
+CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_RECEPCIONES_PKG AS
+  --obtener la cantidad de recepciones en una fecha especifica
+  FUNCTION obtener_cantidad_recepciones_por_fecha(
+    fecha_recepcion IN DATE
+  )
+  RETURN INT IS
+    v_cantidad_recepciones INT;
+  BEGIN
+    SELECT COUNT(*)
+    INTO v_cantidad_recepciones
+    FROM recepciones
+    WHERE fecha = fecha_recepcion;
+    RETURN v_cantidad_recepciones;
+  END obtener_cantidad_recepciones_por_fecha;
+  
+END INVENTARIO_MGMT_RECEPCIONES_PKG;
+/
+
+CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_CATEGORIAS_PKG AS
+  --Eliminar Categoria
+  FUNCTION eliminar_categoria (id_categoria IN INT) 
+  RETURN VARCHAR2 IS 
+  BEGIN 
+      DELETE FROM categorias 
+      WHERE ID_CATEGORIA = id_categoria;
+      COMMIT;
+      
+      RETURN 'Categoría eliminada exitosamente.';
+  EXCEPTION
+      WHEN OTHERS THEN
+          ROLLBACK;
+          RETURN 'Error al eliminar la categoría: ' || SQLERRM;
+  END eliminar_categoria;
+  
+END INVENTARIO_MGMT_CATEGORIAS_PKG;
+/
+
+CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_USUARIOS_PKG AS
+  --buscar y devolver el nombre de usuario
+  FUNCTION obtener_nombre_usuario(id_usuario_param IN INT)
+  RETURN VARCHAR2 IS
+    nombre_usuario VARCHAR2(200);
+  BEGIN
+    SELECT USERNAME
+    INTO nombre_usuario
+    FROM USUARIOS
+    WHERE ID_USUARIOS = id_usuario_param;
+    
+    RETURN nombre_usuario;
+  END obtener_nombre_usuario;
+  
+END INVENTARIO_MGMT_USUARIOS_PKG;
+/
+
+CREATE OR REPLACE PACKAGE BODY INVENTARIO_MGMT_DETALLE_COMPRAS_PKG AS
+  --calcular el costo total para un material especÃ­fico
+  FUNCTION calcular_costo_total(material_param VARCHAR)
+  RETURN DECIMAL IS
+    total DECIMAL(10, 2);
+  BEGIN
+    SELECT SUM(CANTIDAD * PRECIO_UNITARIO)
+    INTO total
+    FROM DETALLE_COMPRAS
+    WHERE MATERIAL = material_param;
+    
+    RETURN total;
+  END calcular_costo_total;
+  
+END INVENTARIO_MGMT_DETALLE_COMPRAS_PKG;
 /
 
 
