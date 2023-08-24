@@ -248,20 +248,20 @@ public class InterfazGrafica {
             //Cierra Connection
             //dataAccessLayer.closeConnection();
         } catch (SQLException e) {
-        e.printStackTrace();
-        String errorMessage = "Error";
+            e.printStackTrace();
+            String errorMessage = "Error";
 
-        if (e.getMessage() != null && !e.getMessage().isEmpty()) {
-            if (e.getMessage().contains("unique constraint")) {
-                errorMessage = "Los datos ingresados ya existen en la base de datos.";
-            } else if (e.getMessage().contains("numeric or value error")) {
-                errorMessage = "Error en los datos ingresados, caracteres no se pueden convertir a número";
+            if (e.getMessage() != null && !e.getMessage().isEmpty()) {
+                if (e.getMessage().contains("unique constraint")) {
+                    errorMessage = "Los datos ingresados ya existen en la base de datos.";
+                } else if (e.getMessage().contains("numeric or value error")) {
+                    errorMessage = "Error en los datos ingresados, caracteres no se pueden convertir a número";
+                }
+                // Otros errores
             }
-            // Otros errores
-        }
 
-        JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
-    }
+            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void crudTabs() {
@@ -325,11 +325,10 @@ public class InterfazGrafica {
 
     private JTabbedPane createSubTabsForDelete() {
         JTabbedPane subTabbedPane = new JTabbedPane();
-        for (int i = 1; i <= 12; i++) {
-            JPanel subPanel = new JPanel();
-            subPanel.add(new JLabel("Sub-tab " + i));
-            subTabbedPane.addTab("Sub-tab " + i, subPanel);
-        }
+
+        String sql = "{CALL INVENTARIO_MGMT_UI_PKG.obtener_nombres_tablas_prc(?)}";
+        fetchTables(sql, subTabbedPane, "Delete");
+
         return subTabbedPane;
     }
 
@@ -348,6 +347,8 @@ public class InterfazGrafica {
                     readForms(tableName, subPanel);
                 } else if (crud.equals("Update")) {
                     updateForms(tableName, subPanel);
+                } else if (crud.equals("Delete")) {
+                    deleteForms(tableName, subPanel);
                 }
 
                 //subPanel.add(new JLabel("Tabla: " + tableName));
@@ -497,7 +498,7 @@ public class InterfazGrafica {
     }
 
     private void updateForms(String tableName, JPanel subPanel) {
-            try {
+        try {
             ResultSet resultSet = dataAccessLayer.executeQuery("{CALL INVENTARIO_MGMT_UI_PKG.obtener_info_columnas_prc('" + tableName + "', ?)}");
             Map<String, JComponent> inputComponentsMap = new LinkedHashMap<>();
 
@@ -576,6 +577,91 @@ public class InterfazGrafica {
         } catch (Exception e) {
             e.printStackTrace();
         }
-}
+    }
+
+    private void deleteForms(String tableName, JPanel subPanel) {
+        try {
+            ResultSet resultSet = dataAccessLayer.executeQuery("{CALL INVENTARIO_MGMT_UI_PKG.obtener_info_columnas_prc('" + tableName + "', ?)}");
+            Map<String, JComponent> inputComponentsMap = new LinkedHashMap<>();
+
+            while (resultSet.next()) {
+                String columnName = resultSet.getString("nombre_columna");
+                String dataType = resultSet.getString("tipo_dato");
+                int dataLength = resultSet.getInt("longitud_dato");
+
+                JLabel label = new JLabel(columnName + ":");
+                JComponent inputComponent = createInputComponent(dataType, dataLength); // Crea input basado en el tipo de dato
+                //JButton button = new JButton("Submit");
+
+                JPanel columnPanel = new JPanel(new BorderLayout());
+                columnPanel.add(label, BorderLayout.NORTH);
+                columnPanel.add(inputComponent, BorderLayout.CENTER);
+                //columnPanel.add(button, BorderLayout.SOUTH);
+
+                subPanel.add(columnPanel);
+
+                inputComponentsMap.put(columnName, inputComponent);
+            }
+            JButton button = new JButton("Eliminar");
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        StringBuilder sqlBuilder = new StringBuilder("{CALL INVENTARIO_MGMT_ELIMINAR_PKG.eliminar_");
+                        sqlBuilder.append(tableName.toLowerCase()).append("(");
+
+                        boolean first = true;
+                        for (String columnName : inputComponentsMap.keySet()) {
+                            //Solo para ID primary
+                            if (tableName.toLowerCase().startsWith(columnName.toLowerCase().replace("id_", ""))) {
+                                if (!first) {
+                                    sqlBuilder.append(", ");
+                                }
+                                JComponent inputComponent = inputComponentsMap.get(columnName);
+                                Object value = null;
+
+                                if (inputComponent instanceof JTextField) {
+                                    String textValue = ((JTextField) inputComponent).getText();
+                                    // Escape para VARCHAR2 or otros string inputs
+                                    value = "'" + textValue.replace("'", "''") + "'";
+                                } else if (inputComponent instanceof JFormattedTextField) {
+                                    JFormattedTextField formattedTextField = (JFormattedTextField) inputComponent;
+                                    Object fieldValue = formattedTextField.getValue();
+
+                                    if (fieldValue != null) {
+                                        if (fieldValue instanceof Date) {
+                                            //En caso de fecha
+                                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
+                                            value = "TO_DATE('" + dateFormat.format((Date) fieldValue) + "', 'DD-MON-YY')";
+                                        } else if (fieldValue instanceof Timestamp) {
+                                            //En caso de timestamp
+                                            SimpleDateFormat timestampFormat = new SimpleDateFormat("dd-MMM-yy hh.mm.ss.SSS a");
+                                            value = "TO_TIMESTAMP('" + timestampFormat.format((Timestamp) fieldValue) + "', 'DD-MON-YY HH.MI.SS.FF6 AM')";
+                                        }
+                                    }
+                                }
+
+                                sqlBuilder.append(value);
+                                first = false;
+                            }
+                        }
+                        sqlBuilder.append(", ?)}");
+
+                        fetchData(sqlBuilder.toString(), subPanel);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
+            });
+
+            subPanel.add(button);
+
+            // Cierra recursos
+            resultSet.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
