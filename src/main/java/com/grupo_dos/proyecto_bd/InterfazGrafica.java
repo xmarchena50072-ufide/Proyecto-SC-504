@@ -211,7 +211,7 @@ public class InterfazGrafica {
 
     private void fetchData(String sql, JPanel resultPanel) {
         try {
-            System.err.println(sql);
+            System.out.println(sql);
             ResultSet resultSet = dataAccessLayer.executeQuery(sql);
 
             int columnCount = resultSet.getMetaData().getColumnCount();
@@ -334,7 +334,7 @@ public class InterfazGrafica {
 
     private void fetchTables(String sql, JTabbedPane subTabbedPane, String crud) {
         try {
-
+            System.out.println(sql);
             ResultSet resultSet = dataAccessLayer.executeQuery(sql);
             while (resultSet.next()) {
                 String tableName = resultSet.getString("nombre_tabla");

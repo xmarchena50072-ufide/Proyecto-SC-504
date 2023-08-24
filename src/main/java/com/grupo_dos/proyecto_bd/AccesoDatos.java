@@ -60,14 +60,14 @@ public class AccesoDatos {
     public String callProcedure(String sql) {
         String result = "";
         //String sql = "{? = call function_verify_login(?, ?)}";
-        System.err.println(sql);
+        System.out.println(sql);
 
         try (CallableStatement stmt = connection.prepareCall(sql)) {
             stmt.registerOutParameter(1, OracleTypes.VARCHAR);
             stmt.execute();
 
             result = stmt.getString(1);
-            System.err.println(result);
+            System.out.println(result);
 
 
         } catch (SQLException e) {
